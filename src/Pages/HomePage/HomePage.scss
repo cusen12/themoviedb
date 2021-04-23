@@ -1,2 +1,23 @@
 @import '../../Assets/scss/variable.scss';
  
+.homepage{
+    .MuiTypography-body2{
+        height: 60px;
+        overflow: hidden;
+    }
+    .MuiTypography-h5{
+        height: 35px;
+    }
+    .slick-slider {
+        margin: 0 -15px;
+        .slick-slide {
+            padding: 0 15px;
+        }
+    }  
+    .MuiButton-text{
+        float: right; 
+    }
+    .slick-list{
+        width: 100%;
+    }
+}

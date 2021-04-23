@@ -10,6 +10,11 @@ import People from './Pages/People/People';
 import TVShow from './Pages/TVShow/TVShow'; 
 import Nav from './Component/Nav/Nav';
 import { createMuiTheme, Grid, ThemeProvider } from '@material-ui/core';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import Details from './Pages/Details/Details';
+
+
 const theme = createMuiTheme({
   palette: {
     primary:{
@@ -68,18 +73,11 @@ function App() {
             </Grid>
             <Grid item md={10}>
               <Switch>
-                <Route exact path="/">
-                  <HomePage/> 
-                </Route>
-                <Route path="/movie">
-                  <Movie/>
-                </Route> 
-                <Route path="/tvshow">
-                  <TVShow/>
-                </Route>
-                <Route path="/people">
-                  <People/>
-                </Route>
+                <Route exact path="/" children={<HomePage/>}/> 
+                <Route path="/movie" children={<Movie/>}/> 
+                <Route path="/tvshow" children={ <TVShow/>}/> 
+                <Route path="/people" children={<People/>}/> 
+                <Route path="/:id" children={ <Details/>}/> 
               </Switch> 
             </Grid>
           </Grid> 
