@@ -12,10 +12,10 @@ function ListMovie() {
     const settings = {
         dots: false,
         infinite: true,
-        arrows:true,
+        arrows:false,
         speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,  
+        slidesToShow: 6,
+        slidesToScroll: 6,  
     };
     const handleClickCard = (data) =>{
         history.push("/details"+data)
@@ -24,7 +24,7 @@ function ListMovie() {
         const getListMovie = async () => {
             const link = 'https://api.themoviedb.org/3/tv/top_rated?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=2';
             const respond = await fetch(link);
-            const respondJson = await respond.json();  
+            const respondJson = await respond.json();
             setListMovie(respondJson.results)
         }
         getListMovie()
@@ -34,7 +34,7 @@ function ListMovie() {
             <Grid>
                 <Slider {...settings}>
                     {listMovie ? listMovie.map((data) =>
-                        <Card key={data.id} onClick={() => handleClickCard(data.id)}>
+                        <Card key={data.id} >
                             <CardActionArea>
                                 <CardMedia
                                 component="img"
@@ -44,9 +44,11 @@ function ListMovie() {
                                 title={data.original_name}
                                 />
                                 <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
+                                <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id)}>
                                     {data.original_name}
                                 </Typography>
+                                <p>{data.first_air_date}</p> 
+                                <p>{data.vote_average*10}</p>
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     {data.overview}
                                 </Typography>
