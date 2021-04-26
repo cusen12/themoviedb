@@ -73,4 +73,12 @@
         background: $background-02;
         z-index: 1;
     }
+    
+}
+.MuiCardContent-root{ 
+    svg{
+        position: absolute;
+        top: 0;
+        left: 16px; 
+    }
 }

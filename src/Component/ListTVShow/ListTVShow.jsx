@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Slider from "react-slick"; 
 import { Link, useHistory } from "react-router-dom";
+import ChartSVG from '../ChartSVG/ChartSVG';
 
 function ListMovie() {
     const [listMovie, setListMovie] = useState();
@@ -55,15 +56,14 @@ function ListMovie() {
             }
           ]  
     };
-    const handleClickCard = (data) =>{
-        history.push("/details"+data)
+    const handleClickCard = (data, dataHref) =>{
+        history.push("/details"+dataHref+"="+data)
     }
     useEffect(() => {
         const getListMovie = async () => {
             const link = 'https://api.themoviedb.org/3/tv/top_rated?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=2';
             const respond = await fetch(link);
-            const respondJson = await respond.json();
-            console.log(respondJson)
+            const respondJson = await respond.json(); 
             setListMovie(respondJson.results)
         }
         getListMovie()
@@ -83,11 +83,11 @@ function ListMovie() {
                                 title={data.original_name}
                                 />
                                 <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id)}>
+                                <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id, "tv")}>
                                     {data.original_name}
                                 </Typography>
                                 <p>{data.first_air_date}</p> 
-                                <p>{data.vote_average*10}</p>
+                                <ChartSVG value={data.vote_average*10}/>
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     {data.overview}
                                 </Typography>

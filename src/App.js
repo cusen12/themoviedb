@@ -15,7 +15,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Details from './Pages/Details/Details'; 
 
-
 const theme = createMuiTheme({
   palette: {
     primary:{
@@ -59,33 +58,35 @@ const theme = createMuiTheme({
   }  
 })
 
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Router>
-      <>
-          <Grid container
-            direction="row"
-            justify="flex-start"
-            alignContent="flex-start"
-          >
-            <Grid item md={2}>
-                <Nav/>
-            </Grid>
-            <Grid item md={10}>
-              <Switch>
-                <Route exact path="/" children={<HomePage/>}/> 
-                <Route path="/movie" children={<Movie/>}/> 
-                <Route path="/tvshow" children={ <TVShow/>}/> 
-                <Route path="/people" children={<People/>}/>  
-                <Route path="/:id" children={ <Details/>}/> 
-              </Switch> 
-            </Grid>
-          </Grid>
-          <Footer/> 
-      </>
-      </Router>
-    </ThemeProvider>
+function App() { 
+  return ( 
+      
+        <ThemeProvider theme={theme}>
+          <Router>
+          <>
+              <Grid container
+                direction="row"
+                justify="flex-start"
+                alignContent="flex-start"
+              >
+                <Grid item md={2}>
+                    <Nav/>
+                </Grid>
+                <Grid item md={10}>
+                  <Switch>
+                    <Route exact path="/" children={<HomePage/>}/> 
+                    <Route path="/movie" children={<Movie/>}/> 
+                    <Route path="/tvshow" children={ <TVShow/>}/> 
+                    <Route path="/people" children={<People/>}/>  
+                    <Route path="/:id" children={ <Details/>}/> 
+                  </Switch> 
+                </Grid>
+              </Grid>
+              <Footer/> 
+          </>
+          </Router>
+        </ThemeProvider>
+     
   );
 }
 

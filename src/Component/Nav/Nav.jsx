@@ -6,22 +6,25 @@ import VideocamSharpIcon from '@material-ui/icons/VideocamSharp';
 import PeopleOutlineOutlinedIcon from '@material-ui/icons/PeopleOutlineOutlined';
 import TvSharpIcon from '@material-ui/icons/TvSharp';
 import { Button } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 function Nav() {
+    const langData = useSelector(state=>state.reducer.value.menu);
+    console.log("langData", langData)
     return (
         <>
             <nav>
                 <ul>
                     <li>
-                        <Link to="/"><Button variant="text" size="large" startIcon={<HomeOutlinedIcon/>}>HOME</Button> </Link>
+                        <Link to="/"><Button variant="text" size="large" startIcon={<HomeOutlinedIcon/>}>{langData.home}</Button> </Link>
                     </li>
                     <li>
-                        <Link to="/Movie"><Button variant="text" size="large" startIcon={<VideocamSharpIcon/>}>MOVIE</Button> </Link>
+                        <Link to="/Movie"><Button variant="text" size="large" startIcon={<VideocamSharpIcon/>}>{langData.movie}</Button> </Link>
                     </li> 
                     <li>
-                        <Link to="/TVShow"><Button variant="text" size="large" startIcon={<TvSharpIcon/>}>TV SHOW</Button></Link>
+                        <Link to="/TVShow"><Button variant="text" size="large" startIcon={<TvSharpIcon/>}>{langData.tvShow}</Button></Link>
                     </li>
                     <li>
-                        <Link to="/People"><Button variant="text" size="large" startIcon={<PeopleOutlineOutlinedIcon/>}>PEOLLE</Button></Link>
+                        <Link to="/People"><Button variant="text" size="large" startIcon={<PeopleOutlineOutlinedIcon/>}>{langData.people}</Button></Link>
                     </li>
                 </ul>
             </nav>
