@@ -15,7 +15,45 @@ function ListMovie() {
         arrows:false,
         speed: 500,
         slidesToShow: 6,
-        slidesToScroll: 6,  
+        slidesToScroll: 6,
+        responsive: [
+            {
+            breakpoint: 1824,
+            settings: {
+                slidesToShow: 6,
+                slidesToScroll: 6, 
+            }
+            },
+            {
+            breakpoint: 1624,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 5,
+            }
+            },
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                initialSlide: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]  
     };
     const handleClickCard = (data) =>{
         history.push("/details"+data)
