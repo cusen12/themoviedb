@@ -1,25 +1,28 @@
 import { Button, Grid, Typography } from '@material-ui/core';
-import React, { useState } from 'react'; 
+import React, { useRef, useState } from 'react'; 
 import ListMovie from '../../Component/ListMovie/ListMovie';
 import ListSearch from '../../Component/ListSearch/ListSearch';
 import ListTVShow from '../../Component/ListTVShow/ListTVShow'; 
 import './HomePage.scss';
 
 function HomePage() { 
+    const inputRef = useRef()
     const [value, setValue] = useState();
     const [valueSearch, setValueSearch] = useState();
     const [isSearch, setIsSearch] = useState(false); 
     const handleChangeInput = (e) =>{
         setValue(e.target.value)
     }
-    const handleClickSearch = async () =>{   
+    const handleClickSearch = () =>{   
         if(value === ""){
             setIsSearch(false)  
         }
         else{
             setValueSearch(value)
             setIsSearch(true)
+            inputRef.current.value = "";
         } 
+        
        
     }
     return (
@@ -30,8 +33,8 @@ function HomePage() {
                     <Grid className="content">
                         <Typography variant="h2" color="secondary">Hello Word</Typography> 
                         <Typography variant="h4" color="secondary">Millions of movies, TV shows and people to discover. Explore now.</Typography>
-                        <div className="input">
-                            <input type="text" onChange={handleChangeInput}/>
+                        <div className="input"  >
+                            <input type="text" onChange={handleChangeInput} ref={inputRef}/>
                             <Button onClick={handleClickSearch}>Search</Button>
                         </div>
                     </Grid>
