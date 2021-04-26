@@ -25,6 +25,7 @@ function ListMovie() {
             const link = 'https://api.themoviedb.org/3/tv/top_rated?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=2';
             const respond = await fetch(link);
             const respondJson = await respond.json();
+            console.log(respondJson)
             setListMovie(respondJson.results)
         }
         getListMovie()

@@ -3,10 +3,10 @@
 nav{
     position: relative;
     height: 100%;
-    padding: 40px;
+    padding: 40px 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     &::after{
         content:'';
         width: 100%;
@@ -17,14 +17,17 @@ nav{
         background: $background-01; 
         z-index: -1; 
     }
+    ul{
+        position: fixed;
+    }
     li{
         a,button{
             width: 100%;
         }
     }
     .MuiSvgIcon-root{
-        font-size: 60px;
-        color:$primary-text
+        font-size: 25px;
+        color:#00adff
     }
     .MuiButton-iconSizeLarge{
         
@@ -33,7 +36,7 @@ nav{
         }
     } 
     .MuiButton-textSizeLarge{
-        font-size: 1.9375rem;
+        font-size:25px;
         color:$primary-text;
         font-weight: bold;
         justify-content: flex-start;

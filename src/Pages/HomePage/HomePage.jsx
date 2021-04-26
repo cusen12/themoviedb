@@ -1,19 +1,26 @@
 import { Button, Grid, Typography } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import ListMovie from '../../Component/ListMovie/ListMovie';
+import ListSearch from '../../Component/ListSearch/ListSearch';
 import ListTVShow from '../../Component/ListTVShow/ListTVShow'; 
 import './HomePage.scss';
 
-function HomePage() {
+function HomePage() { 
     const [value, setValue] = useState();
+    const [valueSearch, setValueSearch] = useState();
+    const [isSearch, setIsSearch] = useState(false); 
     const handleChangeInput = (e) =>{
         setValue(e.target.value)
     }
-    const handleClickSearch = async () =>{ 
-        const link =`https://api.themoviedb.org/3/search/keyword?api_key=cd58c7bd131cba3c391d62c5fda2ae53&query=${value}`;
-        const respond = await fetch(link);
-        const respondJson = await respond.json()
-        console.log( respondJson);
+    const handleClickSearch = async () =>{   
+        if(value === ""){
+            setIsSearch(false)  
+        }
+        else{
+            setValueSearch(value)
+            setIsSearch(true)
+        } 
+       
     }
     return (
         <> 
@@ -29,13 +36,16 @@ function HomePage() {
                         </div>
                     </Grid>
                 </Grid> 
-                <Grid item md={12} className="bg-home "> 
+                {
+                    isSearch ? <ListSearch data={valueSearch}/> : 
+                    <Grid item md={12} className="bg-home "> 
                     <Typography variant="h4" color="primary">TV Show</Typography> 
                     <ListTVShow/>
 
                     <Typography variant="h4" color="primary">Movie</Typography>
                     <ListMovie/>
                 </Grid>
+                }
              </Grid>
             
         </>
