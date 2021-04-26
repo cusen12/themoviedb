@@ -5,8 +5,7 @@ import ListSearch from '../../Component/ListSearch/ListSearch';
 import ListTVShow from '../../Component/ListTVShow/ListTVShow'; 
 import './HomePage.scss';
 
-function HomePage() { 
-    const inputRef = useRef()
+function HomePage() {  
     const [value, setValue] = useState();
     const [valueSearch, setValueSearch] = useState();
     const [isSearch, setIsSearch] = useState(false); 
@@ -19,8 +18,7 @@ function HomePage() {
         }
         else{
             setValueSearch(value)
-            setIsSearch(true)
-            inputRef.current.value = "";
+            setIsSearch(true) 
         } 
         
        
@@ -34,7 +32,7 @@ function HomePage() {
                         <Typography variant="h2" color="secondary">Hello Word</Typography> 
                         <Typography variant="h4" color="secondary">Millions of movies, TV shows and people to discover. Explore now.</Typography>
                         <div className="input"  >
-                            <input type="text" onChange={handleChangeInput} ref={inputRef}/>
+                            <input type="text" onChange={handleChangeInput}/>
                             <Button onClick={handleClickSearch}>Search</Button>
                         </div>
                     </Grid>
