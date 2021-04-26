@@ -12,7 +12,7 @@ function Language() {
             {
                 home: "Trang chủ",
                 movie: "Phim",
-                tvShow: "Chương trình truyền hình",
+                tvShow: "Chương trình TV",
                 people: "Nhân vật"
     
             }
@@ -28,17 +28,7 @@ function Language() {
                 people: "People"
             }
         },
-        {
-            key:"en2",
-            language: "English2",
-            menu:
-            {
-                home: "home",
-                movie: "movie",
-                tvShow: "TV Show",
-                people: "People"
-            }
-        }
+        
     ]
 
     const [lang, setLang] = useState(languages[0]); 
