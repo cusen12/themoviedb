@@ -8,8 +8,7 @@ import TvSharpIcon from '@material-ui/icons/TvSharp';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 function Nav() {
-    const langData = useSelector(state=>state.reducer.value.menu);
-    console.log("langData", langData)
+    const langData = useSelector(state=>state.reducer.value.menu); 
     return (
         <>
             <nav>

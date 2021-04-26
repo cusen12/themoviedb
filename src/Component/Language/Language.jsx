@@ -3,6 +3,14 @@ import { useDispatch } from 'react-redux';
 import { selectLanguage } from './LanguegeSlice';
 
 function Language() { 
+    const style={
+        position:"absolute",
+        top:"20px",
+        right:"20px",
+        padding:"3px",
+        outline:"0",
+        border:"0"
+    }
     const dispatch = useDispatch();
     const languages = [
         {
@@ -34,16 +42,18 @@ function Language() {
     const [lang, setLang] = useState(languages[0]); 
     const handleChangevalue = async (e) =>{  
         await setLang(languages[(e.target.value)]); 
-        dispatch(selectLanguage(languages[(e.target.value)]))
+        dispatch(selectLanguage(languages[(e.target.value)])) 
     } 
     return (
-        <> 
-            <h2>{lang.language}</h2>
-            <select onChange={handleChangevalue}> 
-                {languages.map((data, index) =>
-                    <option key={data.key} value={index}>{data.language}</option>
-                )} 
-            </select>
+        <>  
+            <div style={style}>
+                <label style={{display:"none"}}>{lang.key}</label>
+                <select onChange={handleChangevalue} > 
+                    {languages.map((data, index) =>
+                        <option key={data.key} value={index}>{data.language}</option>
+                    )} 
+                </select>
+            </div>
         </>
     );
 }
