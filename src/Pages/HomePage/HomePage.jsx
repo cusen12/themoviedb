@@ -1,6 +1,6 @@
 import { Button, Grid, Typography } from '@material-ui/core';
 import React, { useState } from 'react'; 
-import Language from '../../Component/Language/Language';
+import { useSelector } from 'react-redux';
 import ListMovie from '../../Component/ListMovie/ListMovie';
 import ListSearch from '../../Component/ListSearch/ListSearch';
 import ListTVShow from '../../Component/ListTVShow/ListTVShow'; 
@@ -20,23 +20,21 @@ function HomePage() {
         else{
             setValueSearch(value)
             setIsSearch(true) 
-        } 
-        
-       
+        }  
     }
+    const langData = useSelector(state=>state.reducer.value.hero); 
     return (
         <>  
             <Grid className="homepage">
                 <Grid className="search">
                     <Grid className="content">
-                        <Typography variant="h2" color="secondary">Xin chào.</Typography> 
-                        <Typography variant="h4" color="secondary">Hàng triệu bộ phim, chương trình truyền hình và mọi người để khám phá. Khám phá ngay bây giờ.</Typography>
+                        <Typography variant="h2" color="secondary">{langData.welcome}</Typography> 
+                        <Typography variant="h4" color="secondary">{langData.destription}</Typography>
                         <br/>
                         <div className="input"  >
                             <input type="text" onChange={handleChangeInput}/>
                             <Button onClick={handleClickSearch}>Search</Button>
-                        </div>
-                        <Language/>
+                        </div> 
                     </Grid>
                 </Grid> 
                 {

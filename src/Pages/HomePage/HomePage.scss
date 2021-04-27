@@ -32,8 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .content{
-        width: 50%;
+    .content{ 
         z-index: 100;
         input{
             width: 100%;
@@ -50,16 +49,16 @@
             button{
                 position: absolute;
                 top: 0;
-                right: 0;
+                right: -1px;
                 width: 150px;
                 font-weight: bold;
                 outline: none;
                 border: none;
                 height: 40px;
-                color: $primary-text;  
+                color: $secondary-text;  
                 padding: 10px;
                 border-radius: 20px; 
-                background:$background-02
+                background:$text
             }
         }
     }

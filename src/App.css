@@ -9,10 +9,17 @@ li{
 a{
   text-decoration: none;
   display: inline-block;
+  color:#804b4b
 } 
 body{
   background-color: #dedede;
 } 
 .titleH4{
   padding: 20px 0;
+}
+.main{
+  min-height: 100vh;
+}
+.MuiButton-label{
+  text-transform: initial;
 }

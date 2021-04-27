@@ -7,22 +7,24 @@ import {
 import HomePage from './Pages/HomePage/HomePage';
 import Movie from './Pages/Movie/Movie';
 import People from './Pages/People/People';
-import TVShow from './Pages/TVShow/TVShow'; 
+import TVShow from './Pages/TVShow/TVShow';  
+import Details from './Pages/Details/Details'; 
+import CommingSoon from './Pages/CommingSoon/CommingSoon';
 import Nav from './Component/Nav/Nav';
 import Footer from './Component/Footer/Footer';
 import { createMuiTheme, Grid, ThemeProvider } from '@material-ui/core';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import Details from './Pages/Details/Details'; 
+
 
 const theme = createMuiTheme({
   palette: {
     primary:{
-      main: '#000000',
+      main: '#4d4646',
       contrastText: "#424242" 
     },
     secondary: {
-      main: '#ffffff',
+      main: '#e4e4e4',
       contrastText: "#ffffff" 
     }
   } ,
@@ -56,8 +58,7 @@ const theme = createMuiTheme({
     }
 
   }  
-})
-
+}) 
 function App() { 
   return ( 
       
@@ -72,13 +73,14 @@ function App() {
                 <Grid item md={2}>
                     <Nav/>
                 </Grid>
-                <Grid item md={10}>
+                <Grid item md={10} className="main">
                   <Switch>
                     <Route exact path="/" children={<HomePage/>}/> 
                     <Route path="/movie" children={<Movie/>}/> 
                     <Route path="/tvshow" children={ <TVShow/>}/> 
-                    <Route path="/people" children={<People/>}/>  
-                    <Route path="/:id" children={ <Details/>}/> 
+                    <Route path="/people" children={<People/>}/> 
+                    <Route path="/commingsoon" children={ <CommingSoon/>}/>  
+                    <Route path="/:id" children={ <Details/>}/>  
                   </Switch> 
                 </Grid>
               </Grid>
