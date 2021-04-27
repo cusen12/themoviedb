@@ -207,6 +207,7 @@ function Language() {
     ]
  
     const [lang, setLang] = useState(languages[0]); 
+    dispatch(selectLanguage(lang))
     const handleChangevalue = async (e) =>{  
         await setLang(languages[(e.target.value)]); 
         dispatch(selectLanguage(languages[(e.target.value)])) 
