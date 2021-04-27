@@ -19,7 +19,99 @@ function Language() {
         cursor:"pointer"
     }
     const dispatch = useDispatch();
-    const languages = [ 
+    const languages = [  
+        {
+            key:"vn",
+            language: "Tiếng Việt", 
+            menu:
+            {
+                home: "Trang chủ",
+                movie: "Phim",
+                tvShow: "Chương trình TV",
+                people: "Nhân vật"
+    
+            },
+            hero:{
+                welcome: "Xin chào!!!",
+                destription: "Hàng triệu bộ phim, chương trình truyền hình và mọi người để khám phá. Khám phá ngay bây giờ.",
+                search:"Tìm kiếm"
+            },
+            footer:{
+                contact:"Liên hệ với chúng tôi",
+                links: [
+                    {
+                       link:"/commingsoon",
+                       typeLink:"1",
+                       text: "Câu hỏi thường gặp",
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"3",
+                        text: "Quan hệ với nhà đầu tư",
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"3",
+                        text:"Quyền riêng tư", 
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"4",
+                        text:"Kiểm tra tốc độ", 
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"5",
+                        text:"Trung tâm trợ giúp", 
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"6",
+                        text: "Việc làm", 
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"7",
+                        text: "Tùy chọn cookie", 
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"8",
+                        text:"Thông báo pháp lý",
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"9",
+                        text: "Tài khoản", 
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"10",
+                        text: "Các cách xem", 
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"11",
+                        text: "Thông tin doanh nghiệp",  
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"12",
+                        text: "Trung tâm đa phương tiện", 
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"13",
+                        text: "Điều khoản sử dụng", 
+                    },
+                    {
+                        link:"/commingsoon",
+                        typeLink:"14",
+                        text: "Liên hệ với chúng tôi"
+                    }
+                ]
+            }
+        },
         {
             key:"en",
             language: "English",
@@ -112,98 +204,6 @@ function Language() {
                 
             }
         },
-        {
-            key:"vn",
-            language: "Tiếng Việt", 
-            menu:
-            {
-                home: "Trang chủ",
-                movie: "Phim",
-                tvShow: "Chương trình TV",
-                people: "Nhân vật"
-    
-            },
-            hero:{
-                welcome: "Xin chào!!!",
-                destription: "Hàng triệu bộ phim, chương trình truyền hình và mọi người để khám phá. Khám phá ngay bây giờ.",
-                search:"Tìm kiếm"
-            },
-            footer:{
-                contact:"Liên hệ với chúng tôi",
-                links: [
-                    {
-                       link:"/commingsoon",
-                       typeLink:"1",
-                       text: "Câu hỏi thường gặp",
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"3",
-                        text: "Quan hệ với nhà đầu tư",
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"3",
-                        text:"Quyền riêng tư", 
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"4",
-                        text:"Kiểm tra tốc độ", 
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"5",
-                        text:"Trung tâm trợ giúp", 
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"6",
-                        text: "Việc làm", 
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"7",
-                        text: "Tùy chọn cookie", 
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"8",
-                        text:"Thông báo pháp lý",
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"9",
-                        text: "Tài khoản", 
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"10",
-                        text: "Các cách xem", 
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"11",
-                        text: "Thông tin doanh nghiệp",  
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"12",
-                        text: "Trung tâm đa phương tiện", 
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"13",
-                        text: "Điều khoản sử dụng", 
-                    },
-                    {
-                        link:"/commingsoon",
-                        typeLink:"14",
-                        text: "Liên hệ với chúng tôi"
-                    }
-                ]
-            }
-        }
     ]
  
     const [lang, setLang] = useState(languages[0]);  
