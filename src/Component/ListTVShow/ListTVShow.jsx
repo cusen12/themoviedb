@@ -73,7 +73,7 @@ function ListMovie() {
             <Grid>
                 <Slider {...settings}>
                     {listMovie ? listMovie.map((data) =>
-                        <Card key={data.id} >
+                        <Card key={data.id} onClick={() => handleClickCard(data.id, "tv")}>
                             <CardActionArea>
                                 <CardMedia
                                 component="img"
@@ -83,7 +83,7 @@ function ListMovie() {
                                 title={data.original_name}
                                 />
                                 <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id, "tv")}>
+                                <Typography gutterBottom variant="h5" component="h2" >
                                     {data.original_name}
                                 </Typography>
                                 <p>{data.first_air_date}</p> 

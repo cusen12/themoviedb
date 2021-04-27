@@ -74,7 +74,7 @@ function TVShow() {
                 alignContent="flex-start"
                 spacing={2}> 
                     {listMovie ? listMovie.map((data) =>
-                         <Grid item sm={3} key={data.id} >
+                         <Grid item sm={3} key={data.id} onClick={() => handleClickCard(data.id, "tv")}>
                             <Card >
                                 <CardActionArea>
                                     <CardMedia
@@ -85,7 +85,7 @@ function TVShow() {
                                     title={data.original_name}
                                     />
                                     <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id, "tv")}>
+                                    <Typography gutterBottom variant="h5" component="h2">
                                         {data.original_name}
                                     </Typography>
                                     <p>{data.first_air_date}</p> 
