@@ -33,16 +33,24 @@
 
 ```
 ## API
+- API lấy từ themoviedb demo nằm ở trang chủ https://www.themoviedb.org/ và link API bên dưới
 ```
-  https://www.themoviedb.org/
+  https://developers.themoviedb.org/3
 ```
 ## Link Website
+- Website sau khi push lên git sẽ tự động deploy lên trang web bên dưới
 ```
   https://themovievn.herokuapp.com/
 ```
 ## Cài đặt 
+- Cài đặt các package bằng lệnh 
 ```
-  npm i
+  npm install
+```
+## Run
+- Run bằng lệnh 
+```
+  npm start
 ```
 
 
