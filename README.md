@@ -1,6 +1,5 @@
 # Mô tả dự án
   Dự án front end dùng để học tập lấy API của themoviedb sử dụng ReactJS hoàn thành 1 website review phim, nhân vật điện ảnh, các số liệu thống kê, bao gồm các chức năng đăng    nhập, đăng ký, thêm xóa sửa list ... 
-
 ## Kiến thức đạt được
 ```
 - React
@@ -43,12 +42,17 @@
   https://themovievn.herokuapp.com/
 ```
 ## Cài đặt 
-- Cài đặt các package bằng lệnh 
+*** Lưu ý: để tránh phát sinh lỗi khuyến nghị cài đặt:
 ```
+  NoteJS: v14.14.0
+  Node-Sass: 4.14.1
+ ```
+- Cài đặt các package bằng lệnh 
+``` 
   npm install
 ```
 ## Run
-- Run bằng lệnh 
+- Sau khi cài đặt các package thành công -> start dự án 
 ```
   npm start
 ```
