@@ -41,9 +41,13 @@ function HomePage() {
                     isSearch ? <ListSearch data={valueSearch}/> : 
                     <Grid item md={12} className="bg-home "> 
                     <Typography variant="h4" className="titleH4" color="primary">TOP TV Show</Typography> 
+                    <hr/>
+                    <br/>
                     <ListTVShow/>
 
                     <Typography variant="h4" className="titleH4" color="primary">TOP Movie</Typography>
+                    <hr/>
+                    <br/>
                     <ListMovie/>
                 </Grid>
                 }

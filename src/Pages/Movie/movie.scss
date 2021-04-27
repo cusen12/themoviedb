@@ -1,0 +1,17 @@
+.movie{
+    .MuiTypography-body2{
+        height: 60px;
+        overflow: hidden;
+    }
+    .MuiTypography-h5 {
+        height: 35px;
+    }
+}
+.pagination{
+    margin: 20px 0;
+    nav{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } 
+}

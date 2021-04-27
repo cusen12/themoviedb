@@ -5,7 +5,7 @@ function People() {
     return (
         <>
              <Grid container item md={12}>
-                <Typography variant="h2" color="secondary" align="right">People</Typography>
+                <Typography variant="h2" color="secondary" align="right">People nè nha</Typography>
             </Grid>
             <Grid container item md={12} className="bg-home">
                  

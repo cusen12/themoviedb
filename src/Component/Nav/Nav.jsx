@@ -14,7 +14,7 @@ function Nav() {
         <>
         
             
-            <nav>
+            <nav className="nav">
                 <Language/>
                 <ul>
                     <li>
