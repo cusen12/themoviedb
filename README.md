@@ -1,7 +1,7 @@
 # Mô tả dự án
   Dự án front end dùng để học tập lấy API của themoviedb sử dụng ReactJS hoàn thành 1 website review phim, nhân vật điện ảnh, các số liệu thống kê, bao gồm các chức năng đăng    nhập, đăng ký, thêm xóa sửa list ... 
 
-# Kiến thức
+## Kiến thức đạt được
 ```
 - React
   + Hook default in react
@@ -32,15 +32,15 @@
 - Tổ chức File , Component
 
 ```
-# API
+## API
 ```
   https://www.themoviedb.org/
 ```
-# Link Website
+## Link Website
 ```
   https://themovievn.herokuapp.com/
 ```
-# Cài đặt 
+## Cài đặt 
 ```
   npm i
 ```
