@@ -27,8 +27,9 @@
 - Git CLI
 - SCSS
 - Tổ chức File , Component
-##API
+
 ```
+##API
 ```
   https://www.themoviedb.org/
 ```
