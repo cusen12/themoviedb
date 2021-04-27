@@ -35,7 +35,6 @@
 ```
   https://themovievn.herokuapp.com/
 ```
-```
 # Cài đặt 
 ```
   npm i
