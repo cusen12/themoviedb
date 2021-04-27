@@ -32,7 +32,8 @@ function Language() {
             },
             hero:{
                 welcome: "Welcome!!!",
-                destription: "Millions of movies, TV shows and people to discover. Explore now."
+                destription: "Millions of movies, TV shows and people to discover. Explore now.",
+                search:"Search"
             },
             footer:{
                 contact:"Contact us",
@@ -124,7 +125,8 @@ function Language() {
             },
             hero:{
                 welcome: "Xin chào!!!",
-                destription: "Hàng triệu bộ phim, chương trình truyền hình và mọi người để khám phá. Khám phá ngay bây giờ."
+                destription: "Hàng triệu bộ phim, chương trình truyền hình và mọi người để khám phá. Khám phá ngay bây giờ.",
+                search:"Tìm kiếm"
             },
             footer:{
                 contact:"Liên hệ với chúng tôi",
@@ -203,8 +205,7 @@ function Language() {
             }
         }
     ]
-
-    console.log(languages)
+ 
     const [lang, setLang] = useState(languages[0]); 
     const handleChangevalue = async (e) =>{  
         await setLang(languages[(e.target.value)]); 

@@ -33,7 +33,7 @@ function HomePage() {
                         <br/>
                         <div className="input"  >
                             <input type="text" onChange={handleChangeInput}/>
-                            <Button onClick={handleClickSearch}>Search</Button>
+                            <Button onClick={handleClickSearch}>{langData.search}</Button>
                         </div> 
                     </Grid>
                 </Grid> 

@@ -13,7 +13,7 @@ function ChartSVG(props) {
                     r="15.91549431" />
                 <circle 
 
-                stroke={props.value > 50 ? "#F5F5F5" : "#ffcf22"} 
+                stroke={props.value > 50 ? "#e4e4e4" : "#ffcf22"} 
                 strokeWidth="6" 
                 strokeDasharray={props.value+",100"} 
                 strokeLinecap="round" 
