@@ -1,4 +1,4 @@
-#Kiến thức
+##Kiến thức
 ```
 - React
   + Hook default in react
@@ -27,16 +27,16 @@
 - Git CLI
 - SCSS
 - Tổ chức File , Component
-#API
+##API
 ```
 ```
   https://www.themoviedb.org/
 ```
-#Link Website
+##Link Website
 ```
   https://themovievn.herokuapp.com/
 ```
-# Cài đặt 
+##Cài đặt 
 ```
   npm i
 ```
