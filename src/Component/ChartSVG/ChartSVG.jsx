@@ -15,8 +15,7 @@ function ChartSVG(props) {
 
                 stroke={props.value > 50 ? "#e4e4e4" : "#ffcf22"} 
                 strokeWidth="6" 
-                strokeDasharray={props.value+",100"} 
-                strokeLinecap="round" 
+                strokeDasharray={props.value+",100"}  
                 fill="#00000088" 
                 cx="20" 
                 cy="20" 

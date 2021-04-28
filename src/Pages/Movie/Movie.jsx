@@ -13,22 +13,20 @@ function ListMovie() {
     const [listMovie, setListMovie] = useState();
     const [category, setCategory] = useState("now_playing");
     const [title, setTitle]= useState("Now Playing")
-    const [linkAPI, setLinkAPI]= useState(`https://api.themoviedb.org/3/movie/now_playing?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=1`)
+    const linkAPI= `https://api.themoviedb.org/3/movie/${category}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=${page}`
     const history = useHistory();
     const handleClickCard = (data, dataHref) =>{
         history.push("/details"+dataHref+"="+data)
     } 
     const handleChangeValuePagination = (e) =>{
-        setPage(e.target.textContent) 
-        setLinkAPI(`https://api.themoviedb.org/3/movie/${category}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=${page}`)
+        setPage(e.target.textContent)  
     } 
-    const handleClickbutton = async (e) =>{
+    const handleClickbutton = async (e) =>{ 
         const dataCategory = e.currentTarget.attributes['datatype'].value
         const dataTitle = e.currentTarget.attributes['alt'].value
         await setCategory(dataCategory) 
-        await setTitle(dataTitle)
-       setPage(1)
-        setLinkAPI(`https://api.themoviedb.org/3/movie/${category}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=${page}`) 
+        await setTitle(dataTitle) 
+        setPage(1)  
     }
     useEffect(() => {
         const getListMovie = async () => { 
