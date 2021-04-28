@@ -1,5 +1,8 @@
 {
+<<<<<<< HEAD
   "homepage": "https://themovievn.herokuapp.com/",
+=======
+>>>>>>> parent of d54092b... js
   "name": "themoviedb",
   "version": "0.1.0",
   "private": true,
