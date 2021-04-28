@@ -65,10 +65,11 @@ const theme = createMuiTheme({
 }) 
 function App() { 
   return ( 
-      <Suspense fallback={<div>Loading...</div>}>
+      
         <ThemeProvider theme={theme}>
           <Router>
           <>
+            <Suspense fallback={<div>Loading...</div>}>
               <Grid container
                 direction="row"
                 justify="flex-start"
@@ -89,10 +90,11 @@ function App() {
                 </Grid>
               </Grid>
               <Footer/> 
-          </>
+            </Suspense>
+          </> 
           </Router>
         </ThemeProvider>
-        </Suspense>
+        
      
   );
 }
