@@ -4,21 +4,17 @@ import {
   Switch,
   Route
 } from "react-router-dom"; 
-
+import HomePage from './Pages/HomePage/HomePage';
+import Movie from './Pages/Movie/Movie';
+import People from './Pages/People/People';
+import TVShow from './Pages/TVShow/TVShow';  
+import Details from './Pages/Details/Details'; 
+import CommingSoon from './Pages/CommingSoon/CommingSoon';
+import Nav from './Component/Nav/Nav';
+import Footer from './Component/Footer/Footer';
 import { createMuiTheme, Grid, ThemeProvider } from '@material-ui/core';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
- 
-import React, { Suspense } from 'react';  
-
-const HomePage = React.lazy(()=> import('./Pages/HomePage/HomePage'));
-const People = React.lazy(()=> import('./Pages/People/People'));
-const Movie = React.lazy(()=> import('./Pages/Movie/Movie'));
-const TVShow = React.lazy(()=> import('./Pages/TVShow/TVShow'));
-const Details = React.lazy(()=> import('./Pages/Details/Details'));
-const CommingSoon = React.lazy(()=> import('./Pages/CommingSoon/CommingSoon'));
-const Nav = React.lazy(()=> import('./Component/Nav/Nav'));
-const Footer = React.lazy(()=> import('./Component/Footer/Footer')); 
 
 
 const theme = createMuiTheme({
@@ -69,7 +65,6 @@ function App() {
         <ThemeProvider theme={theme}>
           <Router>
           <>
-            <Suspense fallback={<div>Loading...</div>}>
               <Grid container
                 direction="row"
                 justify="flex-start"
@@ -90,11 +85,9 @@ function App() {
                 </Grid>
               </Grid>
               <Footer/> 
-            </Suspense>
-          </> 
+          </>
           </Router>
         </ThemeProvider>
-        
      
   );
 }

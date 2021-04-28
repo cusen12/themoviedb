@@ -1,12 +1,10 @@
 import { Button, Grid, Typography } from '@material-ui/core';
-import React, { Suspense, useState } from 'react'; 
-import { useSelector } from 'react-redux';  
-import './HomePage.scss';
-
-const ListMovie = React.lazy(()=>import('../../Component/ListMovie/ListMovie'))
-const ListSearch = React.lazy(()=>import('../../Component/ListSearch/ListSearch'))
-const ListTVShow = React.lazy(()=>import('../../Component/ListTVShow/ListTVShow'))
-
+import React, { useState } from 'react'; 
+import { useSelector } from 'react-redux';
+import ListMovie from '../../Component/ListMovie/ListMovie';
+import ListSearch from '../../Component/ListSearch/ListSearch';
+import ListTVShow from '../../Component/ListTVShow/ListTVShow'; 
+import './HomePage.scss';  
 
 function HomePage() {  
     const [value, setValue] = useState();
@@ -27,28 +25,26 @@ function HomePage() {
     const langData = useSelector(state=>state.reducer.value.hero); 
     return (
         <>  
-            <Suspense fallback={<div>Loading...</div>}>
-                <Grid className="homepage">
-                    <Grid className="search">
-                        <Grid className="content">
-                            <Typography variant="h2" color="secondary">{langData.welcome}</Typography> 
-                            <Typography variant="h4" color="secondary">{langData.destription}</Typography>
-                            <br/>
-                            <div className="input"  >
-                                <input type="text" onChange={handleChangeInput}/>
-                                <Button onClick={handleClickSearch}>{langData.search}</Button>
-                            </div> 
-                        </Grid>
-                    </Grid> 
-                    {
-                        isSearch ? <ListSearch data={valueSearch}/> : 
-                        <Grid item md={12} className="bg-home ">  
-                        <ListMovie/>
-                        <ListTVShow/>  
+            <Grid className="homepage">
+                <Grid className="search">
+                    <Grid className="content">
+                        <Typography variant="h2" color="secondary">{langData.welcome}</Typography> 
+                        <Typography variant="h4" color="secondary">{langData.destription}</Typography>
+                        <br/>
+                        <div className="input"  >
+                            <input type="text" onChange={handleChangeInput}/>
+                            <Button onClick={handleClickSearch}>{langData.search}</Button>
+                        </div> 
                     </Grid>
-                    }
                 </Grid> 
-            </Suspense>   
+                {
+                    isSearch ? <ListSearch data={valueSearch}/> : 
+                    <Grid item md={12} className="bg-home ">  
+                    <ListMovie/>
+                    <ListTVShow/>  
+                </Grid>
+                }
+            </Grid> 
         </>
     );
 }

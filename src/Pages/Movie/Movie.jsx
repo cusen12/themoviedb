@@ -1,12 +1,11 @@
 import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography } from '@material-ui/core';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react'; 
 import { useHistory } from "react-router-dom"; 
-import "./movie.scss"  
+import "./movie.scss"
+import ChartSVG from '../../Component/ChartSVG/ChartSVG';  
 import Pagination from '@material-ui/lab/Pagination'; 
-
-const ChartSVG = React.lazy(()=> import('../../Component/ChartSVG/ChartSVG')); 
 
 function ListMovie() { 
     const [page, setPage] = useState(1);
@@ -46,7 +45,6 @@ function ListMovie() {
     }  
     return (
         <> 
-            <Suspense fallback={<div>Loading...</div>}>
             <Container className="movie">
                  <Grid container className="category-title"
                     justify="space-between" 
@@ -106,7 +104,6 @@ function ListMovie() {
                     <Pagination count={totalPage} page={parseInt(page)} color="secondary" onChange={handleChangeValuePagination}/> 
                 </div>
             </Container>
-            </Suspense>
         </>
     );
 }
