@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "set GENERATE_SOURCEMAP=false && react-scripts build",
-    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "analyze": "source-map-explorer 'build/static/js/*.js' --only-mapped",
     "start": "react-scripts start", 
     "test": "react-scripts test",
     "eject": "react-scripts eject"
