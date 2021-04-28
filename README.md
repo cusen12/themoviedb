@@ -29,6 +29,7 @@
   + Heroku CLI
 - Git CLI
 - SCSS
+- lazyLoad
 - Tổ chức File , Component
 
 ```
