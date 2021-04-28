@@ -24,7 +24,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "build": "set GENERATE_SOURCEMAP=false && react-scripts build",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start", 
     "test": "react-scripts test",
