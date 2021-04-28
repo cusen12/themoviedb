@@ -8,8 +8,8 @@ function TVShow() {
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState();
     const [listMovie, setListMovie] = useState();
-    const [category, setCategory] = useState("now_playing");
-    const [title, setTitle]= useState("Now Playing")
+    const [category, setCategory] = useState("popular");
+    const [title, setTitle]= useState("Popular")
     const linkAPI= `https://api.themoviedb.org/3/tv/${category}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=${page}`
     const history = useHistory();
     const handleClickCard = (data, dataHref) =>{
