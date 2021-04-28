@@ -1,10 +1,11 @@
 import { Button, Grid, Typography } from '@material-ui/core';
-import React, { useState } from 'react'; 
-import { useSelector } from 'react-redux';
-import ListMovie from '../../Component/ListMovie/ListMovie';
-import ListSearch from '../../Component/ListSearch/ListSearch';
-import ListTVShow from '../../Component/ListTVShow/ListTVShow'; 
+import React, { Suspense, useState } from 'react'; 
+import { useSelector } from 'react-redux'; 
 import './HomePage.scss';  
+
+const ListMovie = React.lazy(()=> import('../../Component/ListMovie/ListMovie'));
+const ListSearch = React.lazy(()=> import('../../Component/ListSearch/ListSearch'));
+const ListTVShow = React.lazy(()=> import('../../Component/ListTVShow/ListTVShow'));
 
 function HomePage() {  
     const [value, setValue] = useState();
@@ -25,6 +26,7 @@ function HomePage() {
     const langData = useSelector(state=>state.reducer.value.hero); 
     return (
         <>  
+            
             <Grid className="homepage">
                 <Grid className="search">
                     <Grid className="content">
@@ -39,9 +41,11 @@ function HomePage() {
                 </Grid> 
                 {
                     isSearch ? <ListSearch data={valueSearch}/> : 
-                    <Grid item md={12} className="bg-home ">  
-                    <ListMovie/>
-                    <ListTVShow/>  
+                    <Grid item md={12} className="bg-home "> 
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <ListMovie/>
+                        <ListTVShow/>  
+                    </Suspense> 
                 </Grid>
                 }
             </Grid> 

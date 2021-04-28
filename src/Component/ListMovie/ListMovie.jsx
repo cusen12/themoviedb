@@ -7,6 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import ChartSVG from '../ChartSVG/ChartSVG';
 import { Skeleton } from '@material-ui/lab';
 
+
 function ListMovie() {
     const [listMovie, setListMovie] = useState(); 
     const history = useHistory();
@@ -81,7 +82,7 @@ function ListMovie() {
                 justify="space-between"
                 alignItems="flex-start"
                 spacing={4}>
-                    <Grid item md={12}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >You like it?</Typography></Grid>
+                    <Grid item md={12}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >Yeahhhh !!! The moment of relaxation has come</Typography></Grid>
                     <Grid item md={6} className="box-highlights">  
                         <img src={"https://image.tmdb.org/t/p/w780/"+listMovie[10].backdrop_path} alt=""/>  
                         <div className="content">
