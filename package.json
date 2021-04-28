@@ -1,11 +1,5 @@
-{
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "homepage": "https://themovievn.herokuapp.com/",
-=======
->>>>>>> parent of d54092b... js
-=======
->>>>>>> parent of d54092b... js
+{ 
+  "homepage": "https://themovievn.herokuapp.com/", 
   "name": "themoviedb",
   "version": "0.1.0",
   "private": true,
@@ -34,9 +28,9 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -b main -d build",
-    "build": "set GENERATE_SOURCEMAP=false && react-scripts build",
+    "build": "set GENERATE_SOURCEMAP=false && react-scripts build", 
     "analyze": "source-map-explorer 'build/static/js/*.js' --only-mapped",
-    "start": "react-scripts start",
+    "start": "react-scripts start", 
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
