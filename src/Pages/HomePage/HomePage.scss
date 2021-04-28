@@ -1,6 +1,7 @@
 @import '../../Assets/scss/variable.scss';
  
 .homepage{
+    overflow-x: hidden;
     padding: 0 15px;
     .MuiTypography-body2{
         height: 60px;
@@ -20,6 +21,9 @@
     }
     .slick-list{
         width: 100%; 
+    }
+    h1{
+        font-size: 40px;
     }
 
 }
@@ -42,7 +46,7 @@
             color: #cccccc; 
             font-size: 25px;
             padding: 10px 30px;
-            border-radius: 20px; 
+            border-radius: 20px;  
         }
         .input{
             position: relative;
@@ -103,32 +107,39 @@
         cursor: pointer;
     }
 }
+
 .box-highlights{
-    margin: 40px 0;
+    margin: 0 0 -40px 0 !important;
     position: relative;
+    transform: skew(0deg, 4deg);
     img{
+        max-width: 100%;
         border-radius: 5px;
-        filter: grayscale(1);
+        filter: grayscale(1); 
     }
     .content{
         padding:30px;
         position: absolute;
-        top: 50%;
-        left: 30%;
+        bottom: 0;
+        left: 0;
         background: #00000055;
         z-index: 100;
-        border-radius: 5px;
-        height: 300px;
-        overflow: hidden;
+        border-radius: 5px; 
+        margin: 20px 15px;
+        overflow: hidden; 
+        height: 200px;
         h4{
-            font-size: 40px;
+            font-size: 30px;
             color:#ffffff
         }
         p{
-            font-size: 25px;
+            font-size: 18px;
             color:#ffffff;
             height: auto;
         }
 
     }
+}
+.box-highlights2{
+    transform: skew(0deg,-4deg);
 }

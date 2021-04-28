@@ -77,15 +77,30 @@ function ListMovie() {
             {
                 (listMovie !== undefined) ?
                 
-                <Grid className="box-highlights">  
-                    <img src={"https://image.tmdb.org/t/p/w780/"+listMovie[10].backdrop_path} alt=""/>  
-                    <div className="content">
-                        <Typography variant="h4">{listMovie[10].title}</Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                                    {listMovie[10].overview}
-                        </Typography>
-                    </div> 
-            </Grid>  
+                <Grid container 
+                justify="space-between"
+                alignItems="flex-start"
+                spacing={4}>
+                    <Grid item md={12}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >You like it?</Typography></Grid>
+                    <Grid item md={6} className="box-highlights">  
+                        <img src={"https://image.tmdb.org/t/p/w780/"+listMovie[10].backdrop_path} alt=""/>  
+                        <div className="content">
+                            <Typography variant="h4">{listMovie[10].title}</Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                        {listMovie[10].overview}
+                            </Typography>
+                        </div> 
+                    </Grid>
+                    <Grid item md={6}  className="box-highlights box-highlights2">  
+                        <img src={"https://image.tmdb.org/t/p/w780/"+listMovie[12].backdrop_path} alt=""/>  
+                        <div className="content">
+                            <Typography variant="h4">{listMovie[12].title}</Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                        {listMovie[12].overview}
+                            </Typography>
+                        </div> 
+                    </Grid> 
+                </Grid>
                 : 
             <Skeleton variant="rect" width={210} height={118}/>
             }
