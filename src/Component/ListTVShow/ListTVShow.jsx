@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
+import { Button, Card, CardActionArea, CardContent, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -77,14 +77,10 @@ function ListMovie() {
                 <Slider {...settings}>
                     {listMovie ? listMovie.map((data) =>
                         <Card key={data.id} onClick={() => handleClickCard(data.id, "tv")}>
-                            <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                alt={data.original_name}
-                                height="140"
-                                image={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path}
-                                title={data.original_name}
-                                />
+                            <CardActionArea> 
+                                <img className="lazyload"
+                                src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
+                                data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
                                 <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2" >
                                     {data.original_name}

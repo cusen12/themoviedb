@@ -1,10 +1,11 @@
-import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, Container, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react'; 
 import { useHistory } from "react-router-dom"; 
 import "./movie.scss"
-import ChartSVG from '../../Component/ChartSVG/ChartSVG';  
+import ChartSVG from '../../Component/ChartSVG/ChartSVG';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';  
 import Pagination from '@material-ui/lab/Pagination'; 
 
 function ListMovie() { 
@@ -51,19 +52,27 @@ function ListMovie() {
                     alignContent="flex-start"
                     spacing={2}>
                     <Grid item md={3} onClick={handleClickbutton} datatype="popular" alt="Popular">
-                        <img src="https://image.tmdb.org/t/p/w300//loRmRzQXZeqG78TqZuyvSlEQfZb.jpg" alt="Popular"/>
+                        <img className="lazyload" data-sizes="auto" 
+                        src="https://image.tmdb.org/t/p/w45//loRmRzQXZeqG78TqZuyvSlEQfZb.jpg" 
+                        data-src="https://image.tmdb.org/t/p/w300//loRmRzQXZeqG78TqZuyvSlEQfZb.jpg" alt="Popular"/>
                         <Typography variant="h4">Popular</Typography>
                     </Grid>
                     <Grid item md={3} onClick={handleClickbutton} datatype="top_rated" alt="Top Rated">
-                        <img src="https://image.tmdb.org/t/p/w300//inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg" alt="Top Rated"/>
+                        <img className="lazyload" data-sizes="auto" 
+                        src="https://image.tmdb.org/t/p/w45//inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg"
+                        data-src="https://image.tmdb.org/t/p/w300//inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg" alt="Top Rated"/>
                         <Typography variant="h4">Top Rated</Typography>
                     </Grid>
                     <Grid item md={3} onClick={handleClickbutton} datatype="now_playing" alt="Now Playing" >
-                        <img src="https://image.tmdb.org/t/p/w300//jtAI6OJIWLWiRItNSZoWjrsUtmi.jpg"  alt="Now Playing"/>
+                        <img className="lazyload" data-sizes="auto" 
+                        src="https://image.tmdb.org/t/p/w45//jtAI6OJIWLWiRItNSZoWjrsUtmi.jpg"
+                        data-src="https://image.tmdb.org/t/p/w300//jtAI6OJIWLWiRItNSZoWjrsUtmi.jpg"  alt="Now Playing"/>
                         <Typography variant="h4">Now Playing</Typography>
                     </Grid>
                     <Grid item md={3} onClick={handleClickbutton} datatype="upcoming" alt="Upcoming">
-                        <img src="https://image.tmdb.org/t/p/w300//9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg" alt="Upcoming"/>
+                        <img className="lazyload" data-sizes="auto" 
+                        src="https://image.tmdb.org/t/p/w45//9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
+                        data-src="https://image.tmdb.org/t/p/w300//9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg" alt="Upcoming"/>
                         <Typography variant="h4">Upcoming</Typography>
                     </Grid>
                 </Grid> 
@@ -77,14 +86,11 @@ function ListMovie() {
                     {listMovie ? listMovie.map((data) =>
                         <Grid item sm={3} key={data.id}>
                             <Card>
-                                <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    alt={data.title}
-                                    height="140"
-                                    image={data.backdrop_path? "https://image.tmdb.org/t/p/w300/"+data.backdrop_path : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"}
-                                    title={data.title}
-                                    />
+                                <CardActionArea> 
+                                    <img className="lazyload"  
+                                    data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path}
+                                    src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"
+                                    alt={data.title}/>
                                     <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id,"movie")}>
                                         {data.title}

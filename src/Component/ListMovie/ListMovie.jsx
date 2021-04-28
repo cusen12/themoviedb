@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
+import { Button, Card, CardActionArea, CardContent, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -84,7 +84,9 @@ function ListMovie() {
                 spacing={4}>
                     <Grid item md={12}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >Yeahhhh !!! The moment of relaxation has come</Typography></Grid>
                     <Grid item md={6} className="box-highlights">  
-                        <img src={"https://image.tmdb.org/t/p/w780/"+listMovie[10].backdrop_path} alt=""/>  
+                        <img className="lazyload"
+                            src={"https://image.tmdb.org/t/p/w45/"+listMovie[10].backdrop_path}
+                            data-src={"https://image.tmdb.org/t/p/w780/"+listMovie[10].backdrop_path} alt=""/>  
                         <div className="content">
                             <Typography variant="h4">{listMovie[10].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
@@ -93,7 +95,9 @@ function ListMovie() {
                         </div> 
                     </Grid>
                     <Grid item md={6}  className="box-highlights box-highlights2">  
-                        <img src={"https://image.tmdb.org/t/p/w780/"+listMovie[12].backdrop_path} alt=""/>  
+                        <img className="lazyload"
+                            src={"https://image.tmdb.org/t/p/w45/"+listMovie[12].backdrop_path}
+                            data-src={"https://image.tmdb.org/t/p/w780/"+listMovie[12].backdrop_path} alt=""/>  
                         <div className="content">
                             <Typography variant="h4">{listMovie[12].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
@@ -114,13 +118,9 @@ function ListMovie() {
                     {listMovie ? listMovie.map((data) =>
                         <Card key={data.id}>
                             <CardActionArea>
-                                <CardMedia
-                                component="img"
-                                alt={data.title}
-                                height="140"
-                                image={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path}
-                                title={data.title}
-                                />
+                                <img className="lazyload"
+                                   src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
+                                   data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
                                 <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id,"movie")}>
                                     {data.title}

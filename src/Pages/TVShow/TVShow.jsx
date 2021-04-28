@@ -1,7 +1,8 @@
-import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, Container, Grid, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import ChartSVG from '../../Component/ChartSVG/ChartSVG';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import Pagination from '@material-ui/lab/Pagination';
 
 function TVShow() {
@@ -48,19 +49,27 @@ function TVShow() {
                     alignContent="flex-start"
                     spacing={2}>
                     <Grid item md={3} onClick={handleClickbutton} datatype="popular" alt="Popular">
-                        <img src="https://image.tmdb.org/t/p/w300//b0WmHGc8LHTdGCVzxRb3IBMur57.jpg" alt="Popular"/>
+                        <img className="lazyload"
+                        data-src="https://image.tmdb.org/t/p/w45//b0WmHGc8LHTdGCVzxRb3IBMur57.jpg" 
+                        src="https://image.tmdb.org/t/p/w300//b0WmHGc8LHTdGCVzxRb3IBMur57.jpg" alt="Popular"/>
                         <Typography variant="h4">Popular</Typography>
                     </Grid>
                     <Grid item md={3} onClick={handleClickbutton} datatype="top_rated" alt="Top Rated">
-                        <img src="https://image.tmdb.org/t/p/w300//z59kJfcElR9eHO9rJbWp4qWMuee.jpg" alt="Top Rated"/>
+                        <img className="lazyload"
+                        data-src="https://image.tmdb.org/t/p/w45//z59kJfcElR9eHO9rJbWp4qWMuee.jpg" 
+                        src="https://image.tmdb.org/t/p/w300//z59kJfcElR9eHO9rJbWp4qWMuee.jpg" alt="Top Rated"/>
                         <Typography variant="h4">Top Rated</Typography>
                     </Grid>
                     <Grid item md={3} onClick={handleClickbutton} datatype="on_the_air" alt="On The Air" >
-                        <img src="https://image.tmdb.org/t/p/w300//uAjMQlbPkVHmUahhCouANlHSDW2.jpg"  alt="On The Air"/>
+                        <img className="lazyload"
+                        data-src="https://image.tmdb.org/t/p/w45//uAjMQlbPkVHmUahhCouANlHSDW2.jpg" 
+                        src="https://image.tmdb.org/t/p/w300//uAjMQlbPkVHmUahhCouANlHSDW2.jpg"  alt="On The Air"/>
                         <Typography variant="h4">On The Air</Typography>
                     </Grid>
                     <Grid item md={3} onClick={handleClickbutton} datatype="airing_today" alt="Airing Today">
-                        <img src="https://image.tmdb.org/t/p/w300//5VltHQJXdmbSD6gEJw3R8R1Kbmc.jpg" alt="Airing Today"/>
+                        <img className="lazyload"
+                        data-src="https://image.tmdb.org/t/p/w45//5VltHQJXdmbSD6gEJw3R8R1Kbmc.jpg" 
+                        src="https://image.tmdb.org/t/p/w300//5VltHQJXdmbSD6gEJw3R8R1Kbmc.jpg" alt="Airing Today"/>
                         <Typography variant="h4">Airing Today</Typography>
                     </Grid>
                 </Grid> 
@@ -75,13 +84,10 @@ function TVShow() {
                          <Grid item sm={3} key={data.id}>
                             <Card >
                                 <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    alt={data.original_name}
-                                    height="140"
-                                    image={data.backdrop_path? "https://image.tmdb.org/t/p/w300/"+data.backdrop_path : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"}
-                                    title={data.original_name}
-                                    />
+                                    <img className="lazyload"  
+                                    data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path}
+                                    src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"
+                                    alt={data.title}/>
                                     <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id, "tv")}>
                                         {data.original_name}
