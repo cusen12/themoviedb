@@ -1,9 +1,9 @@
 import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import ChartSVG from '../../Component/ChartSVG/ChartSVG';
+import React, { Suspense, useEffect, useState } from 'react';
+import { useHistory } from 'react-router'; 
 import Pagination from '@material-ui/lab/Pagination';
 
+const ChartSVG = React.lazy(()=> import('../../Component/ChartSVG/ChartSVG')); 
 function TVShow() {
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState();
@@ -42,7 +42,8 @@ function TVShow() {
     } 
     return (
         <>
-           <Container className="movie">
+            <Suspense fallback={<div>Loading...</div>}>
+            <Container className="movie">
                  <Grid container className="category-title"
                     justify="space-between" 
                     alignContent="flex-start"
@@ -101,6 +102,7 @@ function TVShow() {
                     <Pagination count={totalPage} page={parseInt(page)} color="secondary" onChange={handleChangeValuePagination}/> 
                 </div>
             </Container>
+            </Suspense>
         </>
     );
 }

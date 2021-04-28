@@ -5,9 +5,10 @@ import { useEffect } from 'react';
 import Slider from "react-slick"; 
 import { Link, useHistory } from "react-router-dom";
 import ChartSVG from '../ChartSVG/ChartSVG';
+import { Skeleton } from '@material-ui/lab';
 
 function ListMovie() {
-    const [listMovie, setListMovie] = useState();
+    const [listMovie, setListMovie] = useState(); 
     const history = useHistory();
 
     const settings = {
@@ -64,12 +65,34 @@ function ListMovie() {
             const link = 'https://api.themoviedb.org/3/movie/top_rated?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US';
             const respond = await fetch(link);
             const respondJson = await respond.json();  
-            setListMovie(respondJson.results)
+            await setListMovie(respondJson.results) 
+
         }
         getListMovie()
-    },[])
+    },[]) 
     return (
-        <> 
+        
+        <>    
+
+            {
+                (listMovie !== undefined) ?
+                
+                <Grid className="box-highlights">  
+                    <img src={"https://image.tmdb.org/t/p/w780/"+listMovie[10].backdrop_path} alt=""/>  
+                    <div className="content">
+                        <Typography variant="h4">{listMovie[10].title}</Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                                    {listMovie[10].overview}
+                        </Typography>
+                    </div> 
+            </Grid>  
+                : 
+            <Skeleton variant="rect" width={210} height={118}/>
+            }
+            <br/>
+            <Typography variant="h4" className="titleH4" color="primary">TOP Movie</Typography>
+            <hr/>
+            <br/>
             <Grid>
                 <Slider {...settings}>
                     {listMovie ? listMovie.map((data) =>

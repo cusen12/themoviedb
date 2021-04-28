@@ -103,3 +103,32 @@
         cursor: pointer;
     }
 }
+.box-highlights{
+    margin: 40px 0;
+    position: relative;
+    img{
+        border-radius: 5px;
+        filter: grayscale(1);
+    }
+    .content{
+        padding:30px;
+        position: absolute;
+        top: 50%;
+        left: 30%;
+        background: #00000055;
+        z-index: 100;
+        border-radius: 5px;
+        height: 300px;
+        overflow: hidden;
+        h4{
+            font-size: 40px;
+            color:#ffffff
+        }
+        p{
+            font-size: 25px;
+            color:#ffffff;
+            height: auto;
+        }
+
+    }
+}

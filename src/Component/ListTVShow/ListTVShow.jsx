@@ -69,7 +69,10 @@ function ListMovie() {
         getListMovie()
     },[])
     return (
-        <> 
+        <>   
+            <Typography variant="h4" className="titleH4" color="primary">TOP TV Show</Typography> 
+            <hr/>
+            <br/>
             <Grid>
                 <Slider {...settings}>
                     {listMovie ? listMovie.map((data) =>
