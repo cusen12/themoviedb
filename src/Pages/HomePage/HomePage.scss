@@ -24,8 +24,10 @@
     }
     h1{
         font-size: 35px;
+    } 
+    .MuiPaper-rounded{
+        border-radius: 0;
     }
-
 }
 .search{
     height: 400px;
@@ -112,10 +114,15 @@
     margin: 0 0 -40px 0 !important;
     position: relative;
     transform: skew(0deg, 4deg);
+    &:hover img{
+        filter: grayscale(0); 
+    }
     img{
         max-width: 100%;
         border-radius: 5px;
         filter: grayscale(1); 
+        transition: all 0.3s;
+       
     }
     .content{
         padding:30px;

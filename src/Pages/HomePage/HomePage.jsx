@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core'; 
 import React, { Suspense, useState } from 'react'; 
 import { useSelector } from 'react-redux'; 
 import './HomePage.scss';  
@@ -6,6 +6,7 @@ import './HomePage.scss';
 const ListMovie = React.lazy(()=> import('../../Component/ListMovie/ListMovie'));
 const ListSearch = React.lazy(()=> import('../../Component/ListSearch/ListSearch'));
 const ListTVShow = React.lazy(()=> import('../../Component/ListTVShow/ListTVShow'));
+const PeopleList = React.lazy(()=> import('../../Component/PeopleList/PeopleList'));
 
 function HomePage() {  
     const [value, setValue] = useState();
@@ -44,7 +45,8 @@ function HomePage() {
                     <Grid item md={12} className="bg-home "> 
                     <Suspense fallback={<div>Loading...</div>}>
                         <ListMovie/>
-                        <ListTVShow/>  
+                        <ListTVShow/>
+                        <PeopleList/> 
                     </Suspense> 
                 </Grid>
                 }
