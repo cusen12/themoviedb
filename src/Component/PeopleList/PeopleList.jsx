@@ -15,8 +15,7 @@ function ListMovie() {
         const getListMovie = async () => {
             const link = 'https://api.themoviedb.org/3/person/popular?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=1';
             const respond = await fetch(link);
-            const respondJson = await respond.json(); 
-            console.log(respondJson)
+            const respondJson = await respond.json();  
             setListMovie(respondJson.results)
         }
         getListMovie()
@@ -26,17 +25,23 @@ function ListMovie() {
         height: "250px",
         objectFit: "cover"
     }
+    const stylep ={
+        whiteSpace: "nowrap",
+        width: "90%",
+        textOverflow: "ellipsis",
+        overflow: "hidden",
+    }
     const settings = {   
         className: "center", 
         infinite: true,
-        centerPadding: "60px",
+        centerPadding: "20px",
         slidesToShow: 3,
         speed: 500, 
         slidesPerRow: 2
       };
     return (
         <>   
-            <Typography variant="h4" className="titleH4" color="primary">People</Typography> 
+            <Typography variant="h4" className="titleH4" color="primary">Popular People</Typography> 
             <hr/>
             <br/> 
             <Slider {...settings}>
@@ -46,10 +51,13 @@ function ListMovie() {
                                 <img className="lazyload" style={style}
                                 src={"https://image.tmdb.org/t/p/w45/"+data.profile_path}
                                 data-src={"https://image.tmdb.org/t/p/w300/"+data.profile_path} alt={data.name}/>
-                                <CardContent>
+                                <CardContent style={stylep}>
                                 <Typography onClick={() => handleClickCard(data.id, "people")} style={{height:"auto"}} gutterBottom variant="h5" component="h2" >
                                     {data.name}
                                 </Typography> 
+                                {data.known_for.map((item) =>
+                                <span key={item.id}>{item.original_title},</span> 
+                                )}...
                                 </CardContent>
                             </CardActionArea> 
                         </Card> 

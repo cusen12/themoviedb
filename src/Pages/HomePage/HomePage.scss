@@ -22,9 +22,11 @@
     .slick-list{
         width: 100%; 
     }
-    h1{
+    .MuiGrid-item,h1{
         font-size: 35px;
+        padding-bottom: 0 !important;
     } 
+    
     .MuiPaper-rounded{
         border-radius: 0;
     }
