@@ -55,7 +55,7 @@ function ListMovie() {
                         </Card> 
                 ): ''}  
             </Slider> 
-            <Button variant="text"><Link to="/tvshow">View all</Link></Button>
+            <Button variant="text"><Link to="/people">View all</Link></Button>
         </>
     );
 }
