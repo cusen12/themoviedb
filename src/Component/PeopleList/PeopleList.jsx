@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react'; 
 import { Link, useHistory } from "react-router-dom"; 
-import Slider from 'react-slick';
+import Slider from 'react-slick'; 
 
 function ListMovie() {
     const [listMovie, setListMovie] = useState();
@@ -40,7 +40,7 @@ function ListMovie() {
         slidesPerRow: 2
       };
     return (
-        <>   
+        <>    
             <Typography variant="h4" className="titleH4" color="primary">Popular People</Typography> 
             <hr/>
             <br/> 
