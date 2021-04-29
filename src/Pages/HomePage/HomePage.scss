@@ -1,0 +1,145 @@
+@import '../../Assets/scss/variable.scss';
+ 
+.homepage{
+    overflow-x: hidden;
+    padding: 0 15px;
+    .MuiTypography-body2{
+        height: 60px;
+        overflow: hidden;
+    }
+    .MuiTypography-h5{
+        height: 35px;
+    }
+    .slick-slider {
+        margin: 0 -15px;
+        .slick-slide {
+            padding: 0 15px;
+        }
+    }  
+    .MuiButton-text{
+        float: right; 
+    }
+    .slick-list{
+        width: 100%; 
+    }
+    h1{
+        font-size: 35px;
+    }
+
+}
+.search{
+    height: 400px;
+    background: url('../../Assets/Images/banner.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content{ 
+        z-index: 100;
+        input{
+            width: 100%;
+            outline: none;
+            border: none;
+            height: 40px;
+            color: #cccccc; 
+            font-size: 25px;
+            padding: 10px 30px;
+            border-radius: 20px;  
+        }
+        .input{
+            position: relative;
+            button{
+                position: absolute;
+                top: 0;
+                right: -1px;
+                width: 150px;
+                font-weight: bold;
+                outline: none;
+                border: none;
+                height: 40px;
+                color: $secondary-text;  
+                padding: 10px;
+                border-radius: 20px; 
+                background:$background-02
+            }
+        }
+    }
+    &::after{
+        content:'';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left: 0;
+        background: $background-02;
+        z-index: 1;
+    }
+    
+}
+.MuiCardContent-root{ 
+    svg{
+        position: absolute;
+        top: 0;
+        left: 16px; 
+    }
+}
+.category-title{
+    .MuiGrid-item{
+        position: relative;
+    }
+    img{
+        height: 40px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+        margin: 40px 0; 
+        cursor: pointer;
+    }
+    h4{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        color: #ffffff;
+        transform: translate(-50%,-50%);
+        cursor: pointer;
+    }
+}
+
+.box-highlights{
+    margin: 0 0 -40px 0 !important;
+    position: relative;
+    transform: skew(0deg, 4deg);
+    img{
+        max-width: 100%;
+        border-radius: 5px;
+        filter: grayscale(1); 
+    }
+    .content{
+        padding:30px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #00000055;
+        z-index: 100;
+        border-radius: 5px; 
+        margin: 20px 15px;
+        overflow: hidden; 
+        height: 200px;
+        h4{
+            font-size: 30px;
+            color:#ffffff
+        }
+        p{
+            font-size: 18px;
+            color:#ffffff;
+            height: auto;
+        }
+
+    }
+}
+.box-highlights2{
+    transform: skew(0deg,-4deg);
+}

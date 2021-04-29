@@ -1,0 +1,29 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  cursor: url(./Assets/Images/Infinity_Gauntlet_Pointer.png), auto;
+} 
+* li,a,input,button,.MuiButton-root *,select,.movie .MuiGrid-grid-md-3 img,.movie .MuiGrid-grid-md-3 h4, .MuiCardContent-root h2{
+  cursor: url(./Assets/Images/Infinity_Gauntlet_Pointer_hover.png), auto !important;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  display: inline-block;
+  color:#804b4b
+} 
+body{
+  background-color: #dedede;
+} 
+.titleH4{
+  padding: 20px 0;
+}
+.main{
+  min-height: 100vh;
+}
+.MuiButton-label{
+  text-transform: initial;
+} 

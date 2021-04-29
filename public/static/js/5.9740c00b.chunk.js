@@ -1,2 +1,0 @@
-(this.webpackJsonpthemoviedb=this.webpackJsonpthemoviedb||[]).push([[5],{142:function(t,e,a){"use strict";a.r(e);a(0);var s=a(1);e.default=function(t){return console.log(t.data),Object(s.jsxs)(s.Fragment,{children:[Object(s.jsx)("h1",{children:"R\u1ea3nh th\xec l\xe0m data truy\u1ec1n string qua r\u1ed3i vi\u1ec7c c\xf2n l\u1ea1i ch\u1ec9 l\u1ea5y data ra th\xf4i https://developers.themoviedb.org/3/search/search-companies"}),Object(s.jsxs)("p",{children:["data l\xe0 ",t.data]})]})}}}]);
-//# sourceMappingURL=5.9740c00b.chunk.js.map
