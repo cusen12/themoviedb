@@ -22,36 +22,36 @@ function HomePage() {
         else{
             setValueSearch(value)
             setIsSearch(true) 
-        }  
+        }   
+        console.log(value)
     }
     const langData = useSelector(state=>state.reducer.value.hero); 
-    return (
-        <>  
-            
-            <Grid className="homepage">
-                <Grid className="search">
-                    <Grid className="content">
-                        <Typography variant="h2" color="secondary">{langData.welcome}</Typography> 
-                        <Typography variant="h4" color="secondary">{langData.destription}</Typography>
-                        <br/>
-                        <div className="input"  >
-                            <input type="text" onChange={handleChangeInput}/>
-                            <Button onClick={handleClickSearch}>{langData.search}</Button>
-                        </div> 
-                    </Grid>
-                </Grid> 
-                {
-                    isSearch ? <ListSearch data={valueSearch}/> : 
-                    <Grid item md={12} className="bg-home "> 
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <ListMovie/>
-                        <ListTVShow/>
-                        <PeopleList/> 
-                    </Suspense> 
+    return ( 
+        <Grid className="homepage">
+            <Grid className="search">
+                <Grid className="content">
+                    <Typography variant="h2" color="secondary">{langData.welcome}</Typography> 
+                    <Typography variant="h4" color="secondary">{langData.destription}</Typography>
+                    <br/>
+                    <div className="input">
+                        <input type="text" onChange={handleChangeInput}/>
+                        <Button onClick={handleClickSearch}>{langData.search}</Button>
+                    </div> 
                 </Grid>
-                }
             </Grid> 
-        </>
+            
+                <Suspense fallback={<div>Loading...</div>}>
+                {isSearch ? <ListSearch data={valueSearch}/> : 
+                <Grid item md={12} className="bg-home "> 
+               
+                    <ListMovie/>
+                    <ListTVShow/>
+                    <PeopleList/>  
+                </Grid>
+                 }
+            </Suspense>
+           
+        </Grid>  
     );
 }
 

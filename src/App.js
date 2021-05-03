@@ -63,8 +63,7 @@ function App() {
   return ( 
       
         <ThemeProvider theme={theme}>
-          <Router>
-          <>
+          <Router> 
               <Grid container
                 direction="row"
                 justify="flex-start"
@@ -84,8 +83,7 @@ function App() {
                   </Switch> 
                 </Grid>
               </Grid>
-              <Footer/> 
-          </>
+              <Footer/>  
           </Router>
         </ThemeProvider>
      
