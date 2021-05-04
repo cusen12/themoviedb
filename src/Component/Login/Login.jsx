@@ -11,6 +11,7 @@ function Login() {
     const dispatch = useDispatch();
     const [bool,setBool] =useState(false)
     const loginData = useSelector(state=>state.login.value);
+    const [isLogin, setIsLogin] = useState(true)
     const requestToken = loginData ? loginData.request_token : "";
     const [checkLogin, setCheckLogin] = useState("")
     const createRequesToken = async ()=>{
@@ -80,6 +81,7 @@ function Login() {
     const handleLogout = async () =>{
         dispatch(logout())  
         await setBool(false) 
+        console.log("logout")
     }
     const handleDetailsUser = async () =>{
         console.log("lấy thông tin user ở đây")
@@ -88,31 +90,52 @@ function Login() {
     return (
         <Grid container item className="login" md={12}>
             {loginData !== undefined ? 
-                <Grid container  
-                alignItems="center"
-                justify="space-between">   
-                    <AccountCircleRoundedIcon onClick={handleDetailsUser} color="primary" style={{fontSize:"30px"}}/>  
-                    <i>Hi! Have a nice day</i>
-                    <ExitToAppIcon color="primary" style={{fontSize:"18"}} onClick={handleLogout}/>
-                    <hr style={{display:"block",width:"100%"}}/>
-                  
-                </Grid>
-                :
                 <Grid>
-                    <Typography variant="h5">Đăng nhập</Typography>
-                    <form onSubmit={handleSubmitLogin} >
-                        <TextField fullWidth id="username" name="username" label="Username" />
-                        <TextField fullWidth type="text" id="password" name="password" label="Password" />
-                        <p><i style={{fontSize:"11px",color:"red"}}>{checkLogin}</i></p>
-                         
-                        <Grid container style={{padding:"5px 0"}}  
-                    alignItems="center"
-                    justify="flex-end">   
-                            <Button type="submit" variant="contained" color="secondary"><ArrowForwardRoundedIcon/></Button>
-                        </Grid>
-                         
-                    </form>
-                </Grid>
+                    {
+                       loginData.success===true ? 
+                       <Grid container  
+                       alignItems="center"
+                       justify="space-between">   
+                           <AccountCircleRoundedIcon onClick={handleDetailsUser} color="primary" style={{fontSize:"30px"}}/>  
+                           <i>Hi! Have a nice day</i>
+                           <ExitToAppIcon color="primary" style={{fontSize:"18"}} onClick={handleLogout}/>
+                           <hr style={{display:"block",width:"100%"}}/>
+                       
+                       </Grid>
+                       :
+                        <Grid>
+                        <Typography variant="h5" onClick={() => setIsLogin(!isLogin)}>Đăng nhập</Typography>
+                        <form onSubmit={handleSubmitLogin} hidden={isLogin} >
+                            <TextField fullWidth id="username" name="username" label="Username" />
+                            <TextField fullWidth type="text" id="password" name="password" label="Password" />
+                            <p><i style={{fontSize:"11px",color:"red"}}>{checkLogin}</i></p>
+                            
+                            <Grid container style={{padding:"5px 0"}}  
+                        alignItems="center"
+                        justify="flex-end">   
+                                <Button type="submit" variant="contained" color="secondary"><ArrowForwardRoundedIcon/></Button>
+                            </Grid> 
+                        </form>
+                    </Grid>
+                    }
+                     
+                     
+                </Grid>    
+                : 
+                <Grid>
+                <Typography variant="h5" onClick={() => setIsLogin(!isLogin)}>Đăng nhập</Typography>
+                <form onSubmit={handleSubmitLogin} hidden={isLogin} >
+                    <TextField fullWidth id="username" name="username" label="Username" />
+                    <TextField fullWidth type="text" id="password" name="password" label="Password" />
+                    <p><i style={{fontSize:"11px",color:"red"}}>{checkLogin}</i></p>
+                    
+                    <Grid container style={{padding:"5px 0"}}  
+                alignItems="center"
+                justify="flex-end">   
+                        <Button type="submit" variant="contained" color="secondary"><ArrowForwardRoundedIcon/></Button>
+                    </Grid> 
+                </form>
+            </Grid>
             }
         </Grid>
     );
