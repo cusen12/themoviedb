@@ -8,15 +8,18 @@ import TvSharpIcon from '@material-ui/icons/TvSharp';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux'; 
 import Language from '../../Component/Language/Language';
+import Login from '../Login/Login';
 function Nav() {
-    const langData = useSelector(state=>state.reducer.value.menu); 
+    const langData = useSelector(state=>state.language.value.menu); 
     return (
         <>
         
             
             <nav className="nav">
                 <Language/>
+               
                 <ul>
+                <Login/> 
                     <li>
                         <Link to="/"><Button variant="text" size="large" startIcon={<HomeOutlinedIcon/>}>{langData.home}</Button> </Link>
                     </li>
@@ -29,7 +32,9 @@ function Nav() {
                     <li>
                         <Link to="/people"><Button variant="text" size="large" startIcon={<PeopleOutlineOutlinedIcon/>}>{langData.people}</Button></Link>
                     </li>  
+                    
                 </ul>
+               
             </nav>
         </>
     );

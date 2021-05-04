@@ -59,14 +59,14 @@ function ListMovie() {
           ]  
     };
     const handleClickCard = (data, dataHref) =>{
-        history.push("/details"+dataHref+"="+data)
+        history.push("/details"+dataHref+"="+data);
     }
     useEffect(() => {
         const getListMovie = async () => {
             const link = 'https://api.themoviedb.org/3/movie/top_rated?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US';
             const respond = await fetch(link);
             const respondJson = await respond.json();  
-            await setListMovie(respondJson.results) 
+            await setListMovie(respondJson.results)  
 
         }
         getListMovie()
@@ -88,7 +88,7 @@ function ListMovie() {
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[15].backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w780/"+listMovie[15].backdrop_path} alt=""/>  
                         <div className="content">
-                            <Typography variant="h4">{listMovie[15].title}</Typography>
+                            <Typography variant="h4" onClick={() => handleClickCard(listMovie[15].id,"movie")}>{listMovie[15].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                         {listMovie[15].overview}
                             </Typography>
@@ -96,12 +96,12 @@ function ListMovie() {
                     </Grid>
                     <Grid item md={6}  className="box-highlights box-highlights2">  
                         <img className="lazyload"
-                            src={"https://image.tmdb.org/t/p/w45/"+listMovie[12].backdrop_path}
-                            data-src={"https://image.tmdb.org/t/p/w780/"+listMovie[12].backdrop_path} alt=""/>  
+                            src={"https://image.tmdb.org/t/p/w45/"+listMovie[10].backdrop_path}
+                            data-src={"https://image.tmdb.org/t/p/w780/"+listMovie[10].backdrop_path} alt=""/>  
                         <div className="content">
-                            <Typography variant="h4">{listMovie[12].title}</Typography>
+                            <Typography variant="h4" onClick={() => handleClickCard(listMovie[10].id,"movie")}>{listMovie[10].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                        {listMovie[12].overview}
+                                        {listMovie[10].overview}
                             </Typography>
                         </div> 
                     </Grid> 

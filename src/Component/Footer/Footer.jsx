@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux'; 
 
 function Footer() {
-    const langData = useSelector(state=>state.reducer.value.footer);
+    const langData = useSelector(state=>state.language.value.footer);
     return (
         <> 
             <Grid className="footer" >
