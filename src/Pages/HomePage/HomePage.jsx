@@ -22,8 +22,7 @@ function HomePage() {
         else{
             setValueSearch(value)
             setIsSearch(true) 
-        }   
-        console.log(value)
+        }    
     }
     const langData = useSelector(state=>state.reducer.value.hero); 
     return ( 
