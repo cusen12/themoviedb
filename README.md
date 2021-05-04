@@ -27,6 +27,11 @@
   + Deploy 
   + Connect Git
   + Heroku CLI
+- Netlify
+  + Deploy 
+  + Connect Git
+  + Build gzip file
+- Peformence
 - Git CLI
 - SCSS
 - lazyLoad

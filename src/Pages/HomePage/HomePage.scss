@@ -114,8 +114,7 @@
 
 .box-highlights{
     margin: 0 0 -40px 0 !important;
-    position: relative;
-    transform: skew(0deg, 4deg);
+    position: relative; 
     &:hover img{
         filter: grayscale(0); 
     }
@@ -138,17 +137,14 @@
         overflow: hidden; 
         height: 200px;
         h4{
-            font-size: 30px;
+            font-size: 25px;
             color:#ffffff
         }
         p{
-            font-size: 18px;
+            font-size: 17px;
             color:#ffffff;
             height: auto;
         }
 
     }
-}
-.box-highlights2{
-    transform: skew(0deg,-4deg);
-}
+}  

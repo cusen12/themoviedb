@@ -24,7 +24,7 @@ function HomePage() {
             setIsSearch(true) 
         }    
     }
-    const langData = useSelector(state=>state.reducer.value.hero); 
+    const langData = useSelector(state=>state.language.value.hero); 
     return ( 
         <Grid className="homepage">
             <Grid className="search">
