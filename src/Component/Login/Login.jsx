@@ -90,7 +90,7 @@ function Login() {
     return (
         <Grid container item className="login" md={12}>
             {loginData !== undefined ? 
-                <Grid md={12}>
+                <Grid item md={12}>
                     {
                        loginData.success===true ? 
                        <Grid container  
