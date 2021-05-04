@@ -105,9 +105,10 @@ function Login() {
                        :
                         <Grid>
                         <Typography variant="h5" onClick={() => setIsLogin(!isLogin)}>Đăng nhập</Typography>
+                       
                         <form onSubmit={handleSubmitLogin} hidden={isLogin} >
                             <TextField fullWidth id="username" name="username" label="Username" />
-                            <TextField fullWidth type="text" id="password" name="password" label="Password" />
+                            <TextField fullWidth type="password" id="password" name="password" label="Password" />
                             <p><i style={{fontSize:"11px",color:"red"}}>{checkLogin}</i></p>
                             
                             <Grid container style={{padding:"5px 0"}}  
@@ -116,6 +117,7 @@ function Login() {
                                 <Button type="submit" variant="contained" color="secondary"><ArrowForwardRoundedIcon/></Button>
                             </Grid> 
                         </form>
+                        <hr/>
                     </Grid>
                     }
                      
@@ -126,7 +128,7 @@ function Login() {
                 <Typography variant="h5" onClick={() => setIsLogin(!isLogin)}>Đăng nhập</Typography>
                 <form onSubmit={handleSubmitLogin} hidden={isLogin} >
                     <TextField fullWidth id="username" name="username" label="Username" />
-                    <TextField fullWidth type="text" id="password" name="password" label="Password" />
+                    <TextField fullWidth type="password" id="password" name="password" label="Password" />
                     <p><i style={{fontSize:"11px",color:"red"}}>{checkLogin}</i></p>
                     
                     <Grid container style={{padding:"5px 0"}}  
@@ -135,6 +137,7 @@ function Login() {
                         <Button type="submit" variant="contained" color="secondary"><ArrowForwardRoundedIcon/></Button>
                     </Grid> 
                 </form>
+                <hr/>
             </Grid>
             }
         </Grid>
