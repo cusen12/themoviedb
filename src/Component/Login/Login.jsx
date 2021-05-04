@@ -11,6 +11,7 @@ function Login() {
     const dispatch = useDispatch();
     const [bool,setBool] =useState(false)
     const loginData = useSelector(state=>state.login.value);
+    const requestToken = loginData ? loginData.request_token : "";
     const [checkLogin, setCheckLogin] = useState("")
     const createRequesToken = async ()=>{
         const request = await fetch("https://api.themoviedb.org/3/authentication/token/new?api_key=cd58c7bd131cba3c391d62c5fda2ae53");
@@ -22,7 +23,7 @@ function Login() {
         if(bool === true){
             const createSection = async ()=>{  
                 const dataToken = {
-                    "request_token": loginData.request_token
+                    "request_token": requestToken
                   } 
                 fetch("https://api.themoviedb.org/3/authentication/session/new?api_key=cd58c7bd131cba3c391d62c5fda2ae53", {
                     method: 'POST',
@@ -41,7 +42,7 @@ function Login() {
             } 
             createSection()
         }
-    },[bool,loginData.request_token,dispatch])
+    },[bool,requestToken,dispatch])
     
     const handleSubmitLogin = async (e)=>{
         e.preventDefault();
@@ -86,7 +87,7 @@ function Login() {
     
     return (
         <Grid container item className="login" md={12}>
-            {loginData.success === true ? 
+            {loginData !== undefined ? 
                 <Grid container  
                 alignItems="center"
                 justify="space-between">   
