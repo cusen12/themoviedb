@@ -1,0 +1,31 @@
+.searchButon{
+    position: relative;
+    button{
+        background: black;
+        color: white;
+        font-weight: bold;
+        border-radius: 0;
+        margin-top: 3px;
+        :hover{
+            background: transparent;
+            color:black ;
+        }
+    } 
+}
+.searchPage{
+    .category-title{
+        img{
+            margin: 0;
+        }
+        h4{
+            
+            font-size: 14px; 
+            color:#d0d0d0;
+            i{
+                font-size: 12px;
+                margin-left: 5px;
+            }
+        }
+    }
+    
+}

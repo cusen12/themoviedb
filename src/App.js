@@ -15,6 +15,7 @@ import Footer from './Component/Footer/Footer';
 import { createMuiTheme, Grid, ThemeProvider } from '@material-ui/core';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import SearchPage from './Component/SearchPage/SearchPage';
 
 
 const theme = createMuiTheme({
@@ -78,7 +79,8 @@ function App() {
                     <Route path="/movie" children={<Movie/>}/> 
                     <Route path="/tvshow" children={ <TVShow/>}/> 
                     <Route path="/people" children={<People/>}/> 
-                    <Route path="/commingsoon" children={ <CommingSoon/>}/>  
+                    <Route path="/commingsoon" children={ <CommingSoon/>}/> 
+                    <Route path="/search" children={ <SearchPage/>}/>   
                     <Route path="/:id" children={ <Details/>}/>  
                   </Switch> 
                 </Grid>

@@ -1,29 +1,21 @@
 import { Button, Grid, Typography } from '@material-ui/core'; 
 import React, { Suspense, useState } from 'react'; 
-import { useSelector } from 'react-redux'; 
+import { useSelector } from 'react-redux';  
+import { useHistory } from 'react-router';
 import './HomePage.scss';  
 
-const ListMovie = React.lazy(()=> import('../../Component/ListMovie/ListMovie'));
-const ListSearch = React.lazy(()=> import('../../Component/ListSearch/ListSearch'));
+const ListMovie = React.lazy(()=> import('../../Component/ListMovie/ListMovie')); 
 const ListTVShow = React.lazy(()=> import('../../Component/ListTVShow/ListTVShow'));
 const PeopleList = React.lazy(()=> import('../../Component/PeopleList/PeopleList'));
 
 function HomePage() {  
-    const [value, setValue] = useState();
-    const [valueSearch, setValueSearch] = useState();
-    const [isSearch, setIsSearch] = useState(false); 
+    const history = useHistory()
+    const [value, setValue] = useState(); 
     const handleChangeInput = (e) =>{
         setValue(e.target.value)
     }
     const handleClickSearch = () =>{   
-        if(value === ""){
-            setIsSearch(false)  
-        }
-        else{
-            setValueSearch(value)
-            setIsSearch(true) 
-        }   
-        console.log(value)
+        history.push('/search', {params:value});
     }
     const langData = useSelector(state=>state.language.value.hero); 
     return ( 
@@ -40,15 +32,12 @@ function HomePage() {
                 </Grid>
             </Grid> 
             
-                <Suspense fallback={<div>Loading...</div>}>
-                {isSearch ? <ListSearch data={valueSearch}/> : 
-                <Grid item md={12} className="bg-home "> 
-               
+                <Suspense fallback={<div>Loading...</div>}> 
+                <Grid item md={12} className="bg-home ">  
                     <ListMovie/>
                     <ListTVShow/>
                     <PeopleList/>  
-                </Grid>
-                 }
+                </Grid> 
             </Suspense>
            
         </Grid>  

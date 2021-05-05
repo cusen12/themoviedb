@@ -4,7 +4,7 @@
   box-sizing: border-box; 
   cursor: url(./Assets/Images/Infinity_Gauntlet_Pointer.png), auto;
 } 
-* li,a,input,button,.MuiButton-root *,select,.movie .MuiGrid-grid-md-3 img,.movie .MuiGrid-grid-md-3 h4, .MuiCardContent-root h2{
+* li,a,input,button,.MuiButton-root *,select,.movie .MuiGrid-grid-md-3 img,.movie .MuiGrid-grid-md-3 h4, .MuiCardContent-root h2, .hov{
   cursor: url(./Assets/Images/Infinity_Gauntlet_Pointer_hover.png), auto !important;
 }
 li{
