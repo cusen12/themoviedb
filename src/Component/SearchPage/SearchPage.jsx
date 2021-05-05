@@ -1,4 +1,5 @@
 import { Button, Card, CardActionArea, CardContent, Grid, TextField, Typography } from '@material-ui/core';
+import Pagination from '@material-ui/lab/Pagination'; 
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from "react-router-dom"; 
 import ChartSVG from '../ChartSVG/ChartSVG';
@@ -10,6 +11,7 @@ function SearchPage() {
     const param = location.state.params;  
     const [movideData, setMovideData] = useState()
     const [page, setPage] = useState(1);
+    const [totalPage, setTotalPage] = useState();
     const [valueSearch, setValueSearch] = useState(); 
       
     const handleClickCard = (data, dataHref) =>{
@@ -23,20 +25,27 @@ function SearchPage() {
     const handleSearchChange = (e) =>{
         setValueSearch(e.target.value)
     }
+    const handleChangeValuePagination = (e) =>{
+        setPage(e.target.textContent)  
+    } 
     useEffect(()=>{
         const getdataParam = async () =>{
             if(param !== ""){
-                const linkMovie = `https://api.themoviedb.org/3/search/movie?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&query=${param}&page=1&include_adult=false`
+                const linkMovie = `https://api.themoviedb.org/3/search/movie?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&query=${param}&page=${page}&include_adult=false`
                 const data = await fetch(linkMovie);
-                const dataJson = await data.json()  
-                setMovideData(dataJson) 
+                const dataJson = await data.json() 
+                setTotalPage(dataJson.total_pages) 
+                setMovideData(dataJson)  
             }
         }
         getdataParam()
-    },[param])
+    },[param,page])
     const handleSearch = async () =>{  
         
     }   
+    const style={
+        position: "relative"
+    }  
     return (
         <Grid container  className="searchPage" item md={12}
         justify="flex-start"
@@ -99,7 +108,9 @@ function SearchPage() {
                     ) : "loadding..."
                     } 
             </Grid>
-           
+            <div style={style} className="pagination">
+                    <Pagination count={totalPage} page={parseInt(page)} color="secondary" onChange={handleChangeValuePagination}/> 
+            </div>
         </Grid>
     );
 }
