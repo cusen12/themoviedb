@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardContent, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react'; 
@@ -26,10 +26,10 @@ function ListMovie() {
         objectFit: "cover"
     }
     const stylep ={
-        whiteSpace: "nowrap",
-        width: "90%",
+        whiteSpace: "nowrap", 
         textOverflow: "ellipsis",
         overflow: "hidden",
+        fontSize:"14px"
     }
     const settings = {   
         className: "center", 
@@ -46,20 +46,23 @@ function ListMovie() {
             <br/> 
             <Slider {...settings}>
                 {listMovie ? listMovie.map((data) => 
-                        <Card key={data.id} className="peopleCard" >
-                            <CardActionArea> 
+                        <Card key={data.id} className="peopleCard"> 
                                 <img className="lazyload" style={style}
                                 src={"https://image.tmdb.org/t/p/w45/"+data.profile_path}
                                 data-src={"https://image.tmdb.org/t/p/w300/"+data.profile_path} alt={data.name}/>
-                                <CardContent style={stylep}>
+                                <CardContent style={{padding:"10px 20px"}}>
                                 <Typography onClick={() => handleClickCard(data.id, "people")} style={{height:"auto"}} gutterBottom variant="h5" component="h2" >
                                     {data.name}
                                 </Typography> 
-                                {data.known_for.map((item) =>
-                                <span key={item.id}>{item.original_title},</span> 
-                                )}...
-                                </CardContent>
-                            </CardActionArea> 
+                                {data.known_for.map((item) => 
+                                <Typography key={item.id} style={stylep}  variant="body1">
+                                    {item.original_title},
+                                </Typography> 
+                                )}
+                                <Typography style={stylep} variant="body1">
+                                    ...
+                                </Typography> 
+                                </CardContent> 
                         </Card> 
                 ): ''}  
             </Slider> 

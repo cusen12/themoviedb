@@ -151,3 +151,8 @@
 .overflowScroll{
     flex-wrap: unset !important;
 }
+.MuiCard-root{
+    .MuiCardContent-root {
+        padding: 0 16px;
+    }
+}

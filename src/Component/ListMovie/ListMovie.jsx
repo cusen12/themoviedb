@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardContent, Grid, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react'; 
@@ -71,22 +71,22 @@ function ListMovie() {
                  
                     {listMovie ? listMovie.map((data) =>
                         <Grid key={data.id} item sm={3}>
-                            <Card>
-                                <CardActionArea>
-                                    <img className="lazyload"
-                                    src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
-                                    data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id,"movie")}>
-                                        {data.title}
-                                    </Typography>
-                                    <p>{data.release_date}</p> 
-                                    <ChartSVG value={data.vote_average*10} />
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        {data.overview}
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea> 
+                            <Card> 
+                                <img className="lazyload"
+                                src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
+                                data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id,"movie")}>
+                                    {data.title}
+                                </Typography>
+                                <Typography component="p" style={{fontSize: "14px"}}>
+                                {data.release_date}
+                                </Typography> 
+                                <ChartSVG value={data.vote_average*10} />
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {data.overview}
+                                </Typography>
+                                </CardContent> 
                             </Card>
                         </Grid>
                     ): ''} 
