@@ -1,9 +1,10 @@
 import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import React from 'react';
+import { Suspense } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react'; 
-import { Link, useHistory } from "react-router-dom";
-import ChartSVG from '../ChartSVG/ChartSVG';
+import { Link, useHistory } from "react-router-dom"; 
+const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG')); 
 
 function ListMovie() {
     const [listMovie, setListMovie] = useState();
@@ -41,7 +42,9 @@ function ListMovie() {
                             <Typography component="p" >
                                 {data.first_air_date}
                             </Typography> 
-                            <ChartSVG value={data.vote_average*10}/>
+                            <Suspense fallback={<div>Loading...</div>}> 
+                                <ChartSVG value={data.vote_average*10}/>
+                            </Suspense>
                             <Typography variant="body2" color="textSecondary" component="p">
                                 {data.overview}
                             </Typography>

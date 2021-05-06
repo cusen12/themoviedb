@@ -25,6 +25,7 @@
     .MuiGrid-item,h1{
         font-size: 35px;
         padding-bottom: 0 !important;
+        position: relative;
     } 
     
     .MuiPaper-rounded{
@@ -85,7 +86,7 @@
 .MuiCardContent-root{ 
     svg{
         position: absolute;
-        top: 0;
+        top: 10px;
         left: 16px; 
     }
 }

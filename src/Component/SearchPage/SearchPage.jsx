@@ -1,10 +1,11 @@
 import { Button, Card, CardActionArea, CardContent, Grid, TextField, Typography } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination'; 
 import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from "react-router-dom"; 
-import ChartSVG from '../ChartSVG/ChartSVG';
+import { Suspense } from 'react';
+import { useHistory, useLocation } from "react-router-dom";  
 import './SearchPage.scss';
-
+ 
+const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG')); 
 function SearchPage() { 
     const history = useHistory()
     const location = useLocation()
@@ -97,7 +98,9 @@ function SearchPage() {
                                         {data.title}
                                     </Typography>
                                     <p>{data.release_date}</p> 
-                                    <ChartSVG value={data.vote_average*10} />
+                                    <Suspense fallback={<div>Loading...</div>}> 
+                                        <ChartSVG value={data.vote_average*10} />
+                                    </Suspense>
                                     <Typography variant="body2" color="textSecondary" component="p">
                                         {data.overview}
                                     </Typography>

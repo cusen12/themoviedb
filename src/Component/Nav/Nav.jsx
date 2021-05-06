@@ -6,9 +6,11 @@ import VideocamSharpIcon from '@material-ui/icons/VideocamSharp';
 import PeopleOutlineOutlinedIcon from '@material-ui/icons/PeopleOutlineOutlined';
 import TvSharpIcon from '@material-ui/icons/TvSharp';
 import { Button } from '@material-ui/core';
-import { useSelector } from 'react-redux'; 
-import Language from '../../Component/Language/Language';
-import Login from '../Login/Login';
+import { useSelector } from 'react-redux';    
+
+const Language = React.lazy(()=> import('../../Component/Language/Language')); 
+const Login = React.lazy(()=> import('../Login/Login')); 
+
 function Nav() {
     const langData = useSelector(state=>state.language.value.menu); 
     return (
