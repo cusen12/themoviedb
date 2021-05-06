@@ -9,14 +9,16 @@ import Movie from './Pages/Movie/Movie';
 import People from './Pages/People/People';
 import TVShow from './Pages/TVShow/TVShow';  
 import Details from './Pages/Details/Details'; 
-import CommingSoon from './Pages/CommingSoon/CommingSoon';
-import Nav from './Component/Nav/Nav';
-import Footer from './Component/Footer/Footer';
+import CommingSoon from './Pages/CommingSoon/CommingSoon'; 
 import { createMuiTheme, Grid, ThemeProvider } from '@material-ui/core';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import SearchPage from './Component/SearchPage/SearchPage';
+import { Suspense } from 'react';
+import React from 'react';
 
+const Nav = React.lazy(()=> import('./Component/Nav/Nav'));
+const Footer = React.lazy(()=> import('./Component/Footer/Footer')); 
 
 const theme = createMuiTheme({
   palette: {
@@ -65,11 +67,13 @@ function App() {
       
         <ThemeProvider theme={theme}>
           <Router> 
+            <Suspense fallback={<div>Loading...</div>}> 
               <Grid container
                 direction="row"
                 justify="flex-start"
                 alignContent="flex-start"
               >
+                
                 <Grid item md={2}>
                     <Nav/>
                 </Grid>
@@ -85,7 +89,9 @@ function App() {
                   </Switch> 
                 </Grid>
               </Grid>
-              <Footer/>  
+              
+                <Footer/>  
+              </Suspense>
           </Router>
         </ThemeProvider>
      
