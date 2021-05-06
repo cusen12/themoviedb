@@ -3,8 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react'; 
 import { Link, useHistory } from "react-router-dom";  
-
-const Slider = React.lazy(()=> import('react-slick')); 
+import Slider from 'react-slick';
 
 function ListMovie() {
     const [listMovie, setListMovie] = useState();

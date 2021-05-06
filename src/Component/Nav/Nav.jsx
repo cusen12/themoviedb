@@ -7,6 +7,7 @@ import PeopleOutlineOutlinedIcon from '@material-ui/icons/PeopleOutlineOutlined'
 import TvSharpIcon from '@material-ui/icons/TvSharp';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';    
+import { Suspense } from 'react';
 
 const Language = React.lazy(()=> import('../../Component/Language/Language')); 
 const Login = React.lazy(()=> import('../Login/Login')); 
@@ -16,28 +17,29 @@ function Nav() {
     return (
         <>
         
-            
-            <nav className="nav">
-                <Language/>
-               
-                <ul>
-                <Login/> 
-                    <li>
-                        <Link to="/"><Button variant="text" size="large" startIcon={<HomeOutlinedIcon/>}>{langData.home}</Button> </Link>
-                    </li>
-                    <li>
-                        <Link to="/movie"><Button variant="text" size="large" startIcon={<VideocamSharpIcon/>}>{langData.movie}</Button> </Link>
-                    </li> 
-                    <li>
-                        <Link to="/tvshow"><Button variant="text" size="large" startIcon={<TvSharpIcon/>}>{langData.tvShow}</Button></Link>
-                    </li>
-                    <li>
-                        <Link to="/people"><Button variant="text" size="large" startIcon={<PeopleOutlineOutlinedIcon/>}>{langData.people}</Button></Link>
-                    </li>  
-                    
-                </ul>
-               
-            </nav>
+            <Suspense fallback={<div>Loading...</div>}>  
+                <nav className="nav">
+                    <Language/>
+                
+                    <ul>
+                    <Login/> 
+                        <li>
+                            <Link to="/"><Button variant="text" size="large" startIcon={<HomeOutlinedIcon/>}>{langData.home}</Button> </Link>
+                        </li>
+                        <li>
+                            <Link to="/movie"><Button variant="text" size="large" startIcon={<VideocamSharpIcon/>}>{langData.movie}</Button> </Link>
+                        </li> 
+                        <li>
+                            <Link to="/tvshow"><Button variant="text" size="large" startIcon={<TvSharpIcon/>}>{langData.tvShow}</Button></Link>
+                        </li>
+                        <li>
+                            <Link to="/people"><Button variant="text" size="large" startIcon={<PeopleOutlineOutlinedIcon/>}>{langData.people}</Button></Link>
+                        </li>  
+                        
+                    </ul>
+                
+                </nav>
+            </Suspense>
         </>
     );
 }

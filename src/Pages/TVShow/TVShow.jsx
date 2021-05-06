@@ -1,9 +1,11 @@
 import { Card, CardActionArea, CardContent, Container, Grid, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import ChartSVG from '../../Component/ChartSVG/ChartSVG';
+import { useHistory } from 'react-router'; 
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import Pagination from '@material-ui/lab/Pagination';
+import { Suspense } from 'react';
+
+const ChartSVG = React.lazy(()=> import('../../Component/ChartSVG/ChartSVG')); 
 
 function TVShow() {
     const [page, setPage] = useState(1);
@@ -93,7 +95,9 @@ function TVShow() {
                                         {data.original_name}
                                     </Typography>
                                     <p>{data.first_air_date}</p> 
-                                    <ChartSVG value={data.vote_average*10}/>
+                                    <Suspense fallback={<div>Loading...</div>}>
+                                        <ChartSVG value={data.vote_average*10} />
+                                    </Suspense>
                                     <Typography variant="body2" color="textSecondary" component="p">
                                         {data.overview}
                                     </Typography>
