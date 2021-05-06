@@ -1,8 +1,7 @@
 import { Button, Card, CardActionArea, CardContent, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
-import { useEffect } from 'react';
-import Slider from "react-slick"; 
+import { useEffect } from 'react'; 
 import { Link, useHistory } from "react-router-dom";
 import ChartSVG from '../ChartSVG/ChartSVG';
 import { Skeleton } from '@material-ui/lab';
@@ -10,54 +9,7 @@ import { Skeleton } from '@material-ui/lab';
 
 function ListMovie() {
     const [listMovie, setListMovie] = useState(); 
-    const history = useHistory();
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        arrows:false,
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 5, 
-        responsive: [
-            {
-            breakpoint: 1824,
-            settings: {
-                slidesToShow: 7,
-                slidesToScroll: 7,
-            }
-            },
-            {
-            breakpoint: 1624,
-            settings: {
-                slidesToShow: 6,
-                slidesToScroll: 6, 
-            }
-            },
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4, 
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-          ]  
-    };
+    const history = useHistory(); 
     const handleClickCard = (data, dataHref) =>{
         history.push("/details"+dataHref+"="+data);
     }
@@ -113,30 +65,34 @@ function ListMovie() {
             <Typography variant="h4" className="titleH4" color="primary">TOP Movie</Typography>
             <hr/>
             <br/>
-            <Grid>
-                <Slider {...settings}>
+            <Grid container spacing={2}
+            justify="flex-start"
+            direction="row" className="overflowScroll"> 
+                 
                     {listMovie ? listMovie.map((data) =>
-                        <Card key={data.id}>
-                            <CardActionArea>
-                                <img className="lazyload"
-                                   src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
-                                   data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
-                                <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id,"movie")}>
-                                    {data.title}
-                                </Typography>
-                                <p>{data.release_date}</p> 
-                                <ChartSVG value={data.vote_average*10} />
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {data.overview}
-                                </Typography>
-                                </CardContent>
-                            </CardActionArea> 
-                        </Card>
+                        <Grid key={data.id} item sm={3}>
+                            <Card>
+                                <CardActionArea>
+                                    <img className="lazyload"
+                                    src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
+                                    data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
+                                    <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id,"movie")}>
+                                        {data.title}
+                                    </Typography>
+                                    <p>{data.release_date}</p> 
+                                    <ChartSVG value={data.vote_average*10} />
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {data.overview}
+                                    </Typography>
+                                    </CardContent>
+                                </CardActionArea> 
+                            </Card>
+                        </Grid>
                     ): ''} 
-                </Slider>
+               
             </Grid>
-            <Button variant="text" color="primary" ><Link to="/movie">View all</Link></Button>
+            <Button variant="text" style={{marginTop: "20px"}} color="primary" ><Link to="/movie">View all</Link></Button>
         </>
     );
 }

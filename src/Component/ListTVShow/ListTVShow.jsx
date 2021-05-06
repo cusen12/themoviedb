@@ -1,61 +1,13 @@
 import { Button, Card, CardActionArea, CardContent, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
-import { useEffect } from 'react';
-import Slider from "react-slick"; 
+import { useEffect } from 'react'; 
 import { Link, useHistory } from "react-router-dom";
 import ChartSVG from '../ChartSVG/ChartSVG';
 
 function ListMovie() {
     const [listMovie, setListMovie] = useState();
-    const history = useHistory();
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        arrows:false,
-        speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 6,
-        responsive: [
-            {
-            breakpoint: 1824,
-            settings: {
-                slidesToShow: 6,
-                slidesToScroll: 6, 
-            }
-            },
-            {
-            breakpoint: 1624,
-            settings: {
-                slidesToShow: 5,
-                slidesToScroll: 5,
-            }
-            },
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-          ]  
-    };
+    const history = useHistory(); 
     const handleClickCard = (data, dataHref) =>{
         history.push("/details"+dataHref+"="+data)
     }
@@ -73,10 +25,12 @@ function ListMovie() {
             <Typography variant="h4" className="titleH4" color="primary">TOP TV Show</Typography> 
             <hr/>
             <br/>
-            <Grid>
-                <Slider {...settings}>
-                    {listMovie ? listMovie.map((data) =>
-                        <Card key={data.id} onClick={() => handleClickCard(data.id, "tv")}>
+            <Grid container spacing={2}
+            justify="flex-start"
+            direction="row" className="overflowScroll"> 
+                {listMovie ? listMovie.map((data) =>
+                    <Grid key={data.id} item sm={2}>
+                        <Card  onClick={() => handleClickCard(data.id, "tv")}>
                             <CardActionArea> 
                                 <img className="lazyload"
                                 src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
@@ -93,10 +47,10 @@ function ListMovie() {
                                 </CardContent>
                             </CardActionArea> 
                         </Card>
-                    ): ''} 
-                </Slider>
+                    </Grid>
+                ): ''}  
             </Grid>
-            <Button variant="text"><Link to="/tvshow">View all</Link></Button>
+            <Button variant="text" style={{marginTop: "20px"}}><Link to="/tvshow">View all</Link></Button>
         </>
     );
 }

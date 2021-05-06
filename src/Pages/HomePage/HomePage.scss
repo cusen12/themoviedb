@@ -17,7 +17,7 @@
         }
     }  
     .MuiButton-text{
-        float: right; 
+        float: right;  
     }
     .slick-list{
         width: 100%; 
@@ -148,3 +148,6 @@
 
     }
 }  
+.overflowScroll{
+    flex-wrap: unset !important;
+}
