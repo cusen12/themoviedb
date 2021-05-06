@@ -33,7 +33,7 @@ function ListMovie() {
     }
     const settings = {   
         className: "center", 
-        infinite: true,
+        infinite: false,
         centerPadding: "20px",
         slidesToShow: 3,
         speed: 500, 

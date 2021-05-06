@@ -1,6 +1,7 @@
 @font-face {
   font-family: FaktPro; 
   src: url(./Assets/font/FaktPro-Medium.ttf);
+  font-display: swap
 }
 body {
   margin: 0;
