@@ -38,24 +38,24 @@ function ListMovie() {
                     <Grid item md={6} className="box-highlights">  
                         <img className="lazyload"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[15].backdrop_path}
-                            data-src={"https://image.tmdb.org/t/p/w780/"+listMovie[15].backdrop_path} alt=""/>  
-                        <div className="content">
+                            data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[15].backdrop_path} alt=""/>  
+                        <Grid className="content">
                             <Typography variant="h4" onClick={() => handleClickCard(listMovie[15].id,"movie")}>{listMovie[15].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                         {listMovie[15].overview}
                             </Typography>
-                        </div> 
+                        </Grid> 
                     </Grid>
                     <Grid item md={6}  className="box-highlights box-highlights2">  
                         <img className="lazyload"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[10].backdrop_path}
-                            data-src={"https://image.tmdb.org/t/p/w780/"+listMovie[10].backdrop_path} alt=""/>  
-                        <div className="content">
+                            data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[10].backdrop_path} alt=""/>  
+                        <Grid className="content">
                             <Typography variant="h4" onClick={() => handleClickCard(listMovie[10].id,"movie")}>{listMovie[10].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                         {listMovie[10].overview}
                             </Typography>
-                        </div> 
+                        </Grid> 
                     </Grid> 
                 </Grid>
                 : 

@@ -33,7 +33,7 @@ function HomePage() {
             </Grid> 
             
                 <Suspense fallback={<div>Loading...</div>}> 
-                <Grid item md={12} className="bg-home ">  
+                <Grid item md={12}>  
                     <ListMovie/>
                     <ListTVShow/>
                     <PeopleList/>  
