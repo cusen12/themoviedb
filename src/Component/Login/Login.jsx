@@ -1,11 +1,12 @@
-import { Button, Grid, TextField, Typography } from '@material-ui/core';
+import { Button, Grid, Paper, TextField, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login,logout } from './loginSlice';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import { section } from '../Section/SectionSlice'; 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
+import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';  
+import { Link } from "react-router-dom";
 
 function Login() {   
     const dispatch = useDispatch();
@@ -14,11 +15,19 @@ function Login() {
     const [isLogin, setIsLogin] = useState(true)
     const requestToken = loginData ? loginData.request_token : "";
     const [checkLogin, setCheckLogin] = useState("")
+    const [popup ,setPopup] = useState(true)
     const createRequesToken = async ()=>{
         const request = await fetch("https://api.themoviedb.org/3/authentication/token/new?api_key=cd58c7bd131cba3c391d62c5fda2ae53");
         const requesJson = await request.json(); 
         return requesJson.request_token
 
+    }
+    const style={
+        padding:"10px",
+        position:"absolute",
+        top:"0",
+        left:"80px",
+        zIndex:"10" 
     }
     useEffect(() =>{
         if(bool === true){
@@ -84,8 +93,8 @@ function Login() {
         console.log("logout")
     }
     const handleDetailsUser = async () =>{
-        console.log("lấy thông tin user ở đây")
-    }
+        setPopup(!popup); 
+    } 
     
     return (
         <Grid container item className="login" md={12}>
@@ -95,11 +104,24 @@ function Login() {
                        loginData.success===true ? 
                        <Grid container  
                        alignItems="center"
-                       justify="space-between">   
-                           <AccountCircleRoundedIcon onClick={handleDetailsUser} color="primary" style={{fontSize:"30px"}}/>  
-                           <i>Hi! Have a nice day</i>
-                           <ExitToAppIcon color="primary" style={{fontSize:"18"}} onClick={handleLogout}/>
-                           <hr style={{display:"block",width:"100%"}}/>
+                       justify="flex-start">   
+                            <Button><AccountCircleRoundedIcon onClick={handleDetailsUser} color="primary" style={{fontSize:"30px"}}/> </Button>
+                            
+                            <hr style={{display:"block",width:"100%"}}/> 
+                            <Paper style={style} hidden={popup} elevation={0}>  
+                                <Typography>Sen</Typography>
+                                <Typography><Link to="/commingsoon">View Profile</Link></Typography> 
+                                <hr style={{display:"block",width:"100%"}}/>  
+                                <Typography><Link to="/commingsoon">Watchlist</Link></Typography>  
+                                <Typography><Link to="/commingsoon">Create list</Link></Typography>
+                                <Typography><Link to="/commingsoon">Add to Watchlist</Link></Typography>
+                                <Typography><Link to="/commingsoon">Rated List</Link></Typography> 
+                                <Typography><Link to="/commingsoon">Favorite List</Link></Typography>  
+                                <hr style={{display:"block",width:"100%"}}/>     
+                                <Typography><Link to="/commingsoon">Create list</Link></Typography>
+                                <hr style={{display:"block",width:"100%"}}/> 
+                                <Button onClick={handleLogout} startIcon={<ExitToAppIcon color="primary" style={{fontSize:"18"}} />}>Logout </Button> 
+                            </Paper>
                        
                        </Grid>
                        :

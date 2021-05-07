@@ -31,12 +31,12 @@ function ListMovie() {
             direction="row" className="overflowScroll"> 
                 {listMovie ? listMovie.map((data) =>
                     <Grid key={data.id} item sm={2}>
-                        <Card  onClick={() => handleClickCard(data.id, "tv")}> 
+                        <Card> 
                             <img className="lazyload"
                             src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
                             <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2" >
+                            <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id, "tv")}>
                                 {data.original_name}
                             </Typography>
                             <Typography component="p" >
