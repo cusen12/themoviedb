@@ -112,9 +112,7 @@ function Login() {
                                 <Typography>Sen</Typography>
                                 <Typography><Link to="/commingsoon">View Profile</Link></Typography> 
                                 <hr style={{display:"block",width:"100%"}}/>  
-                                <Typography><Link to="/commingsoon">Watchlist</Link></Typography>  
-                                <Typography><Link to="/commingsoon">Create list</Link></Typography>
-                                <Typography><Link to="/commingsoon">Add to Watchlist</Link></Typography>
+                                <Typography><Link to="/commingsoon">Watchlist</Link></Typography>   
                                 <Typography><Link to="/commingsoon">Rated List</Link></Typography> 
                                 <Typography><Link to="/commingsoon">Favorite List</Link></Typography>  
                                 <hr style={{display:"block",width:"100%"}}/>     

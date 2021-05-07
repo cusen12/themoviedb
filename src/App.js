@@ -6,7 +6,7 @@ import {
 } from "react-router-dom"; 
 import HomePage from './Pages/HomePage/HomePage';
 import Movie from './Pages/Movie/Movie';
-import People from './Pages/People/People';
+// import People from './Pages/People/People';
 import TVShow from './Pages/TVShow/TVShow';  
 import Details from './Pages/Details/Details'; 
 import CommingSoon from './Pages/CommingSoon/CommingSoon'; 
@@ -80,7 +80,7 @@ function App() {
                     <Route exact path="/" children={<HomePage/>}/> 
                     <Route path="/movie" children={<Movie/>}/> 
                     <Route path="/tvshow" children={ <TVShow/>}/> 
-                    <Route path="/people" children={<People/>}/> 
+                    <Route path="/people" children={<CommingSoon/>}/> 
                     <Route path="/commingsoon" children={ <CommingSoon/>}/> 
                     <Route path="/search" children={ <SearchPage/>}/>   
                     <Route path="/:id" children={ <Details/>}/>  
