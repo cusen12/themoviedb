@@ -41,9 +41,7 @@ function ListMovie() {
       };
     return (
         <>    
-            <Typography variant="h4" className="titleH4" color="primary">Popular People</Typography> 
-            <hr/>
-            <br/> 
+            <Typography variant="h4" className="titleH4" color="primary">Popular People <Button variant="text" style={{float:"right"}}><Link to="/people">View all</Link></Button></Typography>  
             <Slider {...settings}>
                 {listMovie ? listMovie.map((data) => 
                         <Card key={data.id} className="peopleCard"> 
@@ -66,7 +64,7 @@ function ListMovie() {
                         </Card> 
                 ): ''}  
             </Slider> 
-            <Button variant="text"><Link to="/people">View all</Link></Button>
+           
         </>
     );
 }

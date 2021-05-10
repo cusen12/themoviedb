@@ -27,6 +27,9 @@ body{
 .MuiButton-label{
   text-transform: initial;
 } 
+.MuiTypography-caption{
+    font-size: 14px !important;
+}
 
 /* Slider */
 .slick-slider
@@ -108,7 +111,7 @@ body{
 {
     display: none;
     float: left;
-
+    padding: 0 5px;
     height: 100%;
     min-height: 1px;
 }

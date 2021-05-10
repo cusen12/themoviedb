@@ -83,7 +83,7 @@ function App() {
                     <Route path="/people" children={<CommingSoon/>}/> 
                     <Route path="/commingsoon" children={ <CommingSoon/>}/> 
                     <Route path="/search" children={ <SearchPage/>}/>   
-                    <Route path="/:id" children={ <Details/>}/>  
+                    <Route path="/category:category/:id" children={ <Details/>}/>  
                   </Switch> 
                 </Grid>
               </Grid>

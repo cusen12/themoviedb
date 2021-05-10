@@ -10,7 +10,7 @@ function ListMovie() {
     const [listMovie, setListMovie] = useState();
     const history = useHistory(); 
     const handleClickCard = (data, dataHref) =>{
-        history.push("/details"+dataHref+"="+data)
+        history.push("/category"+dataHref+"/"+data);
     }
     useEffect(() => {
         const getListMovie = async () => {
@@ -23,9 +23,8 @@ function ListMovie() {
     },[])
     return (
         <>   
-            <Typography variant="h4" className="titleH4" color="primary">TOP TV Show</Typography> 
-            <hr/>
-            <br/>
+            <Typography variant="h4" className="titleH4" color="primary">TOP TV Show <Button variant="text" style={{float: "right"}}><Link to="/tvshow">View all</Link></Button></Typography> 
+            
             <Grid container spacing={2}
             justify="flex-start"
             direction="row" className="overflowScroll"> 
@@ -53,7 +52,9 @@ function ListMovie() {
                     </Grid>
                 ): ''}  
             </Grid>
-            <Button variant="text" style={{marginTop: "20px"}}><Link to="/tvshow">View all</Link></Button>
+            <br/>
+            <hr/> 
+            
         </>
     );
 }
