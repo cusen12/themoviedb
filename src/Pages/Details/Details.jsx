@@ -111,6 +111,7 @@ function Details() {
         alert("Thanks to vote!!");
         sethidden(!hidden); 
     } 
+    console.log(galleryData)
     return ( 
         <Container className={"details-"+category}> 
             
