@@ -155,7 +155,7 @@ function Details() {
                             <a href={videoData.results[0] !== undefined ? `https://www.youtube.com/watch?v=${ videoData.results[0].key}`: "" } target="_blank" rel="noopener noreferrer">
                                 <Button variant="outlined" startIcon={<YouTubeIcon fontSize="large"/>}>Trailer</Button>
                             </a>
-                            : ""    
+                            : ""     
                         }
                        
                        <br/><br/>
