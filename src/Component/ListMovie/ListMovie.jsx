@@ -62,10 +62,10 @@ function ListMovie() {
                 : 
             <Skeleton variant="rect" width={210} height={118}/>
             }
-            <br/>
+            <br/> <br/>
             <Typography variant="h4" className="titleH4" color="primary">TOP Movie  <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/movie">View all</Link></Button></Typography>
              
-            <Grid container spacing={2}
+            <Grid container spacing={4}
             justify="flex-start"
             direction="row" className="overflowScroll"> 
                  
@@ -94,7 +94,7 @@ function ListMovie() {
                     ): ''} 
                
             </Grid>
-            <br/>
+            <br/> <br/>
             <hr/> 
         </>
     );
