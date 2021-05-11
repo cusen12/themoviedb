@@ -18,7 +18,7 @@ function ListMovie() {
     const linkAPI= `https://api.themoviedb.org/3/movie/${category}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=${page}`
     const history = useHistory();
     const handleClickCard = (data, dataHref) =>{
-        history.push("/details"+dataHref+"="+data)
+        history.push("/category/"+dataHref+"/"+data);
     } 
     const handleChangeValuePagination = (e) =>{
         setPage(e.target.textContent)  

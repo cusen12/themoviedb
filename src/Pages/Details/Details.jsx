@@ -1,10 +1,9 @@
 import { Button, ButtonGroup, Card, CardContent, Container, Grid, Typography } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import './Details.scss'; 
-import "lightgallery.js/dist/css/lightgallery.css";
+import './Details.scss';  
 
 import ChartSVG from '../../Component/ChartSVG/ChartSVG';
 import FormatListBulletedRoundedIcon from '@material-ui/icons/FormatListBulletedRounded';
@@ -18,8 +17,7 @@ import Slider from 'react-slick';
 
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import VisibilityIcon from '@material-ui/icons/Visibility';
+import InstagramIcon from '@material-ui/icons/Instagram'; 
 import LinkIcon from '@material-ui/icons/Link';
 
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
@@ -28,6 +26,11 @@ import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 
 function Details() {
     const { category,id } = useParams();
+    const [detailsData, setDetailsData] = useState();
+    const [galleryData, setGalleryData] = useState(); 
+    const [videoData, setVideoData] = useState(); 
+    const [socialData, setSocialData] = useState();
+    const [castData, setCastData] = useState();
     const [rate, setRate] = useState(5); 
     const [hidden, sethidden] = useState(true); 
     const [visible, setVisible] = useState(true);  
@@ -53,8 +56,44 @@ function Details() {
         slidesToShow: 8,
         speed: 500,  
         slidesToScroll: 1,
-    };
-
+    }; 
+    useEffect(()=>{
+        const getDetails = async () =>{
+            const link = `https://api.themoviedb.org/3/${category}/${id}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
+            const respond = await fetch(link);
+            const responJson = await respond.json();
+            setDetailsData(responJson);
+        }
+        getDetails(); 
+        const getGallery = async () =>{
+            const link = `https://api.themoviedb.org/3/${category}/${id}/images?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
+            const respondGallery = await fetch(link);
+            const responGalleryJson = await respondGallery.json();
+            setGalleryData(responGalleryJson);
+        }
+        getGallery(); 
+        const getVideo = async () =>{
+            const link = `https://api.themoviedb.org/3/${category}/${id}/videos?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
+            const respondVideo = await fetch(link);
+            const responVideoJson = await respondVideo.json();
+            setVideoData(responVideoJson);
+        }
+        getVideo(); 
+        const getSocial = async () =>{
+            const link = `https://api.themoviedb.org/3/${category}/${id}/external_ids?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
+            const respondSocial = await fetch(link);
+            const responSocialJson = await respondSocial.json();
+            setSocialData(responSocialJson);
+        }
+        getSocial();
+        const getCast = async () =>{
+            const link = `https://api.themoviedb.org/3/${category}/${id}/credits?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
+            const respondCast = await fetch(link);
+            const responCastJson = await respondCast.json();
+            setCastData(responCastJson);
+        }
+        getCast();
+    },[category,id])  
     const handleClickRate = () => {  
         sethidden(!hidden);
     }
@@ -70,186 +109,111 @@ function Details() {
     const handlesetRate = (event,newValue) =>{  
         setRate(newValue)  
         alert("Thanks to vote!!");
-        sethidden(!hidden);
-        console.log(id)
-    }
+        sethidden(!hidden); 
+    } 
     return ( 
         <Container className={"details-"+category}> 
+            
+        {
+            detailsData !== undefined ?
             <Grid container spacing={3}
-            justify="space-between"
-            alignItems="center" style={{position: "relative"}}> 
+                justify="space-between"
+                alignItems="center" style={{position: "relative"}}> 
                 <Grid item md={3} style={{position: "relative"}}> 
-                    <Grid style={style}>
-                        <ChartSVG value="98"/>
+                        <Grid style={style}>
+                            <ChartSVG value={detailsData.vote_average*10}/>
+                        </Grid>
+                        <img className="lazyload"
+                        src={`https://image.tmdb.org/t/p/w45/${detailsData.poster_path}`}
+                        data-src={`https://image.tmdb.org/t/p/w500/${detailsData.poster_path}`} alt={detailsData.title}/>
                     </Grid>
-                    <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                </Grid>
-                <Grid item md={9}> 
-                    <Typography variant="h2">Bác sĩ thiên tài</Typography>
-                    <Grid container spacing={2}
-                    justify="flex-start"
-                    alignItems="center" style={{padding:"8px"}}>
-                        <FormatListBulletedRoundedIcon className="hov" color="primary" onClick={handleAddtoList} titleAccess="Add to list"/>
-                        <FavoriteRoundedIcon className="hov" color="primary" onClick={handleAddfavorite} titleAccess="Mark as favorite"/>
-                        <BookmarkRoundedIcon className="hov" color="primary" onClick={handleAddtoWatchlist} titleAccess="Add to your watchlist"/>
-                        <GradeRoundedIcon className="hov" color="primary" onClick={handleClickRate} titleAccess="Rate it"/> 
-                        <Grid hidden={hidden} style={{position:"relative"}}>
-                            <Rating style={styleRate} name="simple-controlled" onChange={handlesetRate} value={rate} precision={0.5} /> 
-                        </Grid> 
+                    <Grid item md={9}> 
+                        <Typography variant="h2">{detailsData.title}</Typography>
+                        <Grid container spacing={2}
+                        justify="flex-start"
+                        alignItems="center" style={{padding:"8px"}}>
+                            <FormatListBulletedRoundedIcon className="hov" color="primary" onClick={handleAddtoList} titleAccess="Add to list"/>
+                            <FavoriteRoundedIcon className="hov" color="primary" onClick={handleAddfavorite} titleAccess="Mark as favorite"/>
+                            <BookmarkRoundedIcon className="hov" color="primary" onClick={handleAddtoWatchlist} titleAccess="Add to your watchlist"/>
+                            <GradeRoundedIcon className="hov" color="primary" onClick={handleClickRate} titleAccess="Rate it"/> 
+                            <Grid hidden={hidden} style={{position:"relative"}}>
+                                <Rating style={styleRate} name="simple-controlled" onChange={handlesetRate} value={rate} precision={0.5} /> 
+                            </Grid> 
+                        </Grid>
+                        <Typography variant="caption">Tổng bình chọn: {detailsData.vote_count}</Typography> 
+                        
+                        <Typography variant="caption"> {detailsData.tagline}</Typography> 
+                         
+                        <Typography variant="caption">Thể loại:  {detailsData.genres.map((data) => <span key={data.id}>{data.name} </span>)} -  {detailsData.runtime} Phút</Typography>  
+                         
+                        <Typography variant="caption">Make in: {detailsData.production_companies[0].name}</Typography>
+                        
+                        <Typography variant="h4">Overview</Typography> 
+                        <Typography variant="caption"> {detailsData.overview}</Typography>
+                        
+                        {videoData !== undefined ?
+                            <a href={videoData.results[0] !== undefined ? `https://www.youtube.com/watch?v=${ videoData.results[0].key}`: "" } target="_blank" rel="noopener noreferrer">
+                                <Button variant="outlined" startIcon={<YouTubeIcon fontSize="large"/>}>Trailer</Button>
+                            </a>
+                            : ""    
+                        }
+                       
+                       <br/><br/>
+                        {
+                            socialData !== undefined ?
+                            <Grid>
+                                    {socialData.facebook_id !== undefined ?
+                                    <a href={`https://www.facebook.com/${socialData.facebook_id}`} target="_blank" rel="noopener noreferrer">
+                                        <FacebookIcon fontSize="large" className="hov" titleAccess="Facebook" color="primary"/>
+                                    </a> : ""
+                                }
+                                {socialData.twitter_id !== undefined ?
+                                    <a href={`https://twitter.com/${socialData.twitter_id}`} target="_blank" rel="noopener noreferrer">
+                                        <TwitterIcon fontSize="large" className="hov" titleAccess="Twitter" color="primary"/>
+                                    </a>: ""
+                                }
+                                {socialData.instagram_id !== undefined ?
+                                    <a href={`https://instagram.com/${socialData.instagram_id}`} target="_blank" rel="noopener noreferrer">
+                                        <InstagramIcon fontSize="large" className="hov" titleAccess="Instagram" color="primary"/>
+                                    </a>: ""
+                                } 
+                                
+                                <a href={detailsData.homepage} target="_blank" rel="noopener noreferrer">
+                                    <LinkIcon fontSize="large" className="hov" titleAccess="Home" color="primary"/>
+                                </a>
+                            
+                            </Grid>:"loadding..."
+                        }
                     </Grid>
-                    <Typography variant="caption">Tổng bình chọn: 33222</Typography> 
-                    <br/>  
-                    <Typography variant="caption">How much can you know about yourself if you've never been in a fight?</Typography> 
-                    <br/> 
-                    <Typography variant="caption">Thể loại: Chính Kịch - 43 phút</Typography>  
-                    <br/>
-                    <Typography variant="caption">Đao diễn: Thành Tuân</Typography>
-                    <br/>
-                    <Typography variant="h4">Overview</Typography> 
-                    <Typography variant="caption">Một bác sĩ trẻ mắc hội chứng bác học được nhận vào khoa phẫu thuật tim của một bệnh viện danh tiếng. Liệu một người bị tự kỷ có thể cứu người? Phim dựa trên series cùng tên của Hàn Quốc.</Typography>
-                    <br/>
-                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
-                        <Button variant="outlined" startIcon={<YouTubeIcon fontSize="large"/>}>Trailer</Button>
-                    </a>
-                    <br/>
-                     
-                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
-                        <FacebookIcon fontSize="large" className="hov" titleAccess="Facebook" color="primary"/>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
-                        <TwitterIcon fontSize="large" className="hov" titleAccess="Twitter" color="primary"/></a>
-                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
-                        <InstagramIcon fontSize="large" className="hov" titleAccess="Instagram" color="primary"/>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
-                        <VisibilityIcon fontSize="large" className="hov" titleAccess="Visibility" color="primary"/>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
-                        <LinkIcon fontSize="large" className="hov" titleAccess="Home" color="primary"/>
-                    </a>
-                     
                 </Grid>
+            :
+            "loadding..." 
+            }
                 
-            </Grid>
+           
             <hr style={{display:"block",width:"100%",margin:"5px 0"}}/> 
             <br/>
             <Typography variant="h4">Series Cast  <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button> </Typography>  
            
             <br/>
-            <Slider {...settings}>
-                <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card> 
-            <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card> 
-            <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card> 
-            <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card> 
-            <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card> 
-            <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card> 
-            <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card> 
-            <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card> 
-            <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card> 
-            <Card  className="peopleCard"> 
-                <img className="lazyload"
-                    src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                    data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                    <CardContent style={{padding:"10px 20px"}}>
-                    
-                    <Typography  variant="body1">
-                        Sen đẹp trai
-                    </Typography> 
-                    </CardContent> 
-            </Card>  
-            </Slider> 
+            {castData !== undefined ? 
+                    <Slider {...settings}> 
+                        {castData.cast.map((item)=>
+                        <Card key={item.id} className="peopleCard"> 
+                            <img className="lazyload" height="216px"
+                                src={item.profile_path !==null ? `https://image.tmdb.org/t/p/w45/${item.profile_path}` : `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-36-user-female-1252799405af813fe2e29e8b25c44d9a12406c0db697a6b4a25080f5974ddf68.svg`}
+                                data-src={item.profile_path !==null ? `https://image.tmdb.org/t/p/w154/${item.profile_path}` : `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-36-user-female-1252799405af813fe2e29e8b25c44d9a12406c0db697a6b4a25080f5974ddf68.svg`} alt=""/>
+                                <CardContent style={{padding:"10px 20px"}}> 
+                                <Typography variant="body1">
+                                    {item.name}
+                                </Typography> 
+                                </CardContent> 
+                        </Card> 
+                        )} 
+                </Slider> : ""
+                
+            } 
+            
             <br/>
             <Typography variant="h4">Social</Typography>  
             <br/>
@@ -391,132 +355,6 @@ function Details() {
             <br/>
             <Slider {...settings}>
                 <Card  className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card> 
-                <Card className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card> 
-                <Card className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card> 
-                <Card className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card> 
-                <Card className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card> 
-                <Card className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card> 
-                <Card className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card> 
-                <Card className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card> 
-                <Card className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card> 
-                <Card className="reconmenCard"> 
                     <Grid style={styleChart2}>
                         <ChartSVG value="98"/>
                     </Grid>

@@ -10,7 +10,7 @@ function ListMovie() {
     const [listMovie, setListMovie] = useState();
     const history = useHistory(); 
     const handleClickCard = (data, dataHref) =>{
-        history.push("/category"+dataHref+"/"+data);
+        history.push("/category/"+dataHref+"/"+data);
     }
     useEffect(() => {
         const getListMovie = async () => {

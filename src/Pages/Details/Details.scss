@@ -2,11 +2,20 @@
     img{
         max-width: 100%;
     }
+    .MuiTypography-caption{
+      display: block;
+    }
+    .peopleCard{
+      p{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis
+      }
+    }
 }
 .reconmenCard{
     position: relative;
 }
-
  
   
   .lg-icon {
