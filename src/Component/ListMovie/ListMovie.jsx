@@ -37,7 +37,7 @@ function ListMovie() {
                 spacing={4}>
                     <Grid item md={12}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >The moment of relaxation</Typography></Grid>
                     <Grid item md={6} className="box-highlights">  
-                        <img className="lazyload"
+                        <img className="lazyload" width="500px" height="350px"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[15].backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[15].backdrop_path} alt=""/>  
                         <Grid className="content">
@@ -48,7 +48,7 @@ function ListMovie() {
                         </Grid> 
                     </Grid>
                     <Grid item md={6}  className="box-highlights box-highlights2">  
-                        <img className="lazyload"
+                        <img className="lazyload"  width="500px" height="350px"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[10].backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[10].backdrop_path} alt=""/>  
                         <Grid className="content">
