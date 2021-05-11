@@ -1,8 +1,11 @@
-import { Button, Card, CardContent, Container, Grid, Typography } from '@material-ui/core';
+import { Button, ButtonGroup, Card, CardContent, Container, Grid, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+
 import './Details.scss'; 
+import "lightgallery.js/dist/css/lightgallery.css";
+
 import ChartSVG from '../../Component/ChartSVG/ChartSVG';
 import FormatListBulletedRoundedIcon from '@material-ui/icons/FormatListBulletedRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
@@ -13,12 +16,21 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import { Rating } from '@material-ui/lab';
 import Slider from 'react-slick';
 
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import LinkIcon from '@material-ui/icons/Link';
+
+import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
+
 
 
 function Details() {
     const { category,id } = useParams();
     const [rate, setRate] = useState(5); 
-    const [hidden, sethidden] = useState(true);  
+    const [hidden, sethidden] = useState(true); 
+    const [visible, setVisible] = useState(true);  
     const style ={
         position: "absolute",
         top:"20px",
@@ -29,7 +41,11 @@ function Details() {
         top:"-12px",
         left:"0"
     }   
-
+    const styleChart2 = {
+        position: "absolute",
+        top:"-5px",
+        right:"0"
+    } 
     const settings = {   
         className: "center", 
         infinite: false,
@@ -94,8 +110,26 @@ function Details() {
                     <Typography variant="h4">Overview</Typography> 
                     <Typography variant="caption">Một bác sĩ trẻ mắc hội chứng bác học được nhận vào khoa phẫu thuật tim của một bệnh viện danh tiếng. Liệu một người bị tự kỷ có thể cứu người? Phim dựa trên series cùng tên của Hàn Quốc.</Typography>
                     <br/>
-                    <Link to="https://www.youtube.com/watch?v=ATYw7oM3Cho" target={"_blank"} rel="noopener noreferrer"><Button variant="outlined" startIcon={<YouTubeIcon fontSize="large"/>}>Trailer</Button></Link>
-                    
+                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
+                        <Button variant="outlined" startIcon={<YouTubeIcon fontSize="large"/>}>Trailer</Button>
+                    </a>
+                    <br/>
+                     
+                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
+                        <FacebookIcon fontSize="large" className="hov" titleAccess="Facebook" color="primary"/>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
+                        <TwitterIcon fontSize="large" className="hov" titleAccess="Twitter" color="primary"/></a>
+                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
+                        <InstagramIcon fontSize="large" className="hov" titleAccess="Instagram" color="primary"/>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
+                        <VisibilityIcon fontSize="large" className="hov" titleAccess="Visibility" color="primary"/>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=ATYw7oM3Cho" target="_blank" rel="noopener noreferrer">
+                        <LinkIcon fontSize="large" className="hov" titleAccess="Home" color="primary"/>
+                    </a>
+                     
                 </Grid>
                 
             </Grid>
@@ -296,6 +330,208 @@ function Details() {
                 </Grid>
                </Grid> 
             </Card>
+            <br/>
+            <Typography variant="h4">Media</Typography>  <br/>  
+            <ButtonGroup variant="outlined">
+                <Button onClick={()=> setVisible(!visible)}>Poster</Button>
+                <Button onClick={()=> setVisible(!visible)}>Backdrops</Button>
+            </ButtonGroup>  
+            <br/>
+            <br/> 
+            {visible ? <LightgalleryProvider >  
+                <Grid justify="flex-start" alignItems="flex-start" container spacing={2}>
+                    <Grid item>
+                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
+                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        </LightgalleryItem>
+                    </Grid>
+                    <Grid item>
+                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
+                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        </LightgalleryItem>
+                    </Grid>
+                    <Grid item>
+                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
+                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        </LightgalleryItem>
+                    </Grid>
+                </Grid>
+            </LightgalleryProvider>
+            :
+            <LightgalleryProvider> 
+                <Grid justify="flex-start" alignItems="flex-start" container spacing={2}>
+                    <Grid item>
+                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
+                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        </LightgalleryItem>
+                    </Grid>
+                    <Grid item>
+                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
+                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        </LightgalleryItem>
+                    </Grid>
+                    <Grid item>
+                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
+                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        </LightgalleryItem>
+                    </Grid>
+                </Grid>
+            </LightgalleryProvider>
+            }
+
+           
+            <br/>
+            <Typography variant="h4">Recommendations</Typography>   
+            <br/>
+            <Slider {...settings}>
+                <Card  className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card> 
+                <Card className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card> 
+                <Card className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card> 
+                <Card className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card> 
+                <Card className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card> 
+                <Card className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card> 
+                <Card className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card> 
+                <Card className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card> 
+                <Card className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card> 
+                <Card className="reconmenCard"> 
+                    <Grid style={styleChart2}>
+                        <ChartSVG value="98"/>
+                    </Grid>
+                    <img className="lazyload"
+                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
+                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
+                        <CardContent style={{padding:"10px 20px"}}>
+                        
+                        <Typography  variant="body1">
+                            Sen đẹp trai
+                        </Typography> 
+                        </CardContent> 
+                </Card>  
+            </Slider>
+            
         </Container> 
     );
 }

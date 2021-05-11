@@ -7,6 +7,7 @@ import { section } from '../Section/SectionSlice';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';  
 import { Link } from "react-router-dom";
+import './login.scss'
 
 function Login() {   
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function Login() {
     const style={
         padding:"10px",
         position:"absolute",
-        top:"0",
+        top:"60px",
         left:"80px",
         zIndex:"10" 
     }
@@ -105,9 +106,8 @@ function Login() {
                        <Grid container  
                        alignItems="center"
                        justify="flex-start">   
-                            <Button><AccountCircleRoundedIcon onClick={handleDetailsUser} color="primary" style={{fontSize:"30px"}}/> </Button>
-                            
-                            <hr style={{display:"block",width:"100%"}}/> 
+                           <Typography color="secondary">Hello !!! </Typography>  <Button> <AccountCircleRoundedIcon onClick={handleDetailsUser} color="primary" style={{fontSize:"30px"}}/> </Button>
+                             
                             <Paper style={style} hidden={popup} elevation={0}>  
                                 <Typography>Sen</Typography>
                                 <Typography><Link to="/commingsoon">View Profile</Link></Typography> 
@@ -136,8 +136,7 @@ function Login() {
                         justify="flex-end">   
                                 <Button type="submit" variant="contained" color="secondary"><ArrowForwardRoundedIcon/></Button>
                             </Grid> 
-                        </form>
-                        <hr/>
+                        </form> 
                     </Grid>
                     }
                      
@@ -146,7 +145,7 @@ function Login() {
                 : 
                 <Grid>
                 <Typography variant="h5" onClick={() => setIsLogin(!isLogin)}>Đăng nhập</Typography>
-                <form onSubmit={handleSubmitLogin} hidden={isLogin} >
+                <form onSubmit={handleSubmitLogin} hidden={isLogin} className="loginform" >
                     <TextField fullWidth id="username" name="username" label="Username" />
                     <TextField fullWidth type="password" id="password" name="password" label="Password" />
                     <p><i style={{fontSize:"11px",color:"red"}}>{checkLogin}</i></p>
@@ -156,8 +155,7 @@ function Login() {
                 justify="flex-end">   
                         <Button type="submit" variant="contained" color="secondary"><ArrowForwardRoundedIcon/></Button>
                     </Grid> 
-                </form>
-                <hr/>
+                </form> 
             </Grid>
             }
         </Grid>

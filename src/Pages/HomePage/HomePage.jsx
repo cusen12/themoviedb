@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@material-ui/core'; 
+import { Button, Container, Grid, Typography } from '@material-ui/core'; 
 import React, { Suspense, useState } from 'react'; 
 import { useSelector } from 'react-redux';  
 import { useHistory } from 'react-router';
@@ -33,13 +33,12 @@ function HomePage() {
             </Grid> 
             
                 <Suspense fallback={<div>Loading...</div>}> 
-                <Grid item md={12}>  
+                <Container>  
                     <ListMovie/>
                     <ListTVShow/>
                     <PeopleList/>  
-                </Grid> 
-            </Suspense>
-           
+                </Container> 
+            </Suspense> 
         </Grid>  
     );
 }

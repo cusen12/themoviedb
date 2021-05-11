@@ -66,16 +66,9 @@ function App() {
         <ThemeProvider theme={theme}>
           <Router> 
             <Suspense fallback={<div>Loading...</div>}> 
-              <Grid container
-                direction="row"
-                justify="flex-start"
-                alignContent="flex-start"
-              >
-                
-                <Grid item md={2}>
-                    <Nav/>
-                </Grid>
-                <Grid item md={10} className="main">
+              
+                <Nav/> 
+                <Grid className="main">
                   <Switch>
                     <Route exact path="/" children={<HomePage/>}/> 
                     <Route path="/movie" children={<Movie/>}/> 
@@ -85,9 +78,7 @@ function App() {
                     <Route path="/search" children={ <SearchPage/>}/>   
                     <Route path="/category:category/:id" children={ <Details/>}/>  
                   </Switch> 
-                </Grid>
-              </Grid>
-              
+                </Grid> 
                 <Footer/>  
               </Suspense>
           </Router>

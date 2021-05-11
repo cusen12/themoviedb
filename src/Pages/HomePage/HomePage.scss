@@ -1,8 +1,11 @@
 @import '../../Assets/scss/variable.scss';
  
 .homepage{
-    overflow-x: hidden;
-    padding: 0 15px;
+    .MuiContainer-root{
+        overflow-x: hidden;
+        padding: 0;
+    }
+     
     .MuiTypography-body2{
         height: 60px;
         overflow: hidden;
