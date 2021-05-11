@@ -31,7 +31,7 @@ function ListMovie() {
                 {listMovie ? listMovie.map((data) =>
                     <Grid key={data.id} item sm={2}>
                         <Card> 
-                            <img className="lazyload"
+                            <img className="lazyload" width="300px" height="169px"
                             src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
                             <CardContent>

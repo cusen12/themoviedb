@@ -45,7 +45,7 @@ function ListMovie() {
             <Slider {...settings}>
                 {listMovie ? listMovie.map((data) => 
                         <Card key={data.id} className="peopleCard"> 
-                                <img className="lazyload" style={style}
+                                <img className="lazyload" style={style} width="200px" height="250px"
                                 src={"https://image.tmdb.org/t/p/w45/"+data.profile_path}
                                 data-src={"https://image.tmdb.org/t/p/w300/"+data.profile_path} alt={data.name}/>
                                 <CardContent style={{padding:"10px 20px"}}>
