@@ -31,6 +31,8 @@ function Details() {
     const [videoData, setVideoData] = useState(); 
     const [socialData, setSocialData] = useState();
     const [castData, setCastData] = useState();
+    const [reviewData, setReviewData] = useState();
+    const [recommentData, setRecommentData] = useState(); 
     const [rate, setRate] = useState(5); 
     const [hidden, sethidden] = useState(true); 
     const [visible, setVisible] = useState(true);  
@@ -43,17 +45,20 @@ function Details() {
         position: "absolute",
         top:"-12px",
         left:"0"
-    }   
-    const styleChart2 = {
-        position: "absolute",
-        top:"-5px",
-        right:"0"
-    } 
+    }    
     const settings = {   
         className: "center", 
         infinite: false,
         centerPadding: "50px",
         slidesToShow: 8,
+        speed: 500,  
+        slidesToScroll: 1,
+    };
+    const settings2 = {   
+        className: "center", 
+        infinite: false,
+        centerPadding: "50px",
+        slidesToShow: 6,
         speed: 500,  
         slidesToScroll: 1,
     }; 
@@ -93,7 +98,30 @@ function Details() {
             setCastData(responCastJson);
         }
         getCast();
+
+        const getReview = async () =>{
+            const link = `https://api.themoviedb.org/3/${category}/${id}/reviews?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language&language=en-US&page=1`;
+            const respondReview = await fetch(link);
+            const responReviewJson = await respondReview.json();
+            setReviewData(responReviewJson);
+        }
+        getReview();
+
+        const getRecoment = async () =>{
+            const link = `https://api.themoviedb.org/3/${category}/${id}/recommendations?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=1`;
+            const respondRecoment = await fetch(link);
+            const responRecomentJson = await respondRecoment.json();
+            setRecommentData(responRecomentJson);
+        }
+        getRecoment();
+
+        
     },[category,id])  
+
+    const fullDayMY = (date) =>{
+        const d = new Date(date)
+       return d.getDate()+ "-" + d.getMonth()+"-" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes()
+    }
     const handleClickRate = () => {  
         sethidden(!hidden);
     }
@@ -110,8 +138,8 @@ function Details() {
         setRate(newValue)  
         alert("Thanks to vote!!");
         sethidden(!hidden); 
-    } 
-    console.log(galleryData)
+    }   
+ 
     return ( 
         <Container className={"details-"+category}> 
             
@@ -150,6 +178,7 @@ function Details() {
                         <Typography variant="caption">Make in: {detailsData.production_companies[0].name}</Typography>
                         
                         <Typography variant="h4">Overview</Typography> 
+
                         <Typography variant="caption"> {detailsData.overview}</Typography>
                         
                         {videoData !== undefined ?
@@ -211,74 +240,42 @@ function Details() {
                                 </CardContent> 
                         </Card> 
                         )} 
-                </Slider> : ""
-                
+                </Slider> : "" 
             } 
             
             <br/>
             <Typography variant="h4">Social</Typography>  
             <br/>
-            <Card style={{margin:"5px 0"}}>
-                <Grid container spacing={2} style={{margin:"0 ",padding: "5px"}}
-                justify="flex-start"
-                alignItems="center"
-                >
-                    <Grid item md={7} style={{display:"flex",alignItems:"center"}}> 
-                        <img src="https://www.themoviedb.org/t/p/w45_and_h45_face/uQ5zh6btNrjXbE8l9bswJA4XJ4E.jpg" style={{borderRadius:"50%", marginRight:"5px"}} alt="" />
-                        <Typography variant="caption">Một bác sĩ trẻ mắc hội chứng bác học được nhận vào khoa phẫu.</Typography>
-                    </Grid>
-                    <Grid item md={1}> 
-                        <Typography variant="caption">Open</Typography>
-                    </Grid>
-                    <Grid item md={1}> 
-                        <Typography variant="caption">8</Typography>
-                    </Grid>
-                    <Grid item md={3}>
-                        <Typography variant="caption">Apr 20, 2021 at 2:29 PM<br/>by Still Water Wellness Group</Typography>
-                    </Grid>
-                </Grid>  
-            </Card> 
-            <Card style={{margin:"5px 0"}}>
-                <Grid container spacing={2} style={{margin:"0 ",padding: "5px"}}
-                justify="flex-start"
-                alignItems="center"
-                >
-                    <Grid item md={7} style={{display:"flex",alignItems:"center"}}> 
-                        <img src="https://www.themoviedb.org/t/p/w45_and_h45_face/uQ5zh6btNrjXbE8l9bswJA4XJ4E.jpg" style={{borderRadius:"50%", marginRight:"5px"}} alt="" />
-                        <Typography variant="caption">Một bác sĩ trẻ mắc hội chứng bác học được nhận vào khoa phẫu.</Typography>
-                    </Grid>
-                    <Grid item md={1}> 
-                        <Typography variant="caption">Open</Typography>
-                    </Grid>
-                    <Grid item md={1}> 
-                        <Typography variant="caption">8</Typography>
-                    </Grid>
-                    <Grid item md={3}>
-                        <Typography variant="caption">Apr 20, 2021 at 2:29 PM<br/>by Still Water Wellness Group</Typography>
-                    </Grid>
-                </Grid>  
-            </Card> 
-            <Card style={{margin:"5px 0"}}>
-                <Grid container spacing={2} style={{margin:"0 ",padding: "5px"}}
-                justify="flex-start"
-                alignItems="center"
-                >
-                    <Grid item md={7} style={{display:"flex",alignItems:"center"}}> 
-                        <img src="https://www.themoviedb.org/t/p/w45_and_h45_face/uQ5zh6btNrjXbE8l9bswJA4XJ4E.jpg" style={{borderRadius:"50%", marginRight:"5px"}} alt="" />
-                        <Typography variant="caption">Một bác sĩ trẻ mắc hội chứng bác học được nhận vào khoa phẫu.</Typography>
-                    </Grid>
-                    <Grid item md={1}> 
-                        <Typography variant="caption">Open</Typography>
-                    </Grid>
-                    <Grid item md={1}> 
-                        <Typography variant="caption">8</Typography>
-                    </Grid>
-                    <Grid item md={3}>
-                        <Typography variant="caption">Apr 20, 2021 at 2:29 PM<br/>by Still Water Wellness Group</Typography>
-                    </Grid>
-                </Grid>  
-            </Card> 
-            <br/>
+            {
+                reviewData !== undefined ? 
+                    reviewData.total_results !== 0 ?
+                    reviewData.results.map((data) =>
+                    <Card key={data.id} style={{margin:"5px 0"}}>
+                            <Grid container spacing={2} style={{margin:"0 ",padding: "5px"}}
+                            justify="flex-start"
+                            alignItems="center"
+                            >
+                                <Grid item md={7} style={{display:"flex",alignItems:"flex-start"}}> 
+                                
+                                    <Typography variant="caption" style={{whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis"}}>{data.content}</Typography>
+                                </Grid>
+                                <Grid item md={1}> 
+                                    <Typography variant="caption">Open</Typography>
+                                </Grid>
+                                <Grid item md={1}> 
+                                    <Typography variant="caption">8</Typography>
+                                </Grid>
+                                <Grid item md={3}>
+                                    <Typography variant="caption">{fullDayMY(data.updated_at)}<br/>by {data.author_details.username}</Typography>
+                                </Grid>
+                            </Grid>  
+                        </Card>
+                    )
+                    :<Typography variant="caption" >Chưa có bình luận cho phim này</Typography> :""
+
+            }
+            
+            {/* <br/>
             <Typography variant="h4">Current Season <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button> </Typography>  
             <br/>
             <Card>
@@ -294,7 +291,7 @@ function Details() {
                 
                 </Grid>
                </Grid> 
-            </Card>
+            </Card> */}
             <br/>
             <Typography variant="h4">Media</Typography>  <br/>  
             <ButtonGroup variant="outlined">
@@ -304,48 +301,38 @@ function Details() {
             <br/>
             <br/> 
             {visible ? <LightgalleryProvider >  
-                <Grid justify="flex-start" alignItems="flex-start" container spacing={2}>
-                    <Grid item>
-                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
-                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        </LightgalleryItem>
-                    </Grid>
-                    <Grid item>
-                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
-                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        </LightgalleryItem>
-                    </Grid>
-                    <Grid item>
-                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
-                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        </LightgalleryItem>
-                    </Grid>
+                <Grid justify="flex-start" alignItems="flex-start" container spacing={2}> 
+                    
+                       {
+                          galleryData !== undefined ? 
+                          galleryData.backdrops.map((image)=>
+                          <Grid item key={image.file_path}>
+                          <LightgalleryItem  style={{padding:"0 5px"}} group="b" src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}> 
+                               <img className="lazyload"
+                                   src={`https://image.tmdb.org/t/p/w45/${image.file_path}`}
+                                   data-src={`https://image.tmdb.org/t/p/w154/${image.file_path}`} alt=""/>
+                           </LightgalleryItem>
+                           </Grid>
+                          ):""
+                       }
+                    
                 </Grid>
             </LightgalleryProvider>
             :
             <LightgalleryProvider> 
                 <Grid justify="flex-start" alignItems="flex-start" container spacing={2}>
-                    <Grid item>
-                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
-                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        </LightgalleryItem>
-                    </Grid>
-                    <Grid item>
-                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
-                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        </LightgalleryItem>
-                    </Grid>
-                    <Grid item>
-                        <LightgalleryItem style={{padding:"0 5px"}} group="b" src={"https://image.tmdb.org/t/p/w500/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}> <img className="lazyload"
-                                src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                                data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        </LightgalleryItem>
-                    </Grid>
+                    {
+                          galleryData !== undefined ? 
+                          galleryData.posters.map((image)=>
+                          <Grid item key={image.file_path}>
+                          <LightgalleryItem  style={{padding:"0 5px"}} group="b" src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}> 
+                               <img className="lazyload" height="200px"
+                                   src={`https://image.tmdb.org/t/p/w45/${image.file_path}`}
+                                   data-src={`https://image.tmdb.org/t/p/w154/${image.file_path}`} alt=""/>
+                           </LightgalleryItem>
+                           </Grid>
+                          ):""
+                       }
                 </Grid>
             </LightgalleryProvider>
             }
@@ -354,21 +341,22 @@ function Details() {
             <br/>
             <Typography variant="h4">Recommendations</Typography>   
             <br/>
-            <Slider {...settings}>
-                <Card  className="reconmenCard"> 
-                    <Grid style={styleChart2}>
-                        <ChartSVG value="98"/>
-                    </Grid>
-                    <img className="lazyload"
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                        <CardContent style={{padding:"10px 20px"}}>
-                        
-                        <Typography  variant="body1">
-                            Sen đẹp trai
-                        </Typography> 
-                        </CardContent> 
-                </Card>  
+            <Slider {...settings2}>
+                {recommentData !== undefined ? 
+                    recommentData.results.map((data) =>
+                    <Card className="reconmenCard" key={data.id}>  
+                        <img className="lazyload"
+                            src={`https://image.tmdb.org/t/p/w45/${data.backdrop_path}`}
+                            data-src={`https://image.tmdb.org/t/p/w300/${data.backdrop_path}`} alt={data.original_title}/>
+                            <CardContent style={{padding:"10px 20px"}}>
+                            
+                            <Typography  variant="body1" style={{whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis"}}>
+                                {data.original_title}
+                            </Typography> 
+                            </CardContent> 
+                    </Card>
+                    )  : ""
+                }
             </Slider>
             
         </Container> 
