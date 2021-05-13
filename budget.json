@@ -14,34 +14,30 @@
       "resourceSizes": [
         {
           "resourceType": "script",
-          "budget": 125
+          "budget": 9
         },
         {
           "resourceType": "total",
           "budget": 300
         },
         {
-            "resourceType": "Image",
+            "resourceType": "image",
             "budget": 88
         },
         {
-            "resourceType": "Font",
+            "resourceType": "font",
             "budget": 1
         },
         {
             "resourceType": "third-party",
             "budget": 90
-        },
+        }, 
         {
-            "resourceType": "Script",
-            "budget": 9
-        },
-        {
-            "resourceType": "Other",
+            "resourceType": "other",
             "budget": 3
         },
         {
-            "resourceType": "Stylesheet",
+            "resourceType": "stylesheet",
             "budget": 4
         }
       ],
