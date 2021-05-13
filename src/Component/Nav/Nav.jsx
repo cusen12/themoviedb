@@ -59,7 +59,7 @@ function Nav() {
                                         <Grid className="search">   
                                             <input  
                                             onChange={handleChangeInput} />  
-                                            <Search fontSize="large" onClick={handleClickSearch}/>
+                                            <Button onClick={handleClickSearch}><Search fontSize="large" /></Button>
                                         </Grid>  
                                    </Grid>
                                     <Grid item style={{width:"auto"}} container>

@@ -32,8 +32,7 @@ function Details() {
     const [socialData, setSocialData] = useState();
     const [castData, setCastData] = useState();
     const [reviewData, setReviewData] = useState();
-    const [recommentData, setRecommentData] = useState();
-    const [keywordData, setKeywordData] = useState(); 
+    const [recommentData, setRecommentData] = useState(); 
     const [rate, setRate] = useState(5); 
     const [hidden, sethidden] = useState(true); 
     const [visible, setVisible] = useState(true);  
@@ -114,17 +113,7 @@ function Details() {
             const responRecomentJson = await respondRecoment.json();
             setRecommentData(responRecomentJson);
         }
-        getRecoment();
-
-        const getKeyword = async () =>{
-            const link = `https://api.themoviedb.org/3/${category}/${id}/keywords?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
-            const respondKeyword = await fetch(link);
-            const responKeywordJson = await respondKeyword.json();
-            setKeywordData(responKeywordJson);
-        }
-        getKeyword();
-
-        
+        getRecoment(); 
     },[category,id])  
 
     const fullDayMY = (date) =>{
@@ -147,7 +136,8 @@ function Details() {
         setRate(newValue)  
         alert("Thanks to vote!!");
         sethidden(!hidden); 
-    }    
+    }     
+    console.log(detailsData)
     return ( 
         <Container className={"details-"+category}> 
             
@@ -165,7 +155,7 @@ function Details() {
                         data-src={`https://image.tmdb.org/t/p/w500/${detailsData.poster_path}`} alt={detailsData.title}/>
                     </Grid>
                     <Grid item md={9}> 
-                        <Typography variant="h2">{detailsData.title}</Typography>
+                        <Typography variant="h2">{detailsData.title ? detailsData.title : detailsData.original_name}</Typography>
                         <Grid container spacing={2}
                         justify="flex-start"
                         alignItems="center" style={{padding:"8px"}}>
@@ -189,13 +179,14 @@ function Details() {
 
                         <Typography variant="caption"> {detailsData.overview}</Typography>
                         
-                        {videoData !== undefined ?
+                        {videoData !== undefined &&  category === "movie"?
                             <a href={videoData.results[0] !== undefined ? `https://www.youtube.com/watch?v=${ videoData.results[0].key}`: "" } target="_blank" rel="noopener noreferrer">
-                                <Button variant="outlined" startIcon={<YouTubeIcon fontSize="large"/>}>Trailer</Button>
+                                <Button variant="outlined" startIcon={<YouTubeIcon fontSize="large"/>}>Trailer</Button><br/><br/>
                             </a>
+                            
                             : ""     
                         } 
-                       <br/><br/>
+                       
                         {
                             socialData !== undefined ?
                             <Grid>
@@ -220,18 +211,7 @@ function Details() {
                                 </a>
                             
                             </Grid>:"loadding..."
-                        }
-                        <br/>
-                        
-                        {keywordData !== undefined ?
-                            <Grid>
-                                <Typography variant="h4">Keyword</Typography> 
-                                {keywordData.keywords.map((data)=>
-                                <Button style={{margin:"0 5px 5px 0"}} variant="outlined" key={data.id}>{data.name}</Button> 
-                                )}
-                                 
-                            </Grid>: "" 
-                        }
+                        } 
                     </Grid>
                 </Grid>
             :
