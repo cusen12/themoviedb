@@ -105,7 +105,7 @@ function Login() {
                        loginData.success===true ? 
                        <Grid container  
                        alignItems="center"
-                       justify="flex-start">   
+                       justify="flex-end">   
                            <Typography color="secondary">Hello !!! </Typography>  <Button> <AccountCircleRoundedIcon onClick={handleDetailsUser} color="primary" style={{fontSize:"30px"}}/> </Button>
                              
                             <Paper style={style} hidden={popup} elevation={0}>  

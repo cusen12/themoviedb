@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import './Nav.scss'
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined'; 
@@ -8,14 +8,23 @@ import TvSharpIcon from '@material-ui/icons/TvSharp';
 import { Button, Container, Grid, Toolbar } from '@material-ui/core';
 import { useSelector } from 'react-redux';    
 import { Suspense } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-
+import AppBar from '@material-ui/core/AppBar'; 
+import { useHistory } from 'react-router';
+import { Search } from '@material-ui/icons';
 
 const Language = React.lazy(()=> import('../../Component/Language/Language')); 
 const Login = React.lazy(()=> import('../Login/Login')); 
 
 function Nav() {
     const langData = useSelector(state=>state.language.value.menu); 
+    const history = useHistory()
+    const [value, setValue] = useState(); 
+    const handleChangeInput = (e) =>{
+        setValue(e.target.value)
+    }
+    const handleClickSearch = () =>{   
+        history.push('/search', {params:value});
+    } 
     return (
         <>
             
@@ -23,14 +32,13 @@ function Nav() {
                 
                     <AppBar position="sticky" className="nav"> 
                         <Toolbar>
-                        <Container> 
+                        <Container style={{padding:"0"}}> 
                             <Grid container
                             justify="space-between" 
                             alignContent="center"
                             spacing={2}> 
-                                <Grid item md={10}>
-                                    <ul>
-                                        
+                                <Grid item md={7} style={{padding:"8px 0"}}> 
+                                    <ul> 
                                         <li>
                                             <Link to="/"><Button variant="text" size="large" startIcon={<HomeOutlinedIcon/>}>{langData.home}</Button> </Link>
                                         </li>
@@ -45,9 +53,18 @@ function Nav() {
                                         </li>   
                                     </ul>
                                 </Grid>
-                                <Grid item md={2}>
+                                <Grid item md={5} container justify="flex-end" alignItems="center" spacing={2}>
+                                   <Grid item md={7}>
                                     <Language/> 
-                                    <Login/>
+                                        <Grid className="search">   
+                                            <input  
+                                            onChange={handleChangeInput} />  
+                                            <Search fontSize="large" onClick={handleClickSearch}/>
+                                        </Grid>  
+                                   </Grid>
+                                    <Grid item style={{width:"auto"}} container>
+                                        <Login/>
+                                    </Grid>
                                 </Grid>
                                 
                             </Grid>

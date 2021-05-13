@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardContent, Container, Grid, TextField, Typography } from '@material-ui/core';
+import {Card, CardActionArea, CardContent, Container, Grid, Typography } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination'; 
 import React, { useEffect, useState } from 'react';
 import { Suspense } from 'react';
@@ -12,20 +12,15 @@ function SearchPage() {
     const param = location.state.params;  
     const [movideData, setMovideData] = useState()
     const [page, setPage] = useState(1);
-    const [totalPage, setTotalPage] = useState();
-    const [valueSearch, setValueSearch] = useState(); 
+    const [totalPage, setTotalPage] = useState(); 
       
     const handleClickCard = (data, dataHref) =>{
-        history.push("/details"+dataHref+"="+data)
+        history.push("/category/"+dataHref+"/"+data);
     }  
     const handleClickbutton = async (e) =>{  
         setPage(1)  
-        console.log(page)
-        console.log(valueSearch)
-    }
-    const handleSearchChange = (e) =>{
-        setValueSearch(e.target.value)
-    }
+        console.log(page) 
+    } 
     const handleChangeValuePagination = (e) =>{
         setPage(e.target.textContent)  
     } 
@@ -40,10 +35,7 @@ function SearchPage() {
             }
         }
         getdataParam()
-    },[param,page])
-    const handleSearch = async () =>{  
-        
-    }   
+    },[param,page]) 
     const style={
         position: "relative"
     }  
@@ -53,11 +45,7 @@ function SearchPage() {
             justify="flex-start"
             alignItems="flex-start"
             spacing={4}
-            >    
-                    <Grid className="searchButon" item md={12}>
-                        <TextField label="Search for a movie, tv show, person......" onChange={handleSearchChange} defaultValue={param} fullWidth />
-                        <Button color="primary" className="hov" onClick={handleSearch} fullWidth fontSize="small">Search</Button>
-                    </Grid> 
+            >     
                     <Grid item md={12} container className="category-title"
                         justify="flex-start" 
                         alignContent="flex-start"
