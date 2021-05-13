@@ -32,7 +32,8 @@ function Details() {
     const [socialData, setSocialData] = useState();
     const [castData, setCastData] = useState();
     const [reviewData, setReviewData] = useState();
-    const [recommentData, setRecommentData] = useState(); 
+    const [recommentData, setRecommentData] = useState();
+    const [keywordData, setKeywordData] = useState(); 
     const [rate, setRate] = useState(5); 
     const [hidden, sethidden] = useState(true); 
     const [visible, setVisible] = useState(true);  
@@ -115,6 +116,14 @@ function Details() {
         }
         getRecoment();
 
+        const getKeyword = async () =>{
+            const link = `https://api.themoviedb.org/3/${category}/${id}/keywords?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
+            const respondKeyword = await fetch(link);
+            const responKeywordJson = await respondKeyword.json();
+            setKeywordData(responKeywordJson);
+        }
+        getKeyword();
+
         
     },[category,id])  
 
@@ -138,8 +147,7 @@ function Details() {
         setRate(newValue)  
         alert("Thanks to vote!!");
         sethidden(!hidden); 
-    }   
- 
+    }    
     return ( 
         <Container className={"details-"+category}> 
             
@@ -186,8 +194,7 @@ function Details() {
                                 <Button variant="outlined" startIcon={<YouTubeIcon fontSize="large"/>}>Trailer</Button>
                             </a>
                             : ""     
-                        }
-                       
+                        } 
                        <br/><br/>
                         {
                             socialData !== undefined ?
@@ -213,6 +220,17 @@ function Details() {
                                 </a>
                             
                             </Grid>:"loadding..."
+                        }
+                        <br/>
+                        
+                        {keywordData !== undefined ?
+                            <Grid>
+                                <Typography variant="h4">Keyword</Typography> 
+                                {keywordData.keywords.map((data)=>
+                                <Button style={{margin:"0 5px 5px 0"}} variant="outlined" key={data.id}>{data.name}</Button> 
+                                )}
+                                 
+                            </Grid>: "" 
                         }
                     </Grid>
                 </Grid>
@@ -273,25 +291,7 @@ function Details() {
                     )
                     :<Typography variant="caption" >Chưa có bình luận cho phim này</Typography> :""
 
-            }
-            
-            {/* <br/>
-            <Typography variant="h4">Current Season <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button> </Typography>  
-            <br/>
-            <Card>
-               <Grid container justify="flex-start" alignItems="center">
-                <Grid item md={2}>
-                    <img className="lazyload" 
-                        src={"https://image.tmdb.org/t/p/w45/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"}
-                        data-src={"https://image.tmdb.org/t/p/w154/z1K4mJwISETia59rrnMdXxzoSrZ.jpg"} alt="abc"/>
-                </Grid>
-                <Grid item md={10}>
-                    <Typography variant="h4">Overview</Typography> 
-                    <Typography variant="caption">Một bác sĩ trẻ mắc hội chứng bác học được nhận vào khoa phẫu thuật tim của một bệnh viện danh tiếng. Liệu một người bị tự kỷ có thể cứu người? Phim dựa trên series cùng tên của Hàn Quốc.</Typography>
-                
-                </Grid>
-               </Grid> 
-            </Card> */}
+            } 
             <br/>
             <Typography variant="h4">Media</Typography>  <br/>  
             <ButtonGroup variant="outlined">
