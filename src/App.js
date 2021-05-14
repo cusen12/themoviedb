@@ -2,7 +2,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route, 
+  Route 
 } from "react-router-dom"; 
 import HomePage from './Pages/HomePage/HomePage';
 import Movie from './Pages/Movie/Movie';
@@ -61,8 +61,7 @@ const theme = createMuiTheme({
 
   }  
 }) 
-function App() {    
-  window.history.pushState({}, '', "/") 
+function App() {   
   return ( 
       
         <ThemeProvider theme={theme}>
