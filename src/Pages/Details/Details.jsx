@@ -136,8 +136,7 @@ function Details() {
         setRate(newValue)  
         alert("Thanks to vote!!");
         sethidden(!hidden); 
-    }     
-    console.log(detailsData)
+    }      
     return ( 
         <Container className={"details-"+category}> 
             
@@ -171,9 +170,9 @@ function Details() {
                         
                         <Typography variant="caption"> {detailsData.tagline}</Typography> 
                          
-                        <Typography variant="caption">Thể loại:  {detailsData.genres.map((data) => <span key={data.id}>{data.name} </span>)} -  {detailsData.runtime} Phút</Typography>  
+                        <Typography variant="caption">Thể loại:  {detailsData.genres.map((data) => <span key={data.id}>{data.name} </span>)} {category === "movie" ? "-" + detailsData.runtime + " min" :""} </Typography>  
                          
-                        <Typography variant="caption">Make in: {detailsData.production_companies[0].name}</Typography>
+                        <Typography variant="caption">Make in: {detailsData.production_companies[0] !== undefined ? detailsData.production_companies[0].name : "China"}</Typography>
                         
                         <Typography variant="h4">Overview</Typography> 
 
@@ -281,21 +280,19 @@ function Details() {
             <br/>
             <br/> 
             {visible ? <LightgalleryProvider >  
-                <Grid justify="flex-start" alignItems="flex-start" container spacing={2}> 
-                    
+                <Grid justify="flex-start" alignItems="flex-start" container spacing={2}>  
                        {
                           galleryData !== undefined ? 
                           galleryData.backdrops.map((image)=>
                           <Grid item key={image.file_path}>
-                          <LightgalleryItem  style={{padding:"0 5px"}} group="b" src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}> 
+                          <LightgalleryItem  style={{padding:"0 5px"}} group="b" src={`https://image.tmdb.org/t/p/w780/${image.file_path}`}> 
                                <img className="lazyload"
                                    src={`https://image.tmdb.org/t/p/w45/${image.file_path}`}
                                    data-src={`https://image.tmdb.org/t/p/w154/${image.file_path}`} alt=""/>
                            </LightgalleryItem>
                            </Grid>
                           ):""
-                       }
-                    
+                       } 
                 </Grid>
             </LightgalleryProvider>
             :
@@ -305,7 +302,7 @@ function Details() {
                           galleryData !== undefined ? 
                           galleryData.posters.map((image)=>
                           <Grid item key={image.file_path}>
-                          <LightgalleryItem  style={{padding:"0 5px"}} group="b" src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}> 
+                          <LightgalleryItem  style={{padding:"0 5px"}} group="b" src={`https://image.tmdb.org/t/p/w780/${image.file_path}`}> 
                                <img className="lazyload" height="200px"
                                    src={`https://image.tmdb.org/t/p/w45/${image.file_path}`}
                                    data-src={`https://image.tmdb.org/t/p/w154/${image.file_path}`} alt=""/>
@@ -331,7 +328,7 @@ function Details() {
                             <CardContent style={{padding:"10px 20px"}}>
                             
                             <Typography  variant="body1" style={{whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis"}}>
-                                {data.original_title}
+                                {data.original_title !== undefined ? data.original_title : data.original_name } 
                             </Typography> 
                             </CardContent> 
                     </Card>

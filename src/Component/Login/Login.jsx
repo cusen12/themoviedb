@@ -24,10 +24,10 @@ function Login() {
 
     }
     const style={
+        width:"200px",
         padding:"10px",
         position:"absolute",
-        top:"60px",
-        left:"80px",
+        top:"60px", 
         zIndex:"10" 
     }
     useEffect(() =>{
@@ -106,7 +106,7 @@ function Login() {
                        <Grid container  
                        alignItems="center"
                        justify="flex-end">   
-                           <Typography color="secondary">Hello !!! </Typography>  <Button> <AccountCircleRoundedIcon onClick={handleDetailsUser} color="primary" style={{fontSize:"30px"}}/> </Button>
+                           <AccountCircleRoundedIcon onClick={handleDetailsUser} color="primary" style={{fontSize:"30px"}}/>
                              
                             <Paper style={style} hidden={popup} elevation={0}>  
                                 <Typography>Sen</Typography>
@@ -118,7 +118,7 @@ function Login() {
                                 <hr style={{display:"block",width:"100%"}}/>     
                                 <Typography><Link to="/commingsoon">Create list</Link></Typography>
                                 <hr style={{display:"block",width:"100%"}}/> 
-                                <Button onClick={handleLogout} startIcon={<ExitToAppIcon color="primary" style={{fontSize:"18"}} />}>Logout </Button> 
+                                <Button variant="contained" color="primary" onClick={handleLogout} startIcon={<ExitToAppIcon color="primary" style={{fontSize:"18"}} />}></Button> 
                             </Paper>
                        
                        </Grid>

@@ -9,7 +9,7 @@ function ListMovie() {
     const [listMovie, setListMovie] = useState();
     const history = useHistory(); 
     const handleClickCard = (data, dataHref) =>{
-        history.push("/details"+dataHref+"="+data)
+        history.push("/commingsoon");
     }
     useEffect(() => {
         const getListMovie = async () => {
@@ -44,11 +44,15 @@ function ListMovie() {
             <Typography variant="h4" className="titleH4" color="primary">Popular People <Button variant="text" style={{float:"right"}}><Link to="/people">View all</Link></Button></Typography>  
             <Slider {...settings}>
                 {listMovie ? listMovie.map((data) => 
+                        data.profile_path !== null ?
                         <Card key={data.id} className="peopleCard"> 
-                                <img className="lazyload" style={style} width="200px" height="250px"
+                                <img className="lazyload" style={style} width="200px" height="150px"
                                 src={"https://image.tmdb.org/t/p/w45/"+data.profile_path}
-                                data-src={"https://image.tmdb.org/t/p/w300/"+data.profile_path} alt={data.name}/>
-                                <CardContent style={{padding:"10px 20px"}}>
+                                data-src=
+                                {"https://image.tmdb.org/t/p/w300/"+data.profile_path} alt={data.name}
+                                />
+                                
+                                <CardContent style={{padding:"10px 20px",minHeight:"127px"}}>
                                 <Typography onClick={() => handleClickCard(data.id, "people")} style={{height:"auto"}} gutterBottom variant="h5" component="h2" >
                                     {data.name}
                                 </Typography> 
@@ -61,7 +65,7 @@ function ListMovie() {
                                     ...
                                 </Typography> 
                                 </CardContent> 
-                        </Card> 
+                        </Card> :""
                 ): ''}  
             </Slider> 
            

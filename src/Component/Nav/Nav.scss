@@ -42,17 +42,13 @@
          input{
             background: #ffffff;
             border: none; 
-            width: 50px; 
+            width: 100%; 
             padding:5px 10px;
             margin-right: 5px;
             border-radius: 10px;
             outline: none;
             color: #000;
-            transition: all 0.3s; 
-            &:focus{
-                width: 100%;
-                transition: all 0.3s;
-            }
+            transition: all 0.3s;  
          } 
      }
 }

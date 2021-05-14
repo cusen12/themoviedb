@@ -2,18 +2,20 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route, 
 } from "react-router-dom"; 
 import HomePage from './Pages/HomePage/HomePage';
 import Movie from './Pages/Movie/Movie';
 // import People from './Pages/People/People';
 import TVShow from './Pages/TVShow/TVShow';  
 import Details from './Pages/Details/Details'; 
-import CommingSoon from './Pages/CommingSoon/CommingSoon'; 
+import CommingSoon from './Pages/CommingSoon/CommingSoon';  
+import { createBrowserHistory } from 'history';
+
 import { createMuiTheme, Grid, ThemeProvider } from '@material-ui/core'; 
 import SearchPage from './Component/SearchPage/SearchPage';
 import { Suspense } from 'react';
-import React from 'react';
+import React from 'react'; 
 
 const Nav = React.lazy(()=> import('./Component/Nav/Nav'));
 const Footer = React.lazy(()=> import('./Component/Footer/Footer')); 
@@ -60,11 +62,12 @@ const theme = createMuiTheme({
 
   }  
 }) 
-function App() { 
+function App() {   
+  const history = createBrowserHistory()  
   return ( 
       
         <ThemeProvider theme={theme}>
-          <Router> 
+          <Router history={history}> 
             <Suspense fallback={<div>Loading...</div>}> 
               
                 <Nav/> 
