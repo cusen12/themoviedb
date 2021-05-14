@@ -10,7 +10,6 @@ import Movie from './Pages/Movie/Movie';
 import TVShow from './Pages/TVShow/TVShow';  
 import Details from './Pages/Details/Details'; 
 import CommingSoon from './Pages/CommingSoon/CommingSoon';  
-import { createBrowserHistory } from 'history';
 
 import { createMuiTheme, Grid, ThemeProvider } from '@material-ui/core'; 
 import SearchPage from './Component/SearchPage/SearchPage';
@@ -62,12 +61,12 @@ const theme = createMuiTheme({
 
   }  
 }) 
-function App() {   
-  const history = createBrowserHistory()  
+function App() {    
+  window.history.pushState({}, '', "/") 
   return ( 
       
         <ThemeProvider theme={theme}>
-          <Router history={history}> 
+          <Router> 
             <Suspense fallback={<div>Loading...</div>}> 
               
                 <Nav/> 
