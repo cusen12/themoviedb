@@ -1,7 +1,9 @@
 import React from 'react'; 
 
 function ChartSVG(props) { 
-    
+    const makeColor = () =>{  
+        return props.value >= 20 ? (props.value >= 50 ? "#e4e4e4" : "#ffcf22") : "#a00505"
+    } 
     return ( 
         <svg viewBox="0 0 40 36" width="40" height="44" xmlns="http://www.w3.org/2000/svg">
             <circle 
@@ -12,7 +14,7 @@ function ChartSVG(props) {
                 r="15.91549431" />
             <circle 
 
-            stroke={props.value > 50 ? "#e4e4e4" : "#ffcf22"} 
+            stroke={makeColor()} 
             strokeWidth="6" 
             strokeDasharray={props.value+",100"}  
             fill="#00000088" 
