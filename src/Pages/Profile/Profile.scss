@@ -1,0 +1,22 @@
+.profile{
+    li{
+        display: inline-block;
+        margin-right: 20px;
+        position: relative;
+        &::after{
+            content:"";
+            background: #4d4646;
+            position: absolute;
+            top:50%;
+            right: -10px;
+            width: 1px;
+            height: 50%;
+            transform: translate(0,-50%);
+        }
+        &:last-child{
+            &::after{
+                display: none;
+            }
+        }
+    }
+}

@@ -52,8 +52,7 @@ function ListMovie() {
                     </Grid>
                 ): ''}  
             </Grid>
-            <br/>
-            <hr/> 
+            <br/> 
             
         </>
     );

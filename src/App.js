@@ -15,6 +15,7 @@ import { createMuiTheme, Grid, ThemeProvider } from '@material-ui/core';
 import SearchPage from './Component/SearchPage/SearchPage';
 import { Suspense } from 'react';
 import React from 'react'; 
+import Profile from './Pages/Profile/Profile';
 
 const Nav = React.lazy(()=> import('./Component/Nav/Nav'));
 const Footer = React.lazy(()=> import('./Component/Footer/Footer')); 
@@ -36,27 +37,32 @@ const theme = createMuiTheme({
     h1: {
       fontSize: 44,
       width:'100%',
-      fontWeight: 600
+      fontWeight: 600,
+      lineHeight: "2.167",
     },
     h2: {
       fontSize: 34,
       width:'100%',
-      fontWeight: 600
+      fontWeight: 600,
+      lineHeight: "2.167",
     },
     h3: {
       fontSize: 24,
       width:'100%',
-      fontWeight: 600
+      fontWeight: 600,
+      lineHeight: "2.167",
     },
     h4: {
       fontSize: 18,
       width:'100%',
-      fontWeight: 600
+      fontWeight: 600,
+      lineHeight: "2.167",
     },
     h5: {
       fontSize: 14,
       width:'100%',
-      fontWeight: 600
+      fontWeight: 600,
+      lineHeight: "2.167",
     }
 
   }  
@@ -77,7 +83,8 @@ function App() {
                     <Route path="/people" children={<CommingSoon/>}/> 
                     <Route path="/commingsoon" children={ <CommingSoon/>}/> 
                     <Route path="/search" children={ <SearchPage/>}/>   
-                    <Route path="/category/:category/:id" children={ <Details/>}/>  
+                    <Route path="/category/:category/:id" children={ <Details/>}/> 
+                    <Route path="/profile" children={ <Profile/>}/>   
                   </Switch> 
                 </Grid> 
                 <Footer/>  

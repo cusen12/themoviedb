@@ -62,7 +62,7 @@ function ListMovie() {
                 : 
             <Skeleton variant="rect" width={210} height={118}/>
             }
-            <br/> <br/>
+            <br/> <br/>  <br/>
             <Typography variant="h4" className="titleH4" color="primary">TOP Movie  <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/movie">View all</Link></Button></Typography>
              
             <Grid container spacing={4}
@@ -83,7 +83,9 @@ function ListMovie() {
                                 {data.release_date}
                                 </Typography> 
                                 <Suspense fallback={<div>Loading...</div>}> 
-                                    <ChartSVG value={data.vote_average*10} />
+                                <Grid style={{position:"absolute",top: "10px",left: "10px"}}>
+                                     <ChartSVG value={data.vote_average*10} />
+                                </Grid> 
                                 </Suspense>
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     {data.overview}
@@ -94,8 +96,7 @@ function ListMovie() {
                     ): ''} 
                
             </Grid>
-            <br/> <br/>
-            <hr/> 
+            <br/>  
         </>
     );
 }
