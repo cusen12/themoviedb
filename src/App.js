@@ -2,8 +2,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  HashRouter  
+  Route 
 } from "react-router-dom"; 
 import HomePage from './Pages/HomePage/HomePage';
 import Movie from './Pages/Movie/Movie';
@@ -64,7 +63,7 @@ const theme = createMuiTheme({
 }) 
 function App() {   
   return ( 
-      <HashRouter>
+      
         <ThemeProvider theme={theme}>
           <Router> 
             <Suspense fallback={<div>Loading...</div>}> 
@@ -85,7 +84,6 @@ function App() {
               </Suspense>
           </Router>
         </ThemeProvider>
-       </HashRouter>
      
   );
 }
