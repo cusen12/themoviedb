@@ -114,7 +114,8 @@ function Profile() {
                     <Button onClick={()=> setVisibleWatch(!visibleWatch)}>Movie</Button>
                     <Button onClick={()=> setVisibleWatch(!visibleWatch)}>TV</Button>
             </ButtonGroup> 
-            <Grid id="watchList" container justify="flex-start" spacing={2}>
+            <Grid container justify="flex-start" style={{position:"relative"}} spacing={2}>
+            <span id="watchList" style={{position:"absolute", top:"-150px"}}></span>
                 <Grid hidden={visibleWatch} item md={12}>
                         {watchList !== undefined ? 
                             watchList.results.map((data)=>
@@ -141,7 +142,8 @@ function Profile() {
                     <Button onClick={()=> setVisibleRated(!visibleRated)}>Movie</Button>
                     <Button onClick={()=> setVisibleRated(!visibleRated)}>TV</Button>
             </ButtonGroup> 
-            <Grid id="ratedList" container justify="flex-start" spacing={2}>
+            <Grid container style={{position:"relative"}} justify="flex-start" spacing={2}>
+                <span id="ratedList" style={{position:"absolute", top:"-150px"}}></span>
                 <Grid hidden={visibleRated} item md={12}>
                     {ratedList !== undefined ? 
                             ratedList.results.map((data)=>
@@ -168,7 +170,8 @@ function Profile() {
                     <Button onClick={()=> setVisibleFavorite(!visibleFavorite)}>Movie</Button>
                     <Button onClick={()=> setVisibleFavorite(!visibleFavorite)}>TV</Button>
             </ButtonGroup> 
-            <Grid id="favoriteList" container justify="flex-start" spacing={2}>
+            <Grid container justify="flex-start" style={{position:"relative"}} spacing={2}>
+                <span id="favoriteList" style={{position:"absolute", top:"-150px"}}></span>
                 <Grid hidden={visibleFavorite} item md={12}>
                     {favoriteList !== undefined ? 
                             favoriteList.results.map((data)=>
