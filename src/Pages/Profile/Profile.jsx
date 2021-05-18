@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import "./Profile.scss"
 import ItemLists from '../../Component/ItemLists/ItemLists';
+import { Link } from "react-router-dom"; 
 
 function Profile() {
     const [visibleWatch, setVisibleWatch] = useState(true)
@@ -109,7 +110,7 @@ function Profile() {
                     </Grid>
                 </Grid>
             : <Typography>loading...</Typography>}
-            <Typography variant="h3" color="primary">Watch list</Typography> 
+            <Typography variant="h3" color="primary">Watch list <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button></Typography> 
             <ButtonGroup variant="text" color="primary">
                     <Button onClick={()=> setVisibleWatch(!visibleWatch)}>Movie</Button>
                     <Button onClick={()=> setVisibleWatch(!visibleWatch)}>TV</Button>
@@ -137,7 +138,7 @@ function Profile() {
                                 destription={data.overview}/>):"loading..."} 
                 </Grid>
             </Grid>
-            <Typography variant="h3" color="primary">Rated list</Typography>
+            <Typography variant="h3" color="primary">Rated list <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button></Typography>
             <ButtonGroup variant="text" color="primary">
                     <Button onClick={()=> setVisibleRated(!visibleRated)}>Movie</Button>
                     <Button onClick={()=> setVisibleRated(!visibleRated)}>TV</Button>
@@ -165,7 +166,7 @@ function Profile() {
                                 destription={data.overview}/>):"loading..."}  
                 </Grid>
             </Grid>
-            <Typography variant="h3" color="primary">Favorite list</Typography>
+            <Typography variant="h3" color="primary">Favorite list <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button></Typography>
             <ButtonGroup variant="text" color="primary">
                     <Button onClick={()=> setVisibleFavorite(!visibleFavorite)}>Movie</Button>
                     <Button onClick={()=> setVisibleFavorite(!visibleFavorite)}>TV</Button>

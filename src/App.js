@@ -16,6 +16,8 @@ import SearchPage from './Component/SearchPage/SearchPage';
 import { Suspense } from 'react';
 import React from 'react'; 
 import Profile from './Pages/Profile/Profile';
+import WatchListMovie from './Pages/WatchListMovie/WatchListMovie';
+import WatchListTV from './Pages/WatchListTV/WatchListTV';
 
 const Nav = React.lazy(()=> import('./Component/Nav/Nav'));
 const Footer = React.lazy(()=> import('./Component/Footer/Footer')); 
@@ -84,7 +86,9 @@ function App() {
                     <Route path="/commingsoon" children={ <CommingSoon/>}/> 
                     <Route path="/search" children={ <SearchPage/>}/>   
                     <Route path="/category/:category/:id" children={ <Details/>}/> 
-                    <Route path="/profile" children={ <Profile/>}/>   
+                    <Route path="/profile" children={ <Profile/>}/> 
+                    <Route path="/watchlistmovie" children={ <WatchListMovie/>}/>  
+                    <Route path="/watchlisttv" children={ <WatchListTV/>}/>     
                   </Switch> 
                 </Grid> 
                 <Footer/>  

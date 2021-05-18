@@ -138,7 +138,8 @@ function Login() {
                                 <Typography variant="h4">{userInfo !== undefined ? userInfo.name : ""}</Typography>
                                 <Typography><Link to="/profile" onClick={()=> setPopup(true) }>View Page</Link></Typography>  
                                 <hr style={{display:"block",width:"100%",margin:"5px 0"}}/>  
-                                <Typography><Link to="/commingsoon" onClick={()=> setPopup(true) }>Watchlist</Link></Typography>   
+                                <Typography><Link to="/watchlistmovie" onClick={()=> setPopup(true) }>Watch List Movie</Link></Typography>   
+                                <Typography><Link to="/watchlisttv" onClick={()=> setPopup(true) }>Watch List TV</Link></Typography> 
                                 <Typography><Link to="/commingsoon" onClick={()=> setPopup(true) }>Rated List</Link></Typography> 
                                 <Typography><Link to="/commingsoon" onClick={()=> setPopup(true) }>Favorite List</Link></Typography>   
                                 <hr style={{display:"block",width:"100%",margin:"5px 0"}}/>  
