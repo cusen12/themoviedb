@@ -1,10 +1,14 @@
-import { Container, Grid, Typography } from '@material-ui/core';
+import { Button, ButtonGroup, Container, Grid, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import "./Profile.scss"
+import ItemLists from '../../Component/ItemLists/ItemLists';
 
 function Profile() {
+    const [visibleWatch, setVisibleWatch] = useState(true)
+    const [visibleFavorite, setVisibleFavorite] = useState(true)
+    const [visibleRated, setVisibleRated] = useState(true)
     const [detail, setDetail] = useState();
     const [detailID, setDetailID] = useState();
     const [watchList, setWatchList] = useState();
@@ -71,13 +75,7 @@ function Profile() {
             setFavoriteListTV(respondFavoriteListTVJson) 
         }   
         getFavoriteListTV()
-    },[sectionId,detailID]) 
-    console.log("watchList",watchList) 
-    console.log("ratedList",ratedList) 
-    console.log("favoriteList",favoriteList) 
-    console.log("watchListTV",watchListTV) 
-    console.log("ratedListTV",ratedListTV) 
-    console.log("favoriteListTV",favoriteListTV) 
+    },[sectionId,detailID])  
     
     return (  
         <Container className="profile"><br/>
@@ -111,18 +109,86 @@ function Profile() {
                     </Grid>
                 </Grid>
             : <Typography>loading...</Typography>}
-            <Typography variant="h4" color="primary">Watch list</Typography>
-
+            <Typography variant="h3" color="primary">Watch list</Typography> 
+            <ButtonGroup variant="text" color="primary">
+                    <Button onClick={()=> setVisibleWatch(!visibleWatch)}>Movie</Button>
+                    <Button onClick={()=> setVisibleWatch(!visibleWatch)}>TV</Button>
+            </ButtonGroup> 
             <Grid id="watchList" container justify="flex-start" spacing={2}>
-                
+                <Grid hidden={visibleWatch} item md={12}>
+                        {watchList !== undefined ? 
+                            watchList.results.map((data)=>
+                                <ItemLists key={data.id}
+                                category={"tv"}
+                                id={data.id} 
+                                images={data.poster_path} 
+                                title={data.original_name} 
+                                destription={data.overview}/>):"loading..."} 
+                </Grid>
+                <Grid hidden={!visibleWatch} item md={12}>
+                    {watchListTV !== undefined ? 
+                            watchListTV.results.map((data)=>
+                                <ItemLists key={data.id}
+                                category={"tv"}
+                                id={data.id} 
+                                images={data.poster_path} 
+                                title={data.original_name} 
+                                destription={data.overview}/>):"loading..."} 
+                </Grid>
             </Grid>
-            <Typography variant="h4" color="primary">Rated list</Typography>
+            <Typography variant="h3" color="primary">Rated list</Typography>
+            <ButtonGroup variant="text" color="primary">
+                    <Button onClick={()=> setVisibleRated(!visibleRated)}>Movie</Button>
+                    <Button onClick={()=> setVisibleRated(!visibleRated)}>TV</Button>
+            </ButtonGroup> 
             <Grid id="ratedList" container justify="flex-start" spacing={2}>
-            
+                <Grid hidden={visibleRated} item md={12}>
+                    {ratedList !== undefined ? 
+                            ratedList.results.map((data)=>
+                                <ItemLists key={data.id}
+                                category={"tv"}
+                                id={data.id} 
+                                images={data.poster_path} 
+                                title={data.original_name} 
+                                destription={data.overview}/>):"loading..."}  
+                </Grid>
+                <Grid hidden={!visibleRated} item md={12}>
+                    {ratedListTV !== undefined ? 
+                            ratedListTV.results.map((data)=>
+                                <ItemLists key={data.id}
+                                category={"tv"}
+                                id={data.id} 
+                                images={data.poster_path} 
+                                title={data.original_name} 
+                                destription={data.overview}/>):"loading..."}  
+                </Grid>
             </Grid>
-            <Typography variant="h4" color="primary">Favorite list</Typography>
+            <Typography variant="h3" color="primary">Favorite list</Typography>
+            <ButtonGroup variant="text" color="primary">
+                    <Button onClick={()=> setVisibleFavorite(!visibleFavorite)}>Movie</Button>
+                    <Button onClick={()=> setVisibleFavorite(!visibleFavorite)}>TV</Button>
+            </ButtonGroup> 
             <Grid id="favoriteList" container justify="flex-start" spacing={2}>
-             
+                <Grid hidden={visibleFavorite} item md={12}>
+                    {favoriteList !== undefined ? 
+                            favoriteList.results.map((data)=>
+                                <ItemLists key={data.id}
+                                category={"tv"}
+                                id={data.id} 
+                                images={data.poster_path} 
+                                title={data.original_name} 
+                                destription={data.overview}/>):"loading..."}  
+                </Grid>
+                <Grid hidden={!visibleFavorite} item md={12}>
+                    {favoriteListTV !== undefined ? 
+                            favoriteListTV.results.map((data)=>
+                                <ItemLists key={data.id}
+                                category={"tv"}
+                                id={data.id} 
+                                images={data.poster_path} 
+                                title={data.original_name} 
+                                destription={data.overview}/>):"loading..."}  
+                </Grid>
             </Grid>
         </Container> 
     );
