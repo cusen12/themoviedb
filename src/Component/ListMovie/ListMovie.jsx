@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { Link, useHistory } from "react-router-dom"; 
 import { Skeleton } from '@material-ui/lab'; 
 import { Suspense } from 'react';
+import More from '../More/More';
 
 const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG')); 
 
@@ -36,11 +37,11 @@ function ListMovie() {
                 alignItems="flex-start"
                 spacing={4}>
                     <Grid item md={12}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >The moment of relaxation</Typography></Grid>
-                    <Grid item md={6} className="box-highlights">  
+                    <Grid item md={6} className="box-highlights">   
                         <img className="lazyload" width="500px" height="350px"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[15].backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[15].backdrop_path} alt=""/>  
-                        <Grid className="content">
+                        <Grid className="content"> 
                             <Typography variant="h4" onClick={() => handleClickCard(listMovie[15].id,"movie")}>{listMovie[15].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                         {listMovie[15].overview}
@@ -56,6 +57,7 @@ function ListMovie() {
                             <Typography variant="body2" color="textSecondary" component="p">
                                         {listMovie[10].overview}
                             </Typography>
+                           
                         </Grid> 
                     </Grid> 
                 </Grid>
@@ -65,13 +67,17 @@ function ListMovie() {
             <br/> <br/>  <br/>
             <Typography variant="h4" className="titleH4" color="primary">TOP Movie  <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/movie">View all</Link></Button></Typography>
              
-            <Grid container spacing={4}
+            <Grid container spacing={3}
             justify="flex-start"
             direction="row" className="overflowScroll"> 
                  
                     {listMovie ? listMovie.map((data) =>
                         <Grid key={data.id} item sm={3}>
-                            <Card> 
+                            <Card>
+                                <Suspense fallback={<div>Loading...</div>}> 
+                                <ChartSVG value={data.vote_average*10} />
+                                </Suspense>
+                                <More id={data.id}/>
                                 <img className="lazyload" width="300px" height="169px"
                                 src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
                                 data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
@@ -81,12 +87,7 @@ function ListMovie() {
                                 </Typography>
                                 <Typography component="p" style={{fontSize: "14px"}}>
                                 {data.release_date}
-                                </Typography> 
-                                <Suspense fallback={<div>Loading...</div>}> 
-                                <Grid style={{position:"absolute",top: "10px",left: "10px"}}>
-                                     <ChartSVG value={data.vote_average*10} />
-                                </Grid> 
-                                </Suspense>
+                                </Typography>  
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     {data.overview}
                                 </Typography>

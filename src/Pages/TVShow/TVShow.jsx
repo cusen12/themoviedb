@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import Pagination from '@material-ui/lab/Pagination';
 import { Suspense } from 'react';
+import More from '../../Component/More/More';
 
 const ChartSVG = React.lazy(()=> import('../../Component/ChartSVG/ChartSVG')); 
 
@@ -84,8 +85,9 @@ function TVShow() {
                 spacing={2}> 
                     {listMovie ? listMovie.map((data) =>
                          <Grid item sm={3} key={data.id}>
-                            <Card >
+                            <Card>
                                 <CardActionArea>
+                                    <More id={data.id}/>
                                     <img className="lazyload" style={{maxHeight:"169px"}}  
                                     data-src={data.backdrop_path ? "https://image.tmdb.org/t/p/w300/"+data.backdrop_path : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"}
                                     src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"

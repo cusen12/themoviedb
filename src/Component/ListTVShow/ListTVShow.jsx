@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react'; 
 import { Link, useHistory } from "react-router-dom"; 
+import More from '../More/More';
 const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG')); 
 
 function ListMovie() {
@@ -25,12 +26,16 @@ function ListMovie() {
         <>   
             <Typography variant="h4" className="titleH4" color="primary">TOP TV Show <Button variant="text" style={{float: "right"}}><Link to="/tvshow">View all</Link></Button></Typography> 
             
-            <Grid container spacing={2}
+            <Grid container spacing={3}
             justify="flex-start"
             direction="row" className="overflowScroll"> 
                 {listMovie ? listMovie.map((data) =>
-                    <Grid key={data.id} item sm={2}>
+                    <Grid key={data.id} item sm={3}>
                         <Card> 
+                            <Suspense fallback={<div>Loading...</div>}> 
+                                <ChartSVG value={data.vote_average*10}/>
+                            </Suspense>
+                            <More id={data.id}/>
                             <img className="lazyload" width="300px" height="169px"
                             src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
@@ -41,9 +46,7 @@ function ListMovie() {
                             <Typography component="p" >
                                 {data.first_air_date}
                             </Typography> 
-                            <Suspense fallback={<div>Loading...</div>}> 
-                                <ChartSVG value={data.vote_average*10}/>
-                            </Suspense>
+                           
                             <Typography variant="body2" color="textSecondary" component="p">
                                 {data.overview}
                             </Typography>
