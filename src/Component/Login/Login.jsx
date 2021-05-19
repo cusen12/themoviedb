@@ -138,10 +138,12 @@ function Login() {
                                 <Typography variant="h4">{userInfo !== undefined ? userInfo.name : ""}</Typography>
                                 <Typography><Link to="/profile" onClick={()=> setPopup(true) }>View Page</Link></Typography>  
                                 <hr style={{display:"block",width:"100%",margin:"5px 0"}}/>  
-                                <Typography><Link to="/watchlistmovie" onClick={()=> setPopup(true) }>Watch List Movie</Link></Typography>   
-                                <Typography><Link to="/watchlisttv" onClick={()=> setPopup(true) }>Watch List TV</Link></Typography> 
-                                <Typography><Link to="/commingsoon" onClick={()=> setPopup(true) }>Rated List</Link></Typography> 
-                                <Typography><Link to="/commingsoon" onClick={()=> setPopup(true) }>Favorite List</Link></Typography>   
+                                <Typography><Link to="/watchmovie" onClick={()=> setPopup(true) }>Watch List Movie</Link></Typography>   
+                                <Typography><Link to="/watchtv" onClick={()=> setPopup(true) }>Watch List TV</Link></Typography> 
+                                <Typography><Link to="/ratemovie" onClick={()=> setPopup(true) }>Rated List Movie</Link></Typography>
+                                <Typography><Link to="/ratetv" onClick={()=> setPopup(true) }>Rated List TV</Link></Typography>  
+                                <Typography><Link to="/favoritemovie" onClick={()=> setPopup(true) }>Favorite List Movie</Link></Typography>  
+                                <Typography><Link to="/favoriteTV" onClick={()=> setPopup(true) }>Favorite List TV</Link></Typography>    
                                 <hr style={{display:"block",width:"100%",margin:"5px 0"}}/>  
                                 <Typography><Link to="/commingsoon" onClick={()=> setPopup(true) }>Create list</Link></Typography> 
                                 <hr style={{display:"block",width:"100%",margin:"5px 0"}}/>  

@@ -321,6 +321,7 @@ function Details() {
             <Slider {...settings2}>
                 {recommentData !== undefined ? 
                     recommentData.results.map((data) =>
+                    data.backdrop_path !== null ?
                     <Card className="reconmenCard" key={data.id}>  
                         <img className="lazyload"
                             src={`https://image.tmdb.org/t/p/w45/${data.backdrop_path}`}
@@ -331,7 +332,7 @@ function Details() {
                                 {data.original_title !== undefined ? data.original_title : data.original_name } 
                             </Typography> 
                             </CardContent> 
-                    </Card>
+                    </Card> : ""
                     )  : ""
                 }
             </Slider>

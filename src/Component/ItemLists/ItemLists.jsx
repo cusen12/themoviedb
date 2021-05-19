@@ -51,13 +51,13 @@ function ItemLists(props) {
                     <Grid container spacing={2}
                     justify="flex-start"
                     alignItems="center" style={{padding:"8px"}}>
-                        <FormatListBulletedRoundedIcon className="hov" color="primary" fontSize="large" onClick={handleAddtoList} titleAccess="Add to list"/>
-                        <FavoriteRoundedIcon className="hov" color="primary" fontSize="large" style={{color:"red"}} onClick={handleAddfavorite} titleAccess="Mark as favorite"/> 
-                        <GradeRoundedIcon className="hov" color="primary" fontSize="large"  onClick={handleClickRate} titleAccess="Rate it"/> 
+                        <FormatListBulletedRoundedIcon className="hov" color="primary" fontSize="small" onClick={handleAddtoList} titleAccess="Add to list"/>
+                        <FavoriteRoundedIcon className="hov" color="primary" fontSize="small" style={{color:"red"}} onClick={handleAddfavorite} titleAccess="Mark as favorite"/> 
+                        <GradeRoundedIcon className="hov" color="primary" fontSize="small"  onClick={handleClickRate} titleAccess="Rate it"/> 
                         <Grid hidden={hidden} style={{position:"relative"}}>
                             <Rating style={styleRate} name="simple-controlled" onChange={handlesetRate} value={rate} precision={0.5} /> 
                         </Grid> 
-                        <DeleteOutlineIcon className="hov" color="primary" fontSize="large" onClick={handleAddtoRemove} titleAccess="Remove"/>
+                        <DeleteOutlineIcon className="hov" color="primary" fontSize="small" onClick={handleAddtoRemove} titleAccess="Remove"/>
                     </Grid>
                 </Grid>
             </Grid> 

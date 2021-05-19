@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Container, Grid, Typography } from '@material-ui/core';
+import { Button,Container, Grid, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
@@ -7,9 +7,9 @@ import ItemLists from '../../Component/ItemLists/ItemLists';
 import { Link } from "react-router-dom"; 
 
 function Profile() {
-    const [visibleWatch, setVisibleWatch] = useState(true)
-    const [visibleFavorite, setVisibleFavorite] = useState(true)
-    const [visibleRated, setVisibleRated] = useState(true)
+    const [visibleWatch, setVisibleWatch] = useState(false)
+    const [visibleFavorite, setVisibleFavorite] = useState(false)
+    const [visibleRated, setVisibleRated] = useState(false) 
     const [detail, setDetail] = useState();
     const [detailID, setDetailID] = useState();
     const [watchList, setWatchList] = useState();
@@ -76,8 +76,7 @@ function Profile() {
             setFavoriteListTV(respondFavoriteListTVJson) 
         }   
         getFavoriteListTV()
-    },[sectionId,detailID])  
-    
+    },[sectionId,detailID])   
     return (  
         <Container className="profile"><br/>
             {detail !== undefined ? 
@@ -110,13 +109,10 @@ function Profile() {
                     </Grid>
                 </Grid>
             : <Typography>loading...</Typography>}
-            <Typography variant="h3" color="primary">Watch list <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button></Typography> 
-            <ButtonGroup variant="text" color="primary">
-                    <Button onClick={()=> setVisibleWatch(!visibleWatch)}>Movie</Button>
-                    <Button onClick={()=> setVisibleWatch(!visibleWatch)}>TV</Button>
-            </ButtonGroup> 
+            <Typography variant="h3" color="primary">Watch list <Button variant="outlined" onClick={()=> setVisibleWatch(!visibleWatch)}>{visibleWatch ? "TV" : "Movie"}</Button>  <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button></Typography> 
+          
             <Grid container justify="flex-start" style={{position:"relative"}} spacing={2}>
-            <span id="watchList" style={{position:"absolute", top:"-150px"}}></span>
+            <span id="watchList" style={{position:"absolute", top:"-100px"}}></span>
                 <Grid hidden={visibleWatch} item md={12}>
                         {watchList !== undefined ? 
                             watchList.results.map((data)=>
@@ -124,7 +120,7 @@ function Profile() {
                                 category={"tv"}
                                 id={data.id} 
                                 images={data.poster_path} 
-                                title={data.original_name} 
+                                title={data.title} 
                                 destription={data.overview}/>):"loading..."} 
                 </Grid>
                 <Grid hidden={!visibleWatch} item md={12}>
@@ -138,13 +134,10 @@ function Profile() {
                                 destription={data.overview}/>):"loading..."} 
                 </Grid>
             </Grid>
-            <Typography variant="h3" color="primary">Rated list <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button></Typography>
-            <ButtonGroup variant="text" color="primary">
-                    <Button onClick={()=> setVisibleRated(!visibleRated)}>Movie</Button>
-                    <Button onClick={()=> setVisibleRated(!visibleRated)}>TV</Button>
-            </ButtonGroup> 
+            <Typography variant="h3" color="primary">Rated list   <Button variant="outlined" onClick={()=> setVisibleRated(!visibleRated)}>{visibleRated ? "TV" : "Movie"}</Button>  <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button></Typography>
+            
             <Grid container style={{position:"relative"}} justify="flex-start" spacing={2}>
-                <span id="ratedList" style={{position:"absolute", top:"-150px"}}></span>
+                <span id="ratedList" style={{position:"absolute", top:"-100px"}}></span>
                 <Grid hidden={visibleRated} item md={12}>
                     {ratedList !== undefined ? 
                             ratedList.results.map((data)=>
@@ -152,7 +145,7 @@ function Profile() {
                                 category={"tv"}
                                 id={data.id} 
                                 images={data.poster_path} 
-                                title={data.original_name} 
+                                title={data.title} 
                                 destription={data.overview}/>):"loading..."}  
                 </Grid>
                 <Grid hidden={!visibleRated} item md={12}>
@@ -166,13 +159,10 @@ function Profile() {
                                 destription={data.overview}/>):"loading..."}  
                 </Grid>
             </Grid>
-            <Typography variant="h3" color="primary">Favorite list <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button></Typography>
-            <ButtonGroup variant="text" color="primary">
-                    <Button onClick={()=> setVisibleFavorite(!visibleFavorite)}>Movie</Button>
-                    <Button onClick={()=> setVisibleFavorite(!visibleFavorite)}>TV</Button>
-            </ButtonGroup> 
+            <Typography variant="h3" color="primary">Favorite list   <Button variant="outlined" onClick={()=> setVisibleFavorite(!visibleFavorite)}>{visibleFavorite ? "TV" : "Movie"}</Button>  <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/commingsoon">View all</Link></Button></Typography>
+
             <Grid container justify="flex-start" style={{position:"relative"}} spacing={2}>
-                <span id="favoriteList" style={{position:"absolute", top:"-150px"}}></span>
+                <span id="favoriteList" style={{position:"absolute", top:"-100px"}}></span>
                 <Grid hidden={visibleFavorite} item md={12}>
                     {favoriteList !== undefined ? 
                             favoriteList.results.map((data)=>
@@ -180,7 +170,7 @@ function Profile() {
                                 category={"tv"}
                                 id={data.id} 
                                 images={data.poster_path} 
-                                title={data.original_name} 
+                                title={data.title} 
                                 destription={data.overview}/>):"loading..."}  
                 </Grid>
                 <Grid hidden={!visibleFavorite} item md={12}>

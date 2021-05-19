@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ItemLists from '../../Component/ItemLists/ItemLists';
 
-function WatchListMovie() {  
+function RateListMovie() {  
     const [detailID, setDetailID] = useState();
-    const [watchList, setWatchList] = useState(); 
+    const [rateList, setRateList] = useState(); 
     const [page, setPage ] =useState(2)
     const [totalPage, setTotalPage ] = useState()
     const sectionId = useSelector(state => state.section.value.session_id); 
@@ -18,31 +18,31 @@ function WatchListMovie() {
         }   
         getUserName()
 
-        const getWatchList = async () =>{ 
-            const linkWatchList = `https://api.themoviedb.org/3/account/${detailID}/watchlist/movies?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&session_id=${sectionId}&sort_by=created_at.asc&page=1`;
-            const respondWatchList = await fetch(linkWatchList);
-            const respondWatchListJson = await respondWatchList.json();
-            setWatchList(respondWatchListJson.results) 
-            setTotalPage(respondWatchListJson.total_pages) 
+        const getRateList = async () =>{ 
+            const linkRateList = `https://api.themoviedb.org/3/account/${detailID}/rated/movies?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&session_id=${sectionId}&sort_by=created_at.asc&page=1`;
+            const respondRateList = await fetch(linkRateList);
+            const respondRateListJson = await respondRateList.json();
+            setRateList(respondRateListJson.results) 
+            setTotalPage(respondRateListJson.total_pages) 
         }   
-        getWatchList() 
+        getRateList() 
     },[sectionId,detailID]) 
     const handleClickLoadmore = async ()=>{
         setPage(page + 1)
-        const link = `https://api.themoviedb.org/3/account/${detailID}/watchlist/movies?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&session_id=${sectionId}&sort_by=created_at.asc&page=${page}`;
+        const link = `https://api.themoviedb.org/3/account/${detailID}/rated/movies?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&session_id=${sectionId}&sort_by=created_at.asc&page=${page}`;
         const respond = await fetch(link);
         const respondJson = await respond.json();
-        setWatchList(watchList.concat(respondJson.results))
+        setRateList(rateList.concat(respondJson.results))
       
     } 
     return (
         <Container>
-            <Typography variant="h3">WATCH LIST MOVIE</Typography>
+            <Typography variant="h3">RATED LIST MOVIE</Typography>
             <hr style={{width:"100%", display:"block"}} />
             <br/>
             <Grid item md={12}>
-                {watchList !== undefined ? 
-                    watchList.map((data)=>
+                {rateList !== undefined ? 
+                    rateList.map((data)=>
                         <ItemLists key={data.id}
                         category={"tv"}
                         id={data.id} 
@@ -56,4 +56,4 @@ function WatchListMovie() {
     );
 }
 
-export default WatchListMovie;
+export default RateListMovie;

@@ -18,6 +18,11 @@ import React from 'react';
 import Profile from './Pages/Profile/Profile';
 import WatchListMovie from './Pages/WatchListMovie/WatchListMovie';
 import WatchListTV from './Pages/WatchListTV/WatchListTV';
+import RateListMovie from './Pages/RatedListMovie/RatedListMovie';
+import RateListTV from './Pages/RatedListTV/RatedListTV';
+import FavoriteListMovie from './Pages/FavoriteListMovie/FavoriteListMovie';
+import FavoriteListTV from './Pages/FavoriteListTV/FavoriteListTV';
+import ToTop from './Component/Top/ToTop';
 
 const Nav = React.lazy(()=> import('./Component/Nav/Nav'));
 const Footer = React.lazy(()=> import('./Component/Footer/Footer')); 
@@ -87,10 +92,15 @@ function App() {
                     <Route path="/search" children={ <SearchPage/>}/>   
                     <Route path="/category/:category/:id" children={ <Details/>}/> 
                     <Route path="/profile" children={ <Profile/>}/> 
-                    <Route path="/watchlistmovie" children={ <WatchListMovie/>}/>  
-                    <Route path="/watchlisttv" children={ <WatchListTV/>}/>     
+                    <Route path="/watchmovie" children={ <WatchListMovie/>}/>  
+                    <Route path="/watchtv" children={ <WatchListTV/>}/>   
+                    <Route path="/ratemovie" children={ <RateListMovie/>}/> 
+                    <Route path="/ratetv" children={ <RateListTV/>}/>  
+                    <Route path="/favoritemovie" children={ <FavoriteListMovie/>}/>
+                    <Route path="/favoritetv" children={ <FavoriteListTV/>}/>         
                   </Switch> 
                 </Grid> 
+                <ToTop/>
                 <Footer/>  
               </Suspense>
           </Router>
