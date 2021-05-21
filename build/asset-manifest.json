@@ -3,8 +3,8 @@
     "main.css": "./static/css/main.69e292b6.chunk.css",
     "main.js": "./static/js/main.deb04506.chunk.js",
     "main.js.map": "./static/js/main.deb04506.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.32bb49c1.js",
-    "runtime-main.js.map": "./static/js/runtime-main.32bb49c1.js.map",
+    "runtime-main.js": "./static/js/runtime-main.c6814ecb.js",
+    "runtime-main.js.map": "./static/js/runtime-main.c6814ecb.js.map",
     "static/js/2.f9278db4.chunk.js": "./static/js/2.f9278db4.chunk.js",
     "static/js/2.f9278db4.chunk.js.map": "./static/js/2.f9278db4.chunk.js.map",
     "static/css/3.725e6ca3.chunk.css": "./static/css/3.725e6ca3.chunk.css",
@@ -38,7 +38,7 @@
     "static/media/Details.scss": "./static/media/lg.adb7aeef.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.32bb49c1.js",
+    "static/js/runtime-main.c6814ecb.js",
     "static/js/2.f9278db4.chunk.js",
     "static/css/main.69e292b6.chunk.css",
     "static/js/main.deb04506.chunk.js"
