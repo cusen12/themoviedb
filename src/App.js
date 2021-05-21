@@ -78,7 +78,7 @@ function App() {
   return ( 
       
         <ThemeProvider theme={theme}>
-          <Router forceRefresh={true}> 
+          <Router> 
             <Suspense fallback={<div>Loading...</div>}>
                 <Nav/> 
                 <Grid className="main">
