@@ -73,12 +73,10 @@ const theme = createMuiTheme({
 
   }  
 }) 
-function App() {   
-  console.log(Router) 
-  return ( 
-      
+function App() {    
+  return (  
         <ThemeProvider theme={theme}>
-          <Router> 
+          <Router basename="/"> 
             <Suspense fallback={<div>Loading...</div>}>
                 <Nav/> 
                 <Grid className="main">
@@ -103,8 +101,7 @@ function App() {
                 <Footer/>  
               </Suspense>
           </Router>
-        </ThemeProvider>
-     
+        </ThemeProvider> 
   );
 }
 
