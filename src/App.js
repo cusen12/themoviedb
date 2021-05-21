@@ -9,8 +9,7 @@ import Movie from './Pages/Movie/Movie';
 // import People from './Pages/People/People';
 import TVShow from './Pages/TVShow/TVShow';  
 import Details from './Pages/Details/Details'; 
-import CommingSoon from './Pages/CommingSoon/CommingSoon'; 
-import { createHashHistory as createHistory } from "history"; 
+import CommingSoon from './Pages/CommingSoon/CommingSoon';  
 
 import { createMuiTheme, Grid, ThemeProvider } from '@material-ui/core'; 
 import SearchPage from './Component/SearchPage/SearchPage';
@@ -75,29 +74,29 @@ const theme = createMuiTheme({
   }  
 }) 
 function App() {   
-  const history = createHistory(); 
+  console.log(Router) 
   return ( 
       
         <ThemeProvider theme={theme}>
-          <Router> 
+          <Router forceRefresh={true}> 
             <Suspense fallback={<div>Loading...</div>}>
                 <Nav/> 
                 <Grid className="main">
                   <Switch>
-                    <Route history={history} exact path="/" children={<HomePage/>}/> 
-                    <Route history={history} path="/movie" children={<Movie/>}/> 
-                    <Route history={history} path="/tvshow" children={ <TVShow/>}/> 
-                    <Route history={history} path="/people" children={<CommingSoon/>}/> 
-                    <Route history={history} path="/commingsoon" children={ <CommingSoon/>}/> 
-                    <Route history={history} path="/search" children={ <SearchPage/>}/>   
-                    <Route history={history} path="/category/:category/:id" children={ <Details/>}/> 
-                    <Route history={history} path="/profile" children={ <Profile/>}/> 
-                    <Route history={history} path="/watchmovie" children={ <WatchListMovie/>}/>  
-                    <Route history={history} path="/watchtv" children={ <WatchListTV/>}/>   
-                    <Route history={history} path="/ratemovie" children={ <RateListMovie/>}/> 
-                    <Route history={history} path="/ratetv" children={ <RateListTV/>}/>  
-                    <Route history={history} path="/favoritemovie" children={ <FavoriteListMovie/>}/>
-                    <Route history={history} path="/favoritetv" children={ <FavoriteListTV/>}/>         
+                    <Route exact path="/" children={<HomePage/>}/> 
+                    <Route path="/movie" children={<Movie/>}/> 
+                    <Route path="/tvshow" children={ <TVShow/>}/> 
+                    <Route path="/people" children={<CommingSoon/>}/> 
+                    <Route path="/commingsoon" children={ <CommingSoon/>}/> 
+                    <Route path="/search" children={ <SearchPage/>}/>   
+                    <Route path="/category/:category/:id" children={ <Details/>}/> 
+                    <Route path="/profile" children={ <Profile/>}/> 
+                    <Route path="/watchmovie" children={ <WatchListMovie/>}/>  
+                    <Route path="/watchtv" children={ <WatchListTV/>}/>   
+                    <Route path="/ratemovie" children={ <RateListMovie/>}/> 
+                    <Route path="/ratetv" children={ <RateListTV/>}/>  
+                    <Route path="/favoritemovie" children={ <FavoriteListMovie/>}/>
+                    <Route path="/favoritetv" children={ <FavoriteListTV/>}/>         
                   </Switch> 
                 </Grid> 
                 <ToTop/>
