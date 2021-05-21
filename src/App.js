@@ -70,13 +70,12 @@ const theme = createMuiTheme({
       width:'100%',
       fontWeight: 600, 
     }
-
   }  
 }) 
 function App() {    
   return (  
         <ThemeProvider theme={theme}>
-          <Router basename="/"> 
+          <Router> 
             <Suspense fallback={<div>Loading...</div>}>
                 <Nav/> 
                 <Grid className="main">
