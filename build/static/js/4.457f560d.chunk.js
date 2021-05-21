@@ -1,2 +1,2 @@
 (this.webpackJsonpthemoviedb=this.webpackJsonpthemoviedb||[]).push([[4],{199:function(e,t,n){},220:function(e,t,n){"use strict";n.r(t);var c=n(35),i=n(181),r=n(182),a=(n(1),n(199),n(26)),s=n(13),j=n(0);t.default=function(){var e=Object(s.c)((function(e){return e.language.value.footer}));return Object(j.jsx)(j.Fragment,{children:Object(j.jsx)(c.a,{className:"footer",children:Object(j.jsxs)(i.a,{children:[Object(j.jsx)(r.a,{variant:"h4",children:e.contact}),Object(j.jsx)("ul",{children:e.links.map((function(e,t){return Object(j.jsx)("li",{data:e.typeLink,children:Object(j.jsx)(a.b,{to:e.link,children:e.text})},t)}))})]})})})}}}]);
-//# sourceMappingURL=4.879aeafd.chunk.js.map
+//# sourceMappingURL=4.457f560d.chunk.js.map
