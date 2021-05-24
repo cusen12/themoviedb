@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import './Details.scss';  
+import './DetailsTV.scss';  
 
 import ChartSVG from '../../Component/ChartSVG/ChartSVG';
 import FormatListBulletedRoundedIcon from '@material-ui/icons/FormatListBulletedRounded';
@@ -24,7 +24,7 @@ import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 
 
 
-function Details() {
+function DetailsTV() {
     const { id } = useParams();
     const [detailsData, setDetailsData] = useState();
     const [galleryData, setGalleryData] = useState(); 
@@ -64,35 +64,35 @@ function Details() {
     };  
     useEffect(()=>{
         const getDetails = async () =>{
-            const link = `https://api.themoviedb.org/3/movie/${id}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
+            const link = `https://api.themoviedb.org/3/tv/${id}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
             const respond = await fetch(link);
             const responJson = await respond.json();
             setDetailsData(responJson);
         }
         getDetails(); 
         const getGallery = async () =>{
-            const link = `https://api.themoviedb.org/3/movie/${id}/images?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
+            const link = `https://api.themoviedb.org/3/tv/${id}/images?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
             const respondGallery = await fetch(link);
             const responGalleryJson = await respondGallery.json();
             setGalleryData(responGalleryJson);
         }
         getGallery(); 
         const getVideo = async () =>{
-            const link = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
+            const link = `https://api.themoviedb.org/3/tv/${id}/videos?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
             const respondVideo = await fetch(link);
             const responVideoJson = await respondVideo.json();
             setVideoData(responVideoJson);
         }
         getVideo(); 
         const getSocial = async () =>{
-            const link = `https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
+            const link = `https://api.themoviedb.org/3/tv/${id}/external_ids?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
             const respondSocial = await fetch(link);
             const responSocialJson = await respondSocial.json();
             setSocialData(responSocialJson);
         }
         getSocial();
         const getCast = async () =>{
-            const link = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
+            const link = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
             const respondCast = await fetch(link);
             const responCastJson = await respondCast.json();
             setCastData(responCastJson);
@@ -100,7 +100,7 @@ function Details() {
         getCast();
 
         const getReview = async () =>{
-            const link = `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language&language=en-US&page=1`;
+            const link = `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language&language=en-US&page=1`;
             const respondReview = await fetch(link);
             const responReviewJson = await respondReview.json();
             setReviewData(responReviewJson);
@@ -108,7 +108,7 @@ function Details() {
         getReview();
 
         const getRecoment = async () =>{
-            const link = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=1`;
+            const link = `https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=1`;
             const respondRecoment = await fetch(link);
             const responRecomentJson = await respondRecoment.json();
             setRecommentData(responRecomentJson);
@@ -138,7 +138,7 @@ function Details() {
         sethidden(!hidden); 
     }      
     return ( 
-        <Container className={"details-movie"}> 
+        <Container className={"details-tv"}> 
             
         {
             detailsData !== undefined ?
@@ -171,7 +171,7 @@ function Details() {
                         <Typography variant="caption"> {detailsData.tagline}</Typography> 
                          
                         <Typography variant="caption">Thể loại: {detailsData.genres?.map((data) => <span key={data.id}>{data.name} </span>)} 
-                        {detailsData.runtime + " min"} 
+                       
                         </Typography>  
                          
                         <Typography variant="caption">Make in: {detailsData.production_companies[0] !== undefined ? detailsData.production_companies[0].name : "China"}</Typography>
@@ -343,4 +343,4 @@ function Details() {
     );
 }
 
-export default Details;
+export default DetailsTV;

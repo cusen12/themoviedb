@@ -13,7 +13,7 @@ function ItemLists(props) {
     const [hidden, sethidden] = useState(true); 
     const history = useHistory()
     const handleClick = (id,category) =>{ 
-        history.push("/category/"+category+"/"+id);
+        history.push("/"+category+id);
     }
     const styleRate ={
         position: "absolute",
