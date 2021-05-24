@@ -170,7 +170,10 @@ function Details() {
                         
                         <Typography variant="caption"> {detailsData.tagline}</Typography> 
                          
-                        <Typography variant="caption">Thể loại:  {detailsData.genres.map((data) => <span key={data.id}>{data.name} </span>)} {category === "movie" ? "-" + detailsData.runtime + " min" :""} </Typography>  
+                        <Typography variant="caption">Thể loại:  
+                        {/* {detailsData.genres.map((data) => <span key={data.id}>{data.name} </span>)}  */}
+                        {category === "movie" ? "-" + detailsData.runtime + " min" :""} 
+                        </Typography>  
                          
                         <Typography variant="caption">Make in: {detailsData.production_companies[0] !== undefined ? detailsData.production_companies[0].name : "China"}</Typography>
                         
