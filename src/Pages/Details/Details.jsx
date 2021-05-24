@@ -1,142 +1,144 @@
-import { Button, ButtonGroup, Card, CardContent, Container, Grid, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+// import { Button, ButtonGroup, Card, CardContent, Container, Grid, Typography } from '@material-ui/core';
+// import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
+import React from 'react';
+// import { Link } from 'react-router-dom';
 
-import './Details.scss';  
+// import './Details.scss';  
 
-import ChartSVG from '../../Component/ChartSVG/ChartSVG';
-import FormatListBulletedRoundedIcon from '@material-ui/icons/FormatListBulletedRounded';
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
-import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
-import GradeRoundedIcon from '@material-ui/icons/GradeRounded'; 
-import YouTubeIcon from '@material-ui/icons/YouTube';
+// import ChartSVG from '../../Component/ChartSVG/ChartSVG';
+// import FormatListBulletedRoundedIcon from '@material-ui/icons/FormatListBulletedRounded';
+// import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+// import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
+// import GradeRoundedIcon from '@material-ui/icons/GradeRounded'; 
+// import YouTubeIcon from '@material-ui/icons/YouTube';
 
-import { Rating } from '@material-ui/lab';
-import Slider from 'react-slick';
+// import { Rating } from '@material-ui/lab';
+// import Slider from 'react-slick';
 
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import InstagramIcon from '@material-ui/icons/Instagram'; 
-import LinkIcon from '@material-ui/icons/Link';
+// import FacebookIcon from '@material-ui/icons/Facebook';
+// import TwitterIcon from '@material-ui/icons/Twitter';
+// import InstagramIcon from '@material-ui/icons/Instagram'; 
+// import LinkIcon from '@material-ui/icons/Link';
 
-import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
+// import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 
 
 
 function Details() {
     const { category,id } = useParams();
-    const [detailsData, setDetailsData] = useState();
-    const [galleryData, setGalleryData] = useState(); 
-    const [videoData, setVideoData] = useState(); 
-    const [socialData, setSocialData] = useState();
-    const [castData, setCastData] = useState();
-    const [reviewData, setReviewData] = useState();
-    const [recommentData, setRecommentData] = useState(); 
-    const [rate, setRate] = useState(5); 
-    const [hidden, sethidden] = useState(true); 
-    const [visible, setVisible] = useState(true);  
-    const style ={
-        position: "absolute",
-        top:"20px",
-        right:"0"
-    }
-    const styleRate ={
-        position: "absolute",
-        top:"-12px",
-        left:"0"
-    }    
-    const settings = {   
-        className: "center", 
-        infinite: false,
-        centerPadding: "50px",
-        slidesToShow: 8,
-        speed: 500,  
-        slidesToScroll: 1,
-    };
-    const settings2 = {   
-        className: "center", 
-        infinite: false,
-        centerPadding: "50px",
-        slidesToShow: 6,
-        speed: 500,  
-        slidesToScroll: 1,
-    }; 
-    useEffect(()=>{
-        const getDetails = async () =>{
-            const link = `https://api.themoviedb.org/3/${category}/${id}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
-            const respond = await fetch(link);
-            const responJson = await respond.json();
-            setDetailsData(responJson);
-        }
-        getDetails(); 
-        const getGallery = async () =>{
-            const link = `https://api.themoviedb.org/3/${category}/${id}/images?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
-            const respondGallery = await fetch(link);
-            const responGalleryJson = await respondGallery.json();
-            setGalleryData(responGalleryJson);
-        }
-        getGallery(); 
-        const getVideo = async () =>{
-            const link = `https://api.themoviedb.org/3/${category}/${id}/videos?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
-            const respondVideo = await fetch(link);
-            const responVideoJson = await respondVideo.json();
-            setVideoData(responVideoJson);
-        }
-        getVideo(); 
-        const getSocial = async () =>{
-            const link = `https://api.themoviedb.org/3/${category}/${id}/external_ids?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
-            const respondSocial = await fetch(link);
-            const responSocialJson = await respondSocial.json();
-            setSocialData(responSocialJson);
-        }
-        getSocial();
-        const getCast = async () =>{
-            const link = `https://api.themoviedb.org/3/${category}/${id}/credits?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
-            const respondCast = await fetch(link);
-            const responCastJson = await respondCast.json();
-            setCastData(responCastJson);
-        }
-        getCast();
+    // const [detailsData, setDetailsData] = useState();
+    // const [galleryData, setGalleryData] = useState(); 
+    // const [videoData, setVideoData] = useState(); 
+    // const [socialData, setSocialData] = useState();
+    // const [castData, setCastData] = useState();
+    // const [reviewData, setReviewData] = useState();
+    // const [recommentData, setRecommentData] = useState(); 
+    // const [rate, setRate] = useState(5); 
+    // const [hidden, sethidden] = useState(true); 
+    // const [visible, setVisible] = useState(true);  
+    // const style ={
+    //     position: "absolute",
+    //     top:"20px",
+    //     right:"0"
+    // }
+    // const styleRate ={
+    //     position: "absolute",
+    //     top:"-12px",
+    //     left:"0"
+    // }    
+    // const settings = {   
+    //     className: "center", 
+    //     infinite: false,
+    //     centerPadding: "50px",
+    //     slidesToShow: 8,
+    //     speed: 500,  
+    //     slidesToScroll: 1,
+    // };
+    // const settings2 = {   
+    //     className: "center", 
+    //     infinite: false,
+    //     centerPadding: "50px",
+    //     slidesToShow: 6,
+    //     speed: 500,  
+    //     slidesToScroll: 1,
+    // }; 
+    // useEffect(()=>{
+    //     const getDetails = async () =>{
+    //         const link = `https://api.themoviedb.org/3/${category}/${id}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
+    //         const respond = await fetch(link);
+    //         const responJson = await respond.json();
+    //         setDetailsData(responJson);
+    //     }
+    //     getDetails(); 
+    //     const getGallery = async () =>{
+    //         const link = `https://api.themoviedb.org/3/${category}/${id}/images?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
+    //         const respondGallery = await fetch(link);
+    //         const responGalleryJson = await respondGallery.json();
+    //         setGalleryData(responGalleryJson);
+    //     }
+    //     getGallery(); 
+    //     const getVideo = async () =>{
+    //         const link = `https://api.themoviedb.org/3/${category}/${id}/videos?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
+    //         const respondVideo = await fetch(link);
+    //         const responVideoJson = await respondVideo.json();
+    //         setVideoData(responVideoJson);
+    //     }
+    //     getVideo(); 
+    //     const getSocial = async () =>{
+    //         const link = `https://api.themoviedb.org/3/${category}/${id}/external_ids?api_key=cd58c7bd131cba3c391d62c5fda2ae53`;
+    //         const respondSocial = await fetch(link);
+    //         const responSocialJson = await respondSocial.json();
+    //         setSocialData(responSocialJson);
+    //     }
+    //     getSocial();
+    //     const getCast = async () =>{
+    //         const link = `https://api.themoviedb.org/3/${category}/${id}/credits?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US`;
+    //         const respondCast = await fetch(link);
+    //         const responCastJson = await respondCast.json();
+    //         setCastData(responCastJson);
+    //     }
+    //     getCast();
 
-        const getReview = async () =>{
-            const link = `https://api.themoviedb.org/3/${category}/${id}/reviews?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language&language=en-US&page=1`;
-            const respondReview = await fetch(link);
-            const responReviewJson = await respondReview.json();
-            setReviewData(responReviewJson);
-        }
-        getReview();
+    //     const getReview = async () =>{
+    //         const link = `https://api.themoviedb.org/3/${category}/${id}/reviews?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language&language=en-US&page=1`;
+    //         const respondReview = await fetch(link);
+    //         const responReviewJson = await respondReview.json();
+    //         setReviewData(responReviewJson);
+    //     }
+    //     getReview();
 
-        const getRecoment = async () =>{
-            const link = `https://api.themoviedb.org/3/${category}/${id}/recommendations?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=1`;
-            const respondRecoment = await fetch(link);
-            const responRecomentJson = await respondRecoment.json();
-            setRecommentData(responRecomentJson);
-        }
-        getRecoment(); 
-    },[category,id])  
+    //     const getRecoment = async () =>{
+    //         const link = `https://api.themoviedb.org/3/${category}/${id}/recommendations?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=1`;
+    //         const respondRecoment = await fetch(link);
+    //         const responRecomentJson = await respondRecoment.json();
+    //         setRecommentData(responRecomentJson);
+    //     }
+    //     getRecoment(); 
+    // },[category,id])  
 
-    const fullDayMY = (date) =>{
-        const d = new Date(date)
-       return d.getDate()+ "-" + d.getMonth()+"-" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes()
-    }
-    const handleClickRate = () => {  
-        sethidden(!hidden);
-    }
-    const handleAddfavorite = () => { 
-        console.log("Thực hiện add to Favorite")
-    }
-    const handleAddtoList = () => { 
-        console.log("Thực hiện add to list")
-    }
-    const handleAddtoWatchlist = () => { 
-        console.log("Thực hiện add to watch list")
-    } 
-    const handlesetRate = (event,newValue) =>{  
-        setRate(newValue)  
-        alert("Thanks to vote!!");
-        sethidden(!hidden); 
-    }      
+    // const fullDayMY = (date) =>{
+    //     const d = new Date(date)
+    //    return d.getDate()+ "-" + d.getMonth()+"-" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes()
+    // }
+    // const handleClickRate = () => {  
+    //     sethidden(!hidden);
+    // }
+    // const handleAddfavorite = () => { 
+    //     console.log("Thực hiện add to Favorite")
+    // }
+    // const handleAddtoList = () => { 
+    //     console.log("Thực hiện add to list")
+    // }
+    // const handleAddtoWatchlist = () => { 
+    //     console.log("Thực hiện add to watch list")
+    // } 
+    // const handlesetRate = (event,newValue) =>{  
+    //     setRate(newValue)  
+    //     alert("Thanks to vote!!");
+    //     sethidden(!hidden); 
+    // }      
     return ( 
         <Grid>
             <p>{category + id}</p>
