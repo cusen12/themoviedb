@@ -18,8 +18,8 @@ function ListMovie() {
     const [title, setTitle]= useState("Now Playing")
     const linkAPI= `https://api.themoviedb.org/3/movie/${category}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=${page}`
     const history = useHistory();
-    const handleClickCard = (data, dataHref) =>{
-        history.push("/category/"+dataHref+"/"+data);
+    const handleClickCard = (data) =>{
+        history.push("/movie"+data);
     } 
     const handleChangeValuePagination = (e) =>{
         setPage(e.target.textContent)  
@@ -95,7 +95,7 @@ function ListMovie() {
                                     src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"
                                     alt={data.title}/>
                                     <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id,"movie")}>
+                                    <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id)}>
                                         {data.title}
                                     </Typography>
                                     <p>{data.release_date}</p> 

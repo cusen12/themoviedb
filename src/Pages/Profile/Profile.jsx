@@ -117,7 +117,7 @@ function Profile() {
                         {watchList !== undefined ? 
                             watchList.results.map((data)=>
                                 <ItemLists key={data.id}
-                                category={"tv"}
+                                category={"movie"}
                                 id={data.id} 
                                 images={data.poster_path} 
                                 title={data.title} 
@@ -142,7 +142,7 @@ function Profile() {
                     {ratedList !== undefined ? 
                             ratedList.results.map((data)=>
                                 <ItemLists key={data.id}
-                                category={"tv"}
+                                category={"movie"}
                                 id={data.id} 
                                 images={data.poster_path} 
                                 title={data.title} 
@@ -167,7 +167,7 @@ function Profile() {
                     {favoriteList !== undefined ? 
                             favoriteList.results.map((data)=>
                                 <ItemLists key={data.id}
-                                category={"tv"}
+                                category={"movie"}
                                 id={data.id} 
                                 images={data.poster_path} 
                                 title={data.title} 
