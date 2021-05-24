@@ -174,14 +174,14 @@ function Details() {
                         {category === "movie" ? "-" + detailsData.runtime + " min" :""} 
                         </Typography>  
                          
-                        <Typography variant="caption">Make in: {detailsData.production_companies[0] !== undefined ? detailsData.production_companies[0].name : "China"}</Typography>
+                        {/* <Typography variant="caption">Make in: {detailsData.production_companies[0] !== undefined ? detailsData.production_companies[0].name : "China"}</Typography> */}
                         
                         <Typography variant="h4">Overview</Typography> 
 
                         <Typography variant="caption"> {detailsData.overview}</Typography>
                         
                         {videoData !== undefined &&  category === "movie"?
-                            <a href={videoData.results[0] !== undefined ? `https://www.youtube.com/watch?v=${ videoData.results[0].key}`: "" } target="_blank" rel="noopener noreferrer">
+                            <a href={videoData.results[0] !== undefined ? `https://www.youtube.com/watch?v=${ videoData.results[0]?.key}`: "" } target="_blank" rel="noopener noreferrer">
                                 <Button variant="outlined" startIcon={<YouTubeIcon fontSize="large"/>}>Trailer</Button><br/><br/>
                             </a>
                             
@@ -227,7 +227,7 @@ function Details() {
             <br/>
             {castData !== undefined ? 
                     <Slider {...settings}> 
-                        {castData.cast.map((item)=>
+                        {castData.cast?.map((item)=>
                         <Card key={item.id} className="peopleCard"> 
                             <img className="lazyload" height="216px"
                                 src={item.profile_path !==null ? `https://image.tmdb.org/t/p/w45/${item.profile_path}` : `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-36-user-female-1252799405af813fe2e29e8b25c44d9a12406c0db697a6b4a25080f5974ddf68.svg`}
@@ -248,7 +248,7 @@ function Details() {
             {
                 reviewData !== undefined ? 
                     reviewData.total_results !== 0 ?
-                    reviewData.results.map((data) =>
+                    reviewData.results?.map((data) =>
                     <Card key={data.id} style={{margin:"5px 0"}}>
                             <Grid container spacing={2} style={{margin:"0 ",padding: "5px"}}
                             justify="flex-start"
@@ -285,7 +285,7 @@ function Details() {
                 <Grid justify="flex-start" alignItems="flex-start" container spacing={2}>  
                        {
                           galleryData !== undefined ? 
-                          galleryData.backdrops.map((image)=>
+                          galleryData.backdrops?.map((image)=>
                           <Grid item key={image.file_path}>
                           <LightgalleryItem  style={{padding:"0 5px"}} group="b" src={`https://image.tmdb.org/t/p/w780/${image.file_path}`}> 
                                <img className="lazyload"
@@ -322,7 +322,7 @@ function Details() {
             <br/>
             <Slider {...settings2}>
                 {recommentData !== undefined ? 
-                    recommentData.results.map((data) =>
+                    recommentData.results?.map((data) =>
                     data.backdrop_path !== null ?
                     <Card className="reconmenCard" key={data.id}>  
                         <img className="lazyload"
