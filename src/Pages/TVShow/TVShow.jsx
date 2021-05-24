@@ -17,7 +17,7 @@ function TVShow() {
     const linkAPI= `https://api.themoviedb.org/3/tv/${category}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=${page}`
     const history = useHistory();
     const handleClickCard = (data) =>{
-        history.push("/movie"+data);
+        history.push("/tv"+data);
     } 
     const handleChangeValuePagination = (e) =>{
         setPage(e.target.textContent) 
