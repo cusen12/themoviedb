@@ -75,7 +75,7 @@ const theme = createMuiTheme({
 function App() {    
   return (  
         <ThemeProvider theme={theme}>
-          <Router> 
+          <Router basename = {process.env.PUBLIC_URL}> 
             <Suspense fallback={<div>Loading...</div>}>
                 <Nav/> 
                 <Grid className="main">
