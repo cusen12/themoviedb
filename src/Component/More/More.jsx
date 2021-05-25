@@ -52,8 +52,7 @@ function More(props) {
     const checkLogin = useSelector(state => state.login.value.success)  
     const handleClickMore = (id) =>{ 
         setHidden(!hidden); 
-        setIdRate(id)
-        console.log("More",idRate)
+        setIdRate(id) 
     }
      
     const handleAddfavorite = () => { 
@@ -61,24 +60,21 @@ function More(props) {
         setAlrHidden(false)
         setTimeout(()=>{
             setAlrHidden(true)
-        },2000)
-        console.log(idRate)
+        },2000) 
     }
     const handleAddtoList = () => {  
         setTextAler("Add to list")
         setAlrHidden(false)
         setTimeout(()=>{
             setAlrHidden(true)
-        },2000)
-        console.log(idRate)
+        },2000) 
     }
     const handleAddtoWatchlist = () => {  
         setTextAler("Add to watch list")
         setAlrHidden(false)
         setTimeout(()=>{
             setAlrHidden(true)
-        },2000)
-        console.log(idRate)
+        },2000) 
     }   
     return (
         <Grid style={style}>
