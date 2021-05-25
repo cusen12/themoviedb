@@ -46,8 +46,9 @@ function More(props) {
     } 
     const styleAlr={
         position: "fixed",
-        bottom: "30px",
-        left: "40px",
+        top: "150px",
+        right: "0",
+        zIndex:"1000"
     }
     const checkLogin = useSelector(state => state.login.value.success)  
     const handleClickMore = (id) =>{ 
