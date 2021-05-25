@@ -24,7 +24,7 @@ function ListMovie() {
 
         }
         getListMovie()
-    },[]) 
+    },[])  
     return (
         
         <>    
