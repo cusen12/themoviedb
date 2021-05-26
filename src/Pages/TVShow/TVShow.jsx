@@ -1,9 +1,12 @@
 import { Card, CardActionArea, CardContent, Container, Grid, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import ChartSVG from '../../Component/ChartSVG/ChartSVG';
+import { useHistory } from 'react-router'; 
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import Pagination from '@material-ui/lab/Pagination';
+import { Suspense } from 'react';
+import More from '../../Component/More/More';
+
+const ChartSVG = React.lazy(()=> import('../../Component/ChartSVG/ChartSVG')); 
 
 function TVShow() {
     const [page, setPage] = useState(1);
@@ -14,7 +17,7 @@ function TVShow() {
     const linkAPI= `https://api.themoviedb.org/3/tv/${category}?api_key=cd58c7bd131cba3c391d62c5fda2ae53&language=en-US&page=${page}`
     const history = useHistory();
     const handleClickCard = (data, dataHref) =>{
-        history.push("/details"+dataHref+"="+data)
+        history.push("/category/"+dataHref+"/"+data);
     } 
     const handleChangeValuePagination = (e) =>{
         setPage(e.target.textContent) 
@@ -82,8 +85,9 @@ function TVShow() {
                 spacing={2}> 
                     {listMovie ? listMovie.map((data) =>
                          <Grid item sm={3} key={data.id}>
-                            <Card >
+                            <Card>
                                 <CardActionArea>
+                                    <More id={data.id}/>
                                     <img className="lazyload" style={{maxHeight:"169px"}}  
                                     data-src={data.backdrop_path ? "https://image.tmdb.org/t/p/w300/"+data.backdrop_path : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"}
                                     src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"
@@ -93,7 +97,9 @@ function TVShow() {
                                         {data.original_name}
                                     </Typography>
                                     <p>{data.first_air_date}</p> 
-                                    <ChartSVG value={data.vote_average*10}/>
+                                    <Suspense fallback={<div>Loading...</div>}>
+                                        <ChartSVG value={data.vote_average*10} />
+                                    </Suspense>
                                     <Typography variant="body2" color="textSecondary" component="p">
                                         {data.overview}
                                     </Typography>

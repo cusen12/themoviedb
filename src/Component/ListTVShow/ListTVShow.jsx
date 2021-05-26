@@ -1,63 +1,17 @@
-import { Button, Card, CardActionArea, CardContent, Grid, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import React from 'react';
+import { Suspense } from 'react';
 import { useState } from 'react';
-import { useEffect } from 'react';
-import Slider from "react-slick"; 
-import { Link, useHistory } from "react-router-dom";
-import ChartSVG from '../ChartSVG/ChartSVG';
+import { useEffect } from 'react'; 
+import { Link, useHistory } from "react-router-dom"; 
+import More from '../More/More';
+const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG')); 
 
 function ListMovie() {
     const [listMovie, setListMovie] = useState();
-    const history = useHistory();
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        arrows:false,
-        speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 6,
-        responsive: [
-            {
-            breakpoint: 1824,
-            settings: {
-                slidesToShow: 6,
-                slidesToScroll: 6, 
-            }
-            },
-            {
-            breakpoint: 1624,
-            settings: {
-                slidesToShow: 5,
-                slidesToScroll: 5,
-            }
-            },
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-          ]  
-    };
+    const history = useHistory(); 
     const handleClickCard = (data, dataHref) =>{
-        history.push("/details"+dataHref+"="+data)
+        history.push("/category/"+dataHref+"/"+data);
     }
     useEffect(() => {
         const getListMovie = async () => {
@@ -70,33 +24,39 @@ function ListMovie() {
     },[])
     return (
         <>   
-            <Typography variant="h4" className="titleH4" color="primary">TOP TV Show</Typography> 
-            <hr/>
-            <br/>
-            <Grid>
-                <Slider {...settings}>
-                    {listMovie ? listMovie.map((data) =>
-                        <Card key={data.id} onClick={() => handleClickCard(data.id, "tv")}>
-                            <CardActionArea> 
-                                <img className="lazyload"
-                                src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
-                                data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
-                                <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2" >
-                                    {data.original_name}
-                                </Typography>
-                                <p>{data.first_air_date}</p> 
+            <Typography variant="h4" className="titleH4" color="primary">TOP TV Show <Button variant="text" style={{float: "right"}}><Link to="/tvshow">View all</Link></Button></Typography> 
+            
+            <Grid container spacing={3}
+            justify="flex-start"
+            direction="row" className="overflowScroll"> 
+                {listMovie ? listMovie.map((data) =>
+                    <Grid key={data.id} item sm={3}>
+                        <Card> 
+                            <Suspense fallback={<div>Loading...</div>}> 
                                 <ChartSVG value={data.vote_average*10}/>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {data.overview}
-                                </Typography>
-                                </CardContent>
-                            </CardActionArea> 
+                            </Suspense>
+                            <More id={data.id}/>
+                            <img className="lazyload" width="300px" height="169px"
+                            src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
+                            data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
+                            <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id, "tv")}>
+                                {data.original_name}
+                            </Typography>
+                            <Typography component="p" >
+                                {data.first_air_date}
+                            </Typography> 
+                           
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {data.overview}
+                            </Typography>
+                            </CardContent> 
                         </Card>
-                    ): ''} 
-                </Slider>
+                    </Grid>
+                ): ''}  
             </Grid>
-            <Button variant="text"><Link to="/tvshow">View all</Link></Button>
+            <br/> 
+            
         </>
     );
 }

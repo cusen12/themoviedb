@@ -1,14 +1,16 @@
-.movie{
+.movie,.searchPage{
     .MuiTypography-body2{
         height: 60px;
         overflow: hidden;
     }
     .MuiTypography-h5 {
         height: 35px;
+        display: flex;
+        align-items: center;
     }
 }
 .pagination{
-    margin: 20px 0;
+    margin: 20px auto;
     nav{
         display: flex;
         justify-content: center;

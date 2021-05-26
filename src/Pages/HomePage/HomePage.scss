@@ -1,14 +1,19 @@
 @import '../../Assets/scss/variable.scss';
  
 .homepage{
-    overflow-x: hidden;
-    padding: 0 15px;
+    .MuiContainer-root{
+        overflow-x: hidden;
+        padding: 0;
+    }
+     
     .MuiTypography-body2{
         height: 60px;
         overflow: hidden;
     }
     .MuiTypography-h5{
-        height: 35px;
+        height: 35px; 
+        display: flex;
+        align-items: center;
     }
     .slick-slider {
         margin: 0 -15px;
@@ -17,7 +22,7 @@
         }
     }  
     .MuiButton-text{
-        float: right; 
+        float: right;  
     }
     .slick-list{
         width: 100%; 
@@ -25,67 +30,18 @@
     .MuiGrid-item,h1{
         font-size: 35px;
         padding-bottom: 0 !important;
+        padding-top: 0 !important;
+        position: relative;
     } 
     
     .MuiPaper-rounded{
         border-radius: 0;
     }
-}
-.search{
-    height: 400px;
-    background: url('../../Assets/Images/banner.jpg') no-repeat;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .content{ 
-        z-index: 100;
-        input{
-            width: 100%;
-            outline: none;
-            border: none;
-            height: 40px;
-            color: #cccccc; 
-            font-size: 25px;
-            padding: 10px 30px;
-            border-radius: 20px;  
-        }
-        .input{
-            position: relative;
-            button{
-                position: absolute;
-                top: 0;
-                right: -1px;
-                width: 150px;
-                font-weight: bold;
-                outline: none;
-                border: none;
-                height: 40px;
-                color: $secondary-text;  
-                padding: 10px;
-                border-radius: 20px; 
-                background:$background-02
-            }
-        }
-    }
-    &::after{
-        content:'';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top:0;
-        left: 0;
-        background: $background-02;
-        z-index: 1;
-    }
-    
-}
+} 
 .MuiCardContent-root{ 
     svg{
         position: absolute;
-        top: 0;
+        top: 10px;
         left: 16px; 
     }
 }
@@ -119,7 +75,7 @@
         filter: grayscale(0); 
     }
     img{
-        max-width: 100%;
+        width: 100%;
         border-radius: 5px;
         filter: grayscale(1); 
         transition: all 0.3s;
@@ -128,7 +84,7 @@
     .content{
         padding:30px;
         position: absolute;
-        bottom: 0;
+        bottom: -7px;
         left: 0;
         background: #00000055;
         z-index: 100;
@@ -148,3 +104,11 @@
 
     }
 }  
+.overflowScroll{
+    flex-wrap: unset !important;
+}
+.MuiCard-root{
+    .MuiCardContent-root {
+        padding: 0 16px;
+    }
+}

@@ -11,7 +11,7 @@ function Language() {
         
     }
     const styleselect={ 
-        padding:"2px",
+        padding:"5px",
         outline:"0",
         border:"0",
         background:"#000",

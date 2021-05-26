@@ -1,65 +1,19 @@
-import { Button, Card, CardActionArea, CardContent, Grid, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
-import { useEffect } from 'react';
-import Slider from "react-slick"; 
-import { Link, useHistory } from "react-router-dom";
-import ChartSVG from '../ChartSVG/ChartSVG';
-import { Skeleton } from '@material-ui/lab';
+import { useEffect } from 'react'; 
+import { Link, useHistory } from "react-router-dom"; 
+import { Skeleton } from '@material-ui/lab'; 
+import { Suspense } from 'react';
+import More from '../More/More';
 
+const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG')); 
 
 function ListMovie() {
     const [listMovie, setListMovie] = useState(); 
-    const history = useHistory();
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        arrows:false,
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 5, 
-        responsive: [
-            {
-            breakpoint: 1824,
-            settings: {
-                slidesToShow: 7,
-                slidesToScroll: 7,
-            }
-            },
-            {
-            breakpoint: 1624,
-            settings: {
-                slidesToShow: 6,
-                slidesToScroll: 6, 
-            }
-            },
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4, 
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-          ]  
-    };
+    const history = useHistory(); 
     const handleClickCard = (data, dataHref) =>{
-        history.push("/details"+dataHref+"="+data);
+        history.push("/category/"+dataHref+"/"+data);
     }
     useEffect(() => {
         const getListMovie = async () => {
@@ -83,60 +37,67 @@ function ListMovie() {
                 alignItems="flex-start"
                 spacing={4}>
                     <Grid item md={12}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >The moment of relaxation</Typography></Grid>
-                    <Grid item md={6} className="box-highlights">  
-                        <img className="lazyload"
+                    <Grid item md={6} className="box-highlights">   
+                        <img className="lazyload" width="500px" height="350px"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[15].backdrop_path}
-                            data-src={"https://image.tmdb.org/t/p/w780/"+listMovie[15].backdrop_path} alt=""/>  
-                        <div className="content">
+                            data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[15].backdrop_path} alt=""/>  
+                        <Grid className="content"> 
                             <Typography variant="h4" onClick={() => handleClickCard(listMovie[15].id,"movie")}>{listMovie[15].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                         {listMovie[15].overview}
                             </Typography>
-                        </div> 
+                        </Grid> 
                     </Grid>
                     <Grid item md={6}  className="box-highlights box-highlights2">  
-                        <img className="lazyload"
+                        <img className="lazyload"  width="500px" height="350px"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[10].backdrop_path}
-                            data-src={"https://image.tmdb.org/t/p/w780/"+listMovie[10].backdrop_path} alt=""/>  
-                        <div className="content">
+                            data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[10].backdrop_path} alt=""/>  
+                        <Grid className="content">
                             <Typography variant="h4" onClick={() => handleClickCard(listMovie[10].id,"movie")}>{listMovie[10].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                         {listMovie[10].overview}
                             </Typography>
-                        </div> 
+                           
+                        </Grid> 
                     </Grid> 
                 </Grid>
                 : 
             <Skeleton variant="rect" width={210} height={118}/>
             }
-            <br/>
-            <Typography variant="h4" className="titleH4" color="primary">TOP Movie</Typography>
-            <hr/>
-            <br/>
-            <Grid>
-                <Slider {...settings}>
+            <br/> <br/>  <br/>
+            <Typography variant="h4" className="titleH4" color="primary">TOP Movie  <Button variant="text" style={{float: "right"}} color="primary" ><Link to="/movie">View all</Link></Button></Typography>
+             
+            <Grid container spacing={3}
+            justify="flex-start"
+            direction="row" className="overflowScroll"> 
+                 
                     {listMovie ? listMovie.map((data) =>
-                        <Card key={data.id}>
-                            <CardActionArea>
-                                <img className="lazyload"
-                                   src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
-                                   data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
+                        <Grid key={data.id} item sm={3}>
+                            <Card>
+                                <Suspense fallback={<div>Loading...</div>}> 
+                                <ChartSVG value={data.vote_average*10} />
+                                </Suspense>
+                                <More id={data.id}/>
+                                <img className="lazyload" width="300px" height="169px"
+                                src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
+                                data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
                                 <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id,"movie")}>
                                     {data.title}
                                 </Typography>
-                                <p>{data.release_date}</p> 
-                                <ChartSVG value={data.vote_average*10} />
+                                <Typography component="p" style={{fontSize: "14px"}}>
+                                {data.release_date}
+                                </Typography>  
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     {data.overview}
                                 </Typography>
-                                </CardContent>
-                            </CardActionArea> 
-                        </Card>
+                                </CardContent> 
+                            </Card>
+                        </Grid>
                     ): ''} 
-                </Slider>
+               
             </Grid>
-            <Button variant="text" color="primary" ><Link to="/movie">View all</Link></Button>
+            <br/>  
         </>
     );
 }

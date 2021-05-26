@@ -1,0 +1,27 @@
+.login{
+    position: relative; 
+    height: 100%;
+    .MuiGrid-root{
+        height: 100%;
+    }
+    .MuiTypography-h5{
+        color:#ffffff;
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    form{
+        width: 300px;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        padding: 0 20px;
+        background: #fff;
+        border-radius: 5px;
+        border-radius: 5px;
+        input{
+            padding: 3px;
+        }
+    }
+}
