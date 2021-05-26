@@ -23,6 +23,7 @@ import RateListTV from './Pages/RatedListTV/RatedListTV';
 import FavoriteListMovie from './Pages/FavoriteListMovie/FavoriteListMovie';
 import FavoriteListTV from './Pages/FavoriteListTV/FavoriteListTV';
 import ToTop from './Component/Top/ToTop';
+import DetailsTV from './Pages/DetailsTV/DetailsTV';
 
 const Nav = React.lazy(()=> import('./Component/Nav/Nav'));
 const Footer = React.lazy(()=> import('./Component/Footer/Footer')); 
@@ -75,7 +76,7 @@ const theme = createMuiTheme({
 function App() {    
   return (  
         <ThemeProvider theme={theme}>
-          <Router> 
+          <Router basename = {process.env.PUBLIC_URL}> 
             <Suspense fallback={<div>Loading...</div>}>
                 <Nav/> 
                 <Grid className="main">
@@ -86,7 +87,8 @@ function App() {
                     <Route path="/people" children={<CommingSoon/>}/> 
                     <Route path="/commingsoon" children={ <CommingSoon/>}/> 
                     <Route path="/search" children={ <SearchPage/>}/>   
-                    <Route path="/category/:category/:id" children={ <Details/>}/> 
+                    <Route path="/movie:id" children={ <Details/>}/> 
+                    <Route path="/tv:id" children={ <DetailsTV/>}/> 
                     <Route path="/profile" children={ <Profile/>}/> 
                     <Route path="/watchmovie" children={ <WatchListMovie/>}/>  
                     <Route path="/watchtv" children={ <WatchListTV/>}/>   

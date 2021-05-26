@@ -10,8 +10,8 @@ const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG'));
 function ListMovie() {
     const [listMovie, setListMovie] = useState();
     const history = useHistory(); 
-    const handleClickCard = (data, dataHref) =>{
-        history.push("/category/"+dataHref+"/"+data);
+    const handleClickCard = (data) =>{
+        history.push("/tv"+data);
     }
     useEffect(() => {
         const getListMovie = async () => {
@@ -40,7 +40,7 @@ function ListMovie() {
                             src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
                             <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id, "tv")}>
+                            <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id)}>
                                 {data.original_name}
                             </Typography>
                             <Typography component="p" >

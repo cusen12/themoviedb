@@ -12,8 +12,8 @@ const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG'));
 function ListMovie() {
     const [listMovie, setListMovie] = useState(); 
     const history = useHistory(); 
-    const handleClickCard = (data, dataHref) =>{
-        history.push("/category/"+dataHref+"/"+data);
+    const handleClickCard = (data) =>{
+        history.push("/movie"+data);
     }
     useEffect(() => {
         const getListMovie = async () => {
@@ -24,7 +24,7 @@ function ListMovie() {
 
         }
         getListMovie()
-    },[]) 
+    },[])  
     return (
         
         <>    
@@ -42,7 +42,7 @@ function ListMovie() {
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[15].backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[15].backdrop_path} alt=""/>  
                         <Grid className="content"> 
-                            <Typography variant="h4" onClick={() => handleClickCard(listMovie[15].id,"movie")}>{listMovie[15].title}</Typography>
+                            <Typography variant="h4" onClick={() => handleClickCard(listMovie[15].id)}>{listMovie[15].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                         {listMovie[15].overview}
                             </Typography>
@@ -53,7 +53,7 @@ function ListMovie() {
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[10].backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[10].backdrop_path} alt=""/>  
                         <Grid className="content">
-                            <Typography variant="h4" onClick={() => handleClickCard(listMovie[10].id,"movie")}>{listMovie[10].title}</Typography>
+                            <Typography variant="h4" onClick={() => handleClickCard(listMovie[10].id)}>{listMovie[10].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                         {listMovie[10].overview}
                             </Typography>
@@ -82,7 +82,7 @@ function ListMovie() {
                                 src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
                                 data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>
                                 <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id,"movie")}>
+                                <Typography gutterBottom variant="h5" component="h2" onClick={() => handleClickCard(data.id)}>
                                     {data.title}
                                 </Typography>
                                 <Typography component="p" style={{fontSize: "14px"}}>

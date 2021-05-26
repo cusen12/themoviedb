@@ -1,14 +1,20 @@
-import { Grid } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import { Button, Grid, Typography} from '@material-ui/core';
+import React, { useState } from 'react';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'; 
 
+import FormatListBulletedRoundedIcon from '@material-ui/icons/FormatListBulletedRounded';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded'; 
+import { Alert } from '@material-ui/lab';
  
 function More(props) {
-    const [hidden, setHidden]= useState(false)
-    const [visable, setVisable]= useState(true)
+    const [idRate, setIdRate] = useState();  
+    const [hidden, setHidden]= useState(true) 
+    const [alrHidden, setAlrHidden]= useState(true) 
+    const [textAler, setTextAler]= useState(true) 
     const style={
-        position:"absolute",
+        position:"absolute", 
         top:"5px",
         right:"25px", 
         width: "25px",
@@ -27,36 +33,95 @@ function More(props) {
         width: "25px",
         height: "25px", 
         
+    } 
+    const styleBox={
+        position: "absolute",
+        width: "200px",
+        top:"30px",
+        right:"-15px", 
+        padding:"8px",
+        zIndex:"10",
+        background:"#fff",
+        borderRadius:"5px"
+    } 
+    const styleAlr={
+        position: "fixed",
+        top: "150px",
+        right: "0",
+        zIndex:"1000"
     }
-    const checkLogin = useSelector(state => state.login.value.success) 
-    const handleClickMore = (dataId) =>{ 
-         console.log(dataId); 
-         setVisable(!visable)
+    const checkLogin = useSelector(state => state.login.value.success)  
+    const handleClickMore = (id) =>{ 
+        setHidden(!hidden); 
+        setIdRate(id) 
     }
-    useEffect(()=>{
-        if(checkLogin){
-            setHidden(false)
-        }
-        else{
-            setHidden(true)
-        }
-    },[checkLogin])
-   
+     
+    const handleAddfavorite = () => { 
+        setTextAler("Add to Favorite")
+        setAlrHidden(false)
+        setTimeout(()=>{
+            setAlrHidden(true)
+        },2000) 
+    }
+    const handleAddtoList = () => {  
+        setTextAler("Add to list")
+        setAlrHidden(false)
+        setTimeout(()=>{
+            setAlrHidden(true)
+        },2000) 
+    }
+    const handleAddtoWatchlist = () => {  
+        setTextAler("Add to watch list")
+        setAlrHidden(false)
+        setTimeout(()=>{
+            setAlrHidden(true)
+        },2000) 
+    }   
     return (
-        <Grid style={style} 
-        onClick={()=>handleClickMore(!visable)}>
-            <MoreHorizIcon color="primary"/> 
-                <Grid hidden={hidden} style={style2}> 
-                    <Grid  hidden={visable}> 
-                        login rồi
-                     </Grid>
-                    
+        <Grid style={style}>
+                <Grid style={styleAlr}  hidden={alrHidden}>
+                    <Alert severity="success"> 
+                      {textAler} thành công!!!! ID là {idRate}
+                    </Alert>
                 </Grid>
-                <Grid hidden={!hidden} style={style2}> 
-                    <Grid hidden={visable}> 
-                       chưa login
-                     </Grid>
+                <MoreHorizIcon color="primary"  
+                onClick={()=>handleClickMore(props.id)}
+                /> 
+                {checkLogin ? 
+                <Grid hidden={hidden} style={style2}>  
+                    <Grid container spacing={2} onMouseLeave={()=> setHidden(true)}
+                    justify="flex-start"
+                    alignItems="center" style={styleBox}>
+                        <Button variant="text" onClick={handleAddtoList} 
+                        startIcon={<FormatListBulletedRoundedIcon className="hov" color="primary" fontSize="small" titleAccess="Add to list"/>
+                        }> 
+                            Add to list
+                        </Button>
+                        <hr style={{display:"block",width:"100%"}}/>
+                        <Button variant="text" onClick={handleAddfavorite} 
+                        startIcon={<FavoriteRoundedIcon className="hov" color="primary" fontSize="small" titleAccess="Mark as favorite"/>}
+                        >
+                            Mark as favorite
+                        </Button> 
+                        <hr style={{display:"block",width:"100%"}}/>
+                        <Button variant="text" onClick={handleAddtoWatchlist} 
+                        startIcon={<BookmarkRoundedIcon className="hov" color="primary" titleAccess="Add to your watchlist"/>}
+                         >
+                            Add to your watchlist
+                        </Button>
+                        
+                    </Grid>
+                </Grid> :
+                <Grid hidden={hidden} style={style2}>  
+                      <Grid container spacing={2} onMouseLeave={()=> setHidden(true)}
+                        justify="flex-start"
+                        alignItems="center" style={styleBox}>
+                            <Typography variant="h5" onClick={handleAddtoList}>
+                                Bạn cần đăng nhập để thực hiện chức năng này 
+                            </Typography> 
+                    </Grid>
                 </Grid> 
+                } 
         </Grid>
     );
 }
