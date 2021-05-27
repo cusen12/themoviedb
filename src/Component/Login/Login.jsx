@@ -25,7 +25,7 @@ function Login() {
         return requesJson.request_token
 
     }
-    
+
     const style={
         width:"200px",
         padding:"10px",
@@ -87,6 +87,7 @@ function Login() {
                 setCheckLogin("");
                 setBool(true) 
             }
+            
         })
         .catch((error) => {
             console.log('Error:', error); 
@@ -118,7 +119,8 @@ function Login() {
         else{
             console.log("chưa đăng nhập")
         }
-    },[sectionId,checkSection,dispatch])  
+    },[sectionId,checkSection,dispatch])
+
     return (
         <Grid container item className="login" md={12}>
             {loginData !== undefined ? 
@@ -143,14 +145,10 @@ function Login() {
                                 <Typography><Link to="/profile" onClick={()=> setPopup(true) }>View Page</Link></Typography>  
                                 <hr style={{display:"block",width:"100%",margin:"5px 0"}}/>  
                                 <Typography><Link to="/watchmovie" onClick={()=> setPopup(true) }>Watch List Movie</Link></Typography>   
-                                <Typography><Link to="/watchtv" onClick={()=> setPopup(true) }>Watch List TV</Link></Typography> 
-                                <Typography><Link to="/ratemovie" onClick={()=> setPopup(true) }>Rated List Movie</Link></Typography>
-                                <Typography><Link to="/ratetv" onClick={()=> setPopup(true) }>Rated List TV</Link></Typography>  
+                                <Typography><Link to="/watchtv" onClick={()=> setPopup(true) }>Watch List TV</Link></Typography>   
                                 <Typography><Link to="/favoritemovie" onClick={()=> setPopup(true) }>Favorite List Movie</Link></Typography>  
                                 <Typography><Link to="/favoriteTV" onClick={()=> setPopup(true) }>Favorite List TV</Link></Typography>    
-                                <hr style={{display:"block",width:"100%",margin:"5px 0"}}/>  
-                                <Typography><Link to="/commingsoon" onClick={()=> setPopup(true) }>Create list</Link></Typography> 
-                                <hr style={{display:"block",width:"100%",margin:"5px 0"}}/>  
+                                <hr style={{display:"block",width:"100%",margin:"5px 0"}}/>    
                                 <Button variant="contained" fullWidth color="primary" onClick={handleLogout} startIcon={<ExitToAppIcon color="primary" style={{fontSize:"16"}} />}><Typography color="secondary">Logout</Typography></Button> 
                             </Paper>
                        

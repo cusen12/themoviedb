@@ -35,6 +35,7 @@ function RateListMovie() {
         setRateList(rateList.concat(respondJson.results))
       
     }  
+    
     return (
         <Container>
             <Typography variant="h3">RATED LIST MOVIE</Typography>

@@ -7,6 +7,7 @@ export const guestSessionSlice = createSlice({
   reducers: {
     guestSession: (state, actions) => { 
         state.value = actions.payload; 
+        console.log("vào rồi")
     }   
   },
 })

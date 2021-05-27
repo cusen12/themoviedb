@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom';
 
 import './Details.scss';  
 
-import ChartSVG from '../../Component/ChartSVG/ChartSVG';
-import FormatListBulletedRoundedIcon from '@material-ui/icons/FormatListBulletedRounded';
+import ChartSVG from '../../Component/ChartSVG/ChartSVG'; 
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
 import GradeRoundedIcon from '@material-ui/icons/GradeRounded'; 
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
-import { Rating } from '@material-ui/lab';
+import { Alert, Rating } from '@material-ui/lab';
 import Slider from 'react-slick';
 
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -21,6 +20,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkIcon from '@material-ui/icons/Link';
 
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
+import { useSelector } from 'react-redux';
 
 
 
@@ -123,15 +123,84 @@ function Details() {
     const handleClickRate = () => {  
         sethidden(!hidden);
     }
-    const handleAddfavorite = () => { 
-        console.log("Thực hiện add to Favorite")
-    }
-    const handleAddtoList = () => { 
-        console.log("Thực hiện add to list")
-    }
-    const handleAddtoWatchlist = () => { 
-        console.log("Thực hiện add to watch list")
+    const handleAddfavorite = () => {   
+        if(checkLogin === true){
+            const addtoFavorite = async () =>{ 
+
+                const dataToken = {
+                    "media_type": "movie",
+                    "media_id": id,
+                    "favorite": true
+                  } 
+                fetch(`https://api.themoviedb.org/3/account/${idUser}/favorite?api_key=cd58c7bd131cba3c391d62c5fda2ae53&session_id=${sectionId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToken),
+                })
+                .then(response => response.json())
+                .then((data) => {
+                    if(data.success){
+                        setAlrHidden(false)
+                        setTimeout(()=>{
+                            setAlrHidden(true)
+                        },2000) 
+                    }  
+                })
+                .catch((error) => {
+                    console.log('Error:', error); 
+                });  
+            }   
+            addtoFavorite()
+        }
+        else{
+            console.log("chưa đăng nhập")
+        }
+    }   
+    const [alrHidden, setAlrHidden]= useState(true)  
+   
+       
+    const sectionData = useSelector(state=>state.section.value);   
+    const sectionId = sectionData.session_id
+    const checkLogin = useSelector(state => state.login.value.success)
+    const idUser = useSelector(state=>state.getIDLogin.value)
+    const handleAddtoWatchlist = () => {    
+        const addtoWatchList = async () =>{ 
+
+            const dataToken = {
+                "media_type": "movie",
+                "media_id": id,
+                "watchlist": true
+                } 
+            fetch(`https://api.themoviedb.org/3/account/${idUser}/watchlist?api_key=cd58c7bd131cba3c391d62c5fda2ae53&session_id=${sectionId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToken),
+            })
+            .then(response => response.json())
+            .then((data) => {
+                if(data.success){
+                    setAlrHidden(false)
+                    setTimeout(()=>{
+                        setAlrHidden(true)
+                    },2000) 
+                }  
+            })
+            .catch((error) => {
+                console.log('Error:', error); 
+            });  
+        }   
+        addtoWatchList()
     } 
+    const styleAlr={
+        position: "fixed",
+        top: "150px",
+        right: "0",
+        zIndex:"1000"
+    }
     const handlesetRate = (event,newValue) =>{  
         setRate(newValue)  
         alert("Thanks to vote!!");
@@ -139,7 +208,11 @@ function Details() {
     }      
     return ( 
         <Container className={"details-movie"}> 
-            
+        <Grid style={styleAlr}  hidden={alrHidden}>
+            <Alert severity="success"> 
+                Success!!!!!
+            </Alert>
+        </Grid>
         {
             detailsData !== undefined ?
             <Grid container spacing={3}
@@ -158,7 +231,6 @@ function Details() {
                         <Grid container spacing={2}
                         justify="flex-start"
                         alignItems="center" style={{padding:"8px"}}>
-                            <FormatListBulletedRoundedIcon className="hov" color="primary" onClick={handleAddtoList} titleAccess="Add to list"/>
                             <FavoriteRoundedIcon className="hov" color="primary" onClick={handleAddfavorite} titleAccess="Mark as favorite"/>
                             <BookmarkRoundedIcon className="hov" color="primary" onClick={handleAddtoWatchlist} titleAccess="Add to your watchlist"/>
                             <GradeRoundedIcon className="hov" color="primary" onClick={handleClickRate} titleAccess="Rate it"/> 
