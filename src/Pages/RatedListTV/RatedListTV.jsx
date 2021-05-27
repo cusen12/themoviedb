@@ -44,6 +44,7 @@ function RateListMovie() {
                 {rateList !== undefined ? 
                     rateList.map((data)=>
                         <ItemLists key={data.id}
+                        youRate={data.rating}
                         category={"tv"}
                         id={data.id} 
                         images={data.poster_path} 

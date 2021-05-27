@@ -57,7 +57,7 @@ function Nav() {
                                    <Grid item md={7}>
                                     <Language/> 
                                         <Grid className="search">   
-                                            <input  
+                                            <input placeholder="Search..."  
                                             onChange={handleChangeInput} />  
                                             <Button onClick={handleClickSearch}><Search fontSize="large" /></Button>
                                         </Grid>  

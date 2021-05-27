@@ -74,10 +74,10 @@ function ListMovie() {
                     {listMovie ? listMovie.map((data) =>
                         <Grid key={data.id} item sm={3}>
                             <Card>
-                                <Suspense fallback={<div>Loading...</div>}> 
+                                <Suspense fallback={<div>Loading...</div>}>
                                 <ChartSVG value={data.vote_average*10} />
                                 </Suspense>
-                                <More id={data.id}/>
+                                <More category="movie" id={data.id}/>
                                 <img className="lazyload" width="300px" height="169px"
                                 src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
                                 data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>

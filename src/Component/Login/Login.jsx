@@ -2,6 +2,7 @@ import { Button, Grid, Paper, TextField, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login,logout } from './loginSlice';
+import { getIDLogin } from './getIDLoginSlice';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import { section } from '../Section/SectionSlice'; 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -24,6 +25,7 @@ function Login() {
         return requesJson.request_token
 
     }
+    
     const style={
         width:"200px",
         padding:"10px",
@@ -31,6 +33,7 @@ function Login() {
         top:"60px", 
         zIndex:"10" 
     }
+
     useEffect(() =>{
         if(bool === true){
             const createSection = async ()=>{  
@@ -108,13 +111,14 @@ function Login() {
                 const respondUser = await fetch(linkUser);
                 const respondUserJson = await respondUser.json();
                 setUserInfo(respondUserJson) 
+                dispatch(getIDLogin(respondUserJson.id))
             }   
             getUserName()
         }
         else{
             console.log("chưa đăng nhập")
         }
-    },[sectionId,checkSection])  
+    },[sectionId,checkSection,dispatch])  
     return (
         <Grid container item className="login" md={12}>
             {loginData !== undefined ? 

@@ -43,6 +43,7 @@ function WatchListTV() {
                 {watchList !== undefined ? 
                     watchList.map((data)=>
                         <ItemLists key={data.id}
+                        listname="watchlist"
                         category={"tv"}
                         id={data.id} 
                         images={data.poster_path} 

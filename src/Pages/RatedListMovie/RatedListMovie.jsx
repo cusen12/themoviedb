@@ -34,7 +34,7 @@ function RateListMovie() {
         const respondJson = await respond.json();
         setRateList(rateList.concat(respondJson.results))
       
-    } 
+    }  
     return (
         <Container>
             <Typography variant="h3">RATED LIST MOVIE</Typography>
@@ -43,7 +43,8 @@ function RateListMovie() {
             <Grid item md={12}>
                 {rateList !== undefined ? 
                     rateList.map((data)=>
-                        <ItemLists key={data.id}
+                        <ItemLists key={data.id} 
+                        youRate={data.rating}
                         category={"movie"}
                         id={data.id} 
                         images={data.poster_path} 
