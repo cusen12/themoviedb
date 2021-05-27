@@ -81,6 +81,7 @@ function ItemLists(props) {
     }
     const styleAlr={
         position: "fixed",
+        width:"200px",
         top: "150px",
         right: "0",
         zIndex:"1000"
