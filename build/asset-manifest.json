@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "./static/css/main.abd8bc5e.chunk.css",
+    "main.css": "./static/css/main.93f81b13.chunk.css",
     "main.js": "./static/js/main.0f5dc464.chunk.js",
     "main.js.map": "./static/js/main.0f5dc464.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.ce491f0f.js",
@@ -32,7 +32,7 @@
     "static/css/3.e932e7b4.chunk.css.map": "./static/css/3.e932e7b4.chunk.css.map",
     "static/css/4.217572e7.chunk.css.map": "./static/css/4.217572e7.chunk.css.map",
     "static/css/5.799af223.chunk.css.map": "./static/css/5.799af223.chunk.css.map",
-    "static/css/main.abd8bc5e.chunk.css.map": "./static/css/main.abd8bc5e.chunk.css.map",
+    "static/css/main.93f81b13.chunk.css.map": "./static/css/main.93f81b13.chunk.css.map",
     "static/js/2.000e5259.chunk.js.LICENSE.txt": "./static/js/2.000e5259.chunk.js.LICENSE.txt",
     "static/media/App.css": "./static/media/FaktPro-Medium.080659e2.ttf",
     "static/media/DetailsTV.scss": "./static/media/lg.adb7aeef.svg"
@@ -40,7 +40,7 @@
   "entrypoints": [
     "static/js/runtime-main.ce491f0f.js",
     "static/js/2.000e5259.chunk.js",
-    "static/css/main.abd8bc5e.chunk.css",
+    "static/css/main.93f81b13.chunk.css",
     "static/js/main.0f5dc464.chunk.js"
   ]
 }
