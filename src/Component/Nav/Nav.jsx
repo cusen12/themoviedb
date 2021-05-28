@@ -11,6 +11,7 @@ import { Suspense } from 'react';
 import AppBar from '@material-ui/core/AppBar'; 
 import { useHistory } from 'react-router';
 import { Search } from '@material-ui/icons';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Language = React.lazy(()=> import('../../Component/Language/Language')); 
 const Login = React.lazy(()=> import('../Login/Login')); 
@@ -19,6 +20,7 @@ function Nav() {
     const langData = useSelector(state=>state.language.value.menu); 
     const history = useHistory()
     const [value, setValue] = useState(); 
+    const [hideMenu, setHideMenu] = useState(false);
     const handleChangeInput = (e) =>{
         setValue(e.target.value)
     }
@@ -31,14 +33,17 @@ function Nav() {
             <Suspense fallback={<div>Loading...</div>}>  
                 
                     <AppBar position="sticky" className="nav"> 
+                        <Button className="menu-icon" variant="text" onClick={()=> setHideMenu(!hideMenu)} >
+                            <MenuIcon color="secondary" fontSize="large"  />
+                        </Button>
                         <Toolbar>
                         <Container style={{padding:"0"}}> 
                             <Grid container
                             justify="space-between" 
                             alignContent="center"
                             spacing={2}> 
-                                <Grid item md={7} style={{padding:"8px 0"}}> 
-                                    <ul> 
+                                <Grid item md={7} style={{padding:"8px 0"}}>  
+                                    <ul data-hide={hideMenu}> 
                                         <li>
                                             <Link to="/"><Button variant="text" size="large" startIcon={<HomeOutlinedIcon/>}>{langData.home}</Button> </Link>
                                         </li>
@@ -53,8 +58,8 @@ function Nav() {
                                         </li>   
                                     </ul>
                                 </Grid>
-                                <Grid item md={5} container justify="flex-end" alignItems="center" spacing={2}>
-                                   <Grid item md={7}>
+                                <Grid item md={5}  container justify="flex-end" alignItems="center" wrap="nowrap" spacing={2}> 
+                                   <Grid item > 
                                     <Language/> 
                                         <Grid className="search">   
                                             <input placeholder="Search..."  

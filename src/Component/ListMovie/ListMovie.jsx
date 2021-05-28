@@ -36,7 +36,7 @@ function ListMovie() {
                 justify="space-between"
                 alignItems="flex-start"
                 spacing={4}>
-                    <Grid item md={12}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >The moment of relaxation</Typography></Grid>
+                    <Grid item md={12}  style={{padding:"30px", width:"100%"}}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >The moment of review</Typography></Grid>
                     <Grid item md={6} className="box-highlights">   
                         <img className="lazyload" width="500px" height="350px"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[15].backdrop_path}
@@ -48,7 +48,7 @@ function ListMovie() {
                             </Typography>
                         </Grid> 
                     </Grid>
-                    <Grid item md={6}  className="box-highlights box-highlights2">  
+                    <Grid item md={6} className="box-highlights box-highlights2">  
                         <img className="lazyload"  width="500px" height="350px"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[10].backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[10].backdrop_path} alt=""/>  
@@ -72,7 +72,7 @@ function ListMovie() {
             direction="row" className="overflowScroll"> 
                  
                     {listMovie ? listMovie.map((data) =>
-                        <Grid key={data.id} item sm={3}>
+                        <Grid key={data.id} item md={3}>
                             <Card>
                                 <Suspense fallback={<div>Loading...</div>}>
                                 <ChartSVG value={data.vote_average*10} />

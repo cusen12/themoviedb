@@ -52,7 +52,28 @@ function Details() {
         centerPadding: "50px",
         slidesToShow: 8,
         speed: 500,  
+        arrows:false,
         slidesToScroll: 1,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 6, 
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2, 
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 2, 
+              }
+            }
+          ]
     };
     const settings2 = {   
         className: "center", 
@@ -60,7 +81,28 @@ function Details() {
         centerPadding: "50px",
         slidesToShow: 6,
         speed: 500,  
+        arrows:false,
         slidesToScroll: 1,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 6, 
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2, 
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 2, 
+              }
+            }
+          ]
     };  
     useEffect(()=>{
         const getDetails = async () =>{
@@ -393,8 +435,9 @@ function Details() {
             <br/>
             <Typography variant="h4">Recommendations</Typography>   
             <br/>
+            {recommentData !== undefined ? 
             <Slider {...settings2}>
-                {recommentData !== undefined ? 
+                {
                     recommentData.results?.map((data) =>
                     data.backdrop_path !== null ?
                     <Card className="reconmenCard" key={data.id}>  
@@ -408,9 +451,9 @@ function Details() {
                             </Typography> 
                             </CardContent> 
                     </Card> : ""
-                    )  : ""
+                    )
                 }
-            </Slider>
+            </Slider> : ""}
             
         </Container> 
     );

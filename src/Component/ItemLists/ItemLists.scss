@@ -1,0 +1,14 @@
+@import '../../Assets/scss/variable.scss';
+.list-items{
+    flex-wrap: wrap !important;
+    .MuiGrid-item{
+        width: 100%;
+        h3,p{
+            padding:0 15px;
+        }
+    }
+    img{
+        width: 100%;
+        object-fit: cover;
+    }
+}

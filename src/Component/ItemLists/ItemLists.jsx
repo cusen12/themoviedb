@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux'; 
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { Alert } from '@material-ui/lab';
+import "./ItemLists.scss"
 
 function ItemLists(props) { 
     
@@ -93,8 +94,8 @@ function ItemLists(props) {
                     Success!!!!!
                 </Alert>
             </Grid>
-            <Grid container justify="flex-start" alignItems="center" spacing={3} wrap="nowrap">
-                <Grid item >
+            <Grid container justify="flex-start" className="list-items" alignItems="center"  spacing={3} wrap="nowrap">
+                <Grid item>
                     <img className="lazyload" width="150px" height="200px"
                         src={"https://www.themoviedb.org/t/p/w45_and_h45_bestv2/"+props.images}
                         data-src={"https://www.themoviedb.org/t/p/w150_and_h225_bestv2/"+props.images} alt={props.title}/> 
@@ -102,7 +103,7 @@ function ItemLists(props) {
                 <Grid item>
                     <Typography variant="h3" onClick={()=> handleClick(props.id,props.category)}>{props.title}</Typography>
                     {props.youRate? <Typography variant="h5">YouRate: {props.youRate}</Typography> : ""}
-                    <Typography variant="caption">{props.destription}</Typography>
+                    <Typography variant="body1">{props.destription}</Typography>
                     <br/>
                     <Button onClick={()=>handleAddtoRemove(props.category,props.listname,props.id)}>  
                         <DeleteOutlineIcon className="hov" color="primary"  style={{color:"#b70707"}} titleAccess="Remove"/>Remove

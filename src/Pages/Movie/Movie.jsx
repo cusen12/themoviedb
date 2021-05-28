@@ -51,28 +51,28 @@ function ListMovie() {
             <Container className="movie">
                  <Grid container className="category-title"
                     justify="space-between" 
-                    alignContent="flex-start"
-                    spacing={2}>
-                    <Grid item md={3} onClick={handleClickbutton} datatype="popular" alt="Popular">
-                        <img className="lazyload" data-sizes="auto" 
+                    alignContent="flex-start" 
+                    spacing={2}  style={{margin:"15px 0 0 0"}}>
+                    <Grid item xs={6} md={3} onClick={handleClickbutton} datatype="popular" alt="Popular">
+                        <img className="lazyload" data-sizes="auto" style={{margin:"5px 0 0 0"}} 
                         src="https://image.tmdb.org/t/p/w45//loRmRzQXZeqG78TqZuyvSlEQfZb.jpg" 
                         data-src="https://image.tmdb.org/t/p/w300//loRmRzQXZeqG78TqZuyvSlEQfZb.jpg" alt="Popular"/>
                         <Typography variant="h4">Popular</Typography>
                     </Grid>
-                    <Grid item md={3} onClick={handleClickbutton} datatype="top_rated" alt="Top Rated">
-                        <img className="lazyload" data-sizes="auto" 
+                    <Grid item xs={6} md={3} onClick={handleClickbutton} datatype="top_rated" alt="Top Rated">
+                        <img className="lazyload" data-sizes="auto" style={{margin:"5px 0 0 0"}} 
                         src="https://image.tmdb.org/t/p/w45//inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg"
                         data-src="https://image.tmdb.org/t/p/w300//inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg" alt="Top Rated"/>
                         <Typography variant="h4">Top Rated</Typography>
                     </Grid>
-                    <Grid item md={3} onClick={handleClickbutton} datatype="now_playing" alt="Now Playing" >
-                        <img className="lazyload" data-sizes="auto" 
+                    <Grid item xs={6} md={3} onClick={handleClickbutton} datatype="now_playing" alt="Now Playing" >
+                        <img className="lazyload" data-sizes="auto" style={{margin:"5px 0 0 0"}} 
                         src="https://image.tmdb.org/t/p/w45//jtAI6OJIWLWiRItNSZoWjrsUtmi.jpg"
                         data-src="https://image.tmdb.org/t/p/w300//jtAI6OJIWLWiRItNSZoWjrsUtmi.jpg"  alt="Now Playing"/>
                         <Typography variant="h4">Now Playing</Typography>
                     </Grid>
-                    <Grid item md={3} onClick={handleClickbutton} datatype="upcoming" alt="Upcoming">
-                        <img className="lazyload" data-sizes="auto" 
+                    <Grid item xs={6} md={3} onClick={handleClickbutton} datatype="upcoming" alt="Upcoming">
+                        <img className="lazyload" data-sizes="auto" style={{margin:"5px 0 0 0"}} 
                         src="https://image.tmdb.org/t/p/w45//9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
                         data-src="https://image.tmdb.org/t/p/w300//9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg" alt="Upcoming"/>
                         <Typography variant="h4">Upcoming</Typography>
@@ -86,7 +86,7 @@ function ListMovie() {
                 alignContent="flex-start"
                 spacing={2}> 
                     {listMovie ? listMovie.map((data) =>
-                        <Grid item sm={3} key={data.id}>
+                        <Grid item md={3} xs={12} key={data.id}>
                             <Card>
                                 <CardActionArea> 
                                     <More category="movie" id={data.id}/>
