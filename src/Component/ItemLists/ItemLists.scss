@@ -1,6 +1,11 @@
 @import '../../Assets/scss/variable.scss';
-@include respond-to(600){
-    .list-items{
+
+.list-items{
+        img{
+            width: auto;
+            object-fit: cover;
+        }
+        @include respond-to(600){
         flex-wrap: wrap !important;
         .MuiGrid-item{
             width: 100%;
