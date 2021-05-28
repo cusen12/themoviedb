@@ -19,7 +19,14 @@
         margin: 0 -15px;
         .slick-slide {
             padding: 0 15px;
+            @include respond-to(1024){
+                padding: 0 5px;
+                .MuiTypography-h5{
+                    height: 35px !important;
+                }
+            }
         }
+         
     }  
     .MuiButton-text{
         float: right;  
@@ -28,10 +35,12 @@
         width: 100%; 
     }
     .MuiGrid-item,h1{
+        margin: 15px 0;
         font-size: 35px;
         padding-bottom: 0 !important;
         padding-top: 0 !important;
         position: relative;
+        line-height: 1;
     } 
     
     .MuiPaper-rounded{
@@ -59,7 +68,7 @@
     }
     h4{
         position: absolute;
-        top: 50%;
+        top: 55%;
         left: 50%;
         text-align: center;
         color: #ffffff;
@@ -79,8 +88,10 @@
         border-radius: 5px;
         filter: grayscale(1); 
         transition: all 0.3s;
+        height: auto;
        
     }
+   
     .content{
         padding:30px;
         position: absolute;
@@ -100,12 +111,34 @@
             font-size: 17px;
             color:#ffffff;
             height: auto;
+           
         }
 
+    }
+    @include respond-to(1024){
+        margin: 0 0 10px 0 !important;
+        .content{ 
+            background: transparent;
+            height: auto;
+            h4{
+                font-size: 18px; 
+            }
+            p{ 
+                font-size: 14px; 
+            }
+    
+        }
     }
 }  
 .overflowScroll{
     flex-wrap: unset !important;
+    img{
+        width: auto;
+    }
+    @include respond-to(1024){
+        overflow-x: scroll;
+        
+    }
 }
 .MuiCard-root{
     .MuiCardContent-root {

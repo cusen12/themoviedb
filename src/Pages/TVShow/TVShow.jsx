@@ -50,27 +50,27 @@ function TVShow() {
                  <Grid container className="category-title"
                     justify="space-between" 
                     alignContent="flex-start"
-                    spacing={2}>
-                    <Grid item md={3} onClick={handleClickbutton} datatype="popular" alt="Popular">
-                        <img className="lazyload"
+                    spacing={2} style={{margin:"15px 0 0 0"}}>
+                    <Grid item xs={6} md={3} onClick={handleClickbutton} datatype="popular" alt="Popular">
+                        <img className="lazyload" style={{margin:"5px 0 0 0"}}
                         src="https://image.tmdb.org/t/p/w45//b0WmHGc8LHTdGCVzxRb3IBMur57.jpg" 
                         data-src="https://image.tmdb.org/t/p/w300//b0WmHGc8LHTdGCVzxRb3IBMur57.jpg" alt="Popular"/>
                         <Typography variant="h4">Popular</Typography>
                     </Grid>
-                    <Grid item md={3} onClick={handleClickbutton} datatype="top_rated" alt="Top Rated">
-                        <img className="lazyload"
+                    <Grid item xs={6} md={3} onClick={handleClickbutton} datatype="top_rated" alt="Top Rated">
+                        <img className="lazyload" style={{margin:"5px 0 0 0"}}
                         src="https://image.tmdb.org/t/p/w45//z59kJfcElR9eHO9rJbWp4qWMuee.jpg" 
                         data-src="https://image.tmdb.org/t/p/w300//z59kJfcElR9eHO9rJbWp4qWMuee.jpg" alt="Top Rated"/>
                         <Typography variant="h4">Top Rated</Typography>
                     </Grid>
-                    <Grid item md={3} onClick={handleClickbutton} datatype="on_the_air" alt="On The Air" >
-                        <img className="lazyload"
+                    <Grid item xs={6} md={3} onClick={handleClickbutton} datatype="on_the_air" alt="On The Air" >
+                        <img className="lazyload" style={{margin:"5px 0 0 0"}}
                         src="https://image.tmdb.org/t/p/w45//uAjMQlbPkVHmUahhCouANlHSDW2.jpg" 
                         data-src="https://image.tmdb.org/t/p/w300//uAjMQlbPkVHmUahhCouANlHSDW2.jpg"  alt="On The Air"/>
                         <Typography variant="h4">On The Air</Typography>
                     </Grid>
-                    <Grid item md={3} onClick={handleClickbutton} datatype="airing_today" alt="Airing Today">
-                        <img className="lazyload"
+                    <Grid item xs={6} md={3} onClick={handleClickbutton} datatype="airing_today" alt="Airing Today">
+                        <img className="lazyload" style={{margin:"5px 0 0 0"}}
                         src="https://image.tmdb.org/t/p/w45//5VltHQJXdmbSD6gEJw3R8R1Kbmc.jpg" 
                         data-src="https://image.tmdb.org/t/p/w300//5VltHQJXdmbSD6gEJw3R8R1Kbmc.jpg" alt="Airing Today"/>
                         <Typography variant="h4">Airing Today</Typography>
@@ -84,10 +84,10 @@ function TVShow() {
                 alignContent="flex-start"
                 spacing={2}> 
                     {listMovie ? listMovie.map((data) =>
-                         <Grid item sm={3} key={data.id}>
+                         <Grid item sm={3} xs={12} key={data.id}>
                             <Card>
                                 <CardActionArea>
-                                    <More id={data.id}/>
+                                    <More category="tv" id={data.id}/>
                                     <img className="lazyload" style={{maxHeight:"169px"}}  
                                     data-src={data.backdrop_path ? "https://image.tmdb.org/t/p/w300/"+data.backdrop_path : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"}
                                     src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"

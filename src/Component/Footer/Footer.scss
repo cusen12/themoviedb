@@ -1,3 +1,4 @@
+@import '../../Assets/scss/variable.scss';
 .footer{ 
     background: #4d4646;
     position: relative;
@@ -23,6 +24,9 @@
             &:hover{
                 text-decoration: underline;
             }
+        }
+        @include respond-to(600){
+            width: 50%;
         }
     }
 }

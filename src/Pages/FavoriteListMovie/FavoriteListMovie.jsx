@@ -44,6 +44,7 @@ function FavoriteListMovie() {
                 {FavoriteList !== undefined ? 
                     FavoriteList.map((data)=>
                         <ItemLists key={data.id}
+                        listname="favorite"
                         category={"movie"}
                         id={data.id} 
                         images={data.poster_path} 

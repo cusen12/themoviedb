@@ -35,7 +35,7 @@ function ListMovie() {
                             <Suspense fallback={<div>Loading...</div>}> 
                                 <ChartSVG value={data.vote_average*10}/>
                             </Suspense>
-                            <More id={data.id}/>
+                            <More category="tv" id={data.id}/>
                             <img className="lazyload" width="300px" height="169px"
                             src={"https://image.tmdb.org/t/p/w45/"+data.backdrop_path}
                             data-src={"https://image.tmdb.org/t/p/w300/"+data.backdrop_path} alt={data.original_name}/>

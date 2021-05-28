@@ -1,12 +1,20 @@
+@import '../../Assets/scss/variable.scss';
+ 
 .movie,.searchPage{
     .MuiTypography-body2{
         height: 60px;
         overflow: hidden;
-    }
+    } 
     .MuiTypography-h5 {
         height: 35px;
         display: flex;
         align-items: center;
+        @include respond-to(768){
+            align-items: flex-start;
+            overflow: hidden;
+            margin-top: 10px;
+            line-height: 2;
+        }
     }
 }
 .pagination{

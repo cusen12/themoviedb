@@ -10,6 +10,7 @@
 }
 img{
     display: flex;
+    width: 100%;
 }
 li{
   list-style: none;
@@ -89,8 +90,7 @@ body{
 {
     position: relative;
     top: 0;
-    left: 0;
-
+    left: 0; 
     display: block; 
 }
 .slick-track:before,

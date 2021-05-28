@@ -110,10 +110,7 @@ function SearchPage() {
     } 
     const handleClickDetailPeople = (id)=>{
         console.log(id)
-    }  
-    console.log("peopleData", peopleData)
-    console.log("tvData", tvData)
-    console.log("movieData", movieData)
+    }   
     return (
         <Container>
             <Grid container  className="searchPage" item md={12}
@@ -125,19 +122,19 @@ function SearchPage() {
                         justify="flex-start" 
                         alignContent="flex-start"
                         spacing={2}>
-                        <Grid item md={2} onClick={handleClickMovie} datatype="movie" alt="Movie">
+                        <Grid item xs={6} md={2} onClick={handleClickMovie} datatype="movie" alt="Movie">
                             <img className="lazyload" data-sizes="auto" 
                             data-src="https://image.tmdb.org/t/p/w45//loRmRzQXZeqG78TqZuyvSlEQfZb.jpg" 
                             src="https://image.tmdb.org/t/p/w300//rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg" alt="movie"/>
                             <Typography variant="h4">Movie<i>{movieData !== undefined ? "("+movieData.total_results+")" : ""}</i></Typography>
                         </Grid>
-                        <Grid item md={2} onClick={handleClickTv} datatype="tv-show" alt="TV Show">
+                        <Grid item xs={6} md={2} onClick={handleClickTv} datatype="tv-show" alt="TV Show">
                             <img className="lazyload" data-sizes="auto" 
                             data-src="https://image.tmdb.org/t/p/w45//inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg"
                             src="https://image.tmdb.org/t/p/w300//6UH52Fmau8RPsMAbQbjwN3wJSCj.jpg" alt="TV Show"/>
                             <Typography variant="h4">TV Show<i>{tvData !== undefined ? "("+tvData.total_results+")" : ""}</i></Typography>
                         </Grid>
-                        <Grid item md={2} onClick={handleClickPeople} datatype="people" alt="People" >
+                        <Grid item xs={6} md={2} onClick={handleClickPeople} datatype="people" alt="People" >
                             <img className="lazyload" data-sizes="auto" 
                             data-src="https://image.tmdb.org/t/p/w45//jtAI6OJIWLWiRItNSZoWjrsUtmi.jpg"
                             src="https://image.tmdb.org/t/p/w300//ilPBHd3r3ahlipNQtjr4E3G04jJ.jpg" alt="People"/>

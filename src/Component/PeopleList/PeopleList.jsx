@@ -37,13 +37,37 @@ function ListMovie() {
         centerPadding: "20px",
         slidesToShow: 3,
         speed: 500, 
-        slidesPerRow: 2
+        slidesPerRow: 2,
+        
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,  
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: { 
+                slidesToShow: 2,
+                slidesPerRow: 1  
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: { 
+                slidesToShow: 2, 
+                slidesPerRow: 1
+              }
+            }
+          ]
       };
     return (
         <>    
             <Typography variant="h4" className="titleH4" color="primary">Popular People <Button variant="text" style={{float:"right"}}><Link to="/people">View all</Link></Button></Typography>  
-            <Slider {...settings}>
-                {listMovie ? listMovie.map((data) => 
+            {listMovie !== undefined ? 
+                <Slider {...settings}>
+                {listMovie.map((data) => 
                         data.profile_path !== null ?
                         <Card key={data.id} className="peopleCard"> 
                                 <img className="lazyload" style={style} width="200px" height="150px"
@@ -66,8 +90,10 @@ function ListMovie() {
                                 </Typography> 
                                 </CardContent> 
                         </Card> :""
-                ): ''}  
+                )}  
             </Slider> 
+            :""}
+            
            
         </>
     );

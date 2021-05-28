@@ -34,7 +34,7 @@ function FavoriteListMovie() {
         const respondJson = await respond.json();
         setFavoriteList(FavoriteList.concat(respondJson.results))
       
-    } 
+    }  
     return (
         <Container>
             <Typography variant="h3">FAVORITE LIST TV</Typography>
@@ -43,7 +43,8 @@ function FavoriteListMovie() {
             <Grid item md={12}>
                 {FavoriteList !== undefined ? 
                     FavoriteList.map((data)=>
-                        <ItemLists key={data.id}
+                        <ItemLists key={data.id} 
+                        listname="favorite"
                         category={"tv"}
                         id={data.id} 
                         images={data.poster_path} 
