@@ -132,11 +132,12 @@
 }  
 .overflowScroll{
     flex-wrap: unset !important;
+    img{
+        width: auto;
+    }
     @include respond-to(1024){
         overflow-x: scroll;
-        img{
-            width: auto;
-        }
+        
     }
 }
 .MuiCard-root{
