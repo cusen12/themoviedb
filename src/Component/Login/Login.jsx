@@ -102,8 +102,8 @@ function Login() {
     } 
     
     const sectionData = useSelector(state=>state.section.value);  
-    const checkSection = sectionData.success;
-    const sectionId = sectionData.session_id
+    const checkSection = sectionData?.success;
+    const sectionId = sectionData?.session_id
    
     useEffect(()=>{ 
         if(checkSection === true){
