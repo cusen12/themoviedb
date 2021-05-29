@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useEffect } from 'react'; 
 import { Link, useHistory } from "react-router-dom"; 
 import { Skeleton } from '@material-ui/lab'; 
-import { Suspense } from 'react';
-import More from '../More/More';
+import { Suspense } from 'react'; 
 
+const More = React.lazy(()=> import('../More/More'));
 const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG')); 
 
 function ListMovie() {
@@ -38,9 +38,9 @@ function ListMovie() {
                 spacing={4}>
                     <Grid item md={12}  style={{padding:"30px", width:"100%"}}><Typography className="titleH4" variant="h4" align="center" component="h1" color="textSecondary" >The moment of review</Typography></Grid>
                     <Grid item md={6} className="box-highlights">   
-                        <img className="lazyload" width="500px" height="350px"
+                        <img className="lazyload" width="342px" height="250px"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[15].backdrop_path}
-                            data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[15].backdrop_path} alt=""/>  
+                            data-src={"https://image.tmdb.org/t/p/w342/"+listMovie[15].backdrop_path} alt=""/>  
                         <Grid className="content"> 
                             <Typography variant="h4" onClick={() => handleClickCard(listMovie[15].id)}>{listMovie[15].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
@@ -49,9 +49,9 @@ function ListMovie() {
                         </Grid> 
                     </Grid>
                     <Grid item md={6} className="box-highlights box-highlights2">  
-                        <img className="lazyload"  width="500px" height="350px"
+                        <img className="lazyload"  width="342px" height="250px"
                             src={"https://image.tmdb.org/t/p/w45/"+listMovie[10].backdrop_path}
-                            data-src={"https://image.tmdb.org/t/p/w500/"+listMovie[10].backdrop_path} alt=""/>  
+                            data-src={"https://image.tmdb.org/t/p/w342/"+listMovie[10].backdrop_path} alt=""/>  
                         <Grid className="content">
                             <Typography variant="h4" onClick={() => handleClickCard(listMovie[10].id)}>{listMovie[10].title}</Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
@@ -60,6 +60,7 @@ function ListMovie() {
                            
                         </Grid> 
                     </Grid> 
+                    
                 </Grid>
                 : 
             <Skeleton variant="rect" width={210} height={118}/>

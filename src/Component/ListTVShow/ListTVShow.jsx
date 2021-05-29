@@ -3,8 +3,8 @@ import React from 'react';
 import { Suspense } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react'; 
-import { Link, useHistory } from "react-router-dom"; 
-import More from '../More/More';
+import { Link, useHistory } from "react-router-dom";  
+const More = React.lazy(()=> import('../More/More')); 
 const ChartSVG = React.lazy(()=> import('../ChartSVG/ChartSVG')); 
 
 function ListMovie() {
