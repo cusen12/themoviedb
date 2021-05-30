@@ -204,8 +204,8 @@ function Details() {
    
        
     const sectionData = useSelector(state=>state.section.value);   
-    const sectionId = sectionData.session_id
-    const checkLogin = useSelector(state => state.login.value.success)
+    const sectionId = sectionData?.session_id
+    const checkLogin = useSelector(state => state.login.value?.success)
     const idUser = useSelector(state=>state.getIDLogin.value)
     const handleAddtoWatchlist = () => {    
         const addtoWatchList = async () =>{ 
