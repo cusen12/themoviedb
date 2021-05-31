@@ -61,7 +61,7 @@ function Language() {
                      {
                         link:"/movie",
                         typeLink:"4",
-                        text:"movie",
+                        text:"Movie",
                      },
                      {
                          link:"/commingsoon",
@@ -148,7 +148,7 @@ function Language() {
                      {
                         link:"/movie",
                         typeLink:"4",
-                        text:"movie",
+                        text:"Movie",
                      },
                      {
                          link:"/commingsoon",
