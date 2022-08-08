@@ -4,7 +4,7 @@ import './HomePage.scss';
 
 const ListMovie = React.lazy(()=> import('../../Component/ListMovie/ListMovie')); 
 const ListTVShow = React.lazy(()=> import('../../Component/ListTVShow/ListTVShow'));
-const PeopleList = React.lazy(()=> import('../../Component/PeopleList/PeopleList'));
+// const PeopleList = React.lazy(()=> import('../../Component/PeopleList/PeopleList'));
 
 function HomePage() {   
     return ( 
@@ -13,7 +13,7 @@ function HomePage() {
                 <Container>  
                     <ListMovie/>
                     <ListTVShow/>
-                    <PeopleList/>  
+                    {/* <PeopleList/>   */}
                 </Container> 
             </Suspense> 
         </Grid>  

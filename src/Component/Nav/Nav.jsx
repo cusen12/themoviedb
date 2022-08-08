@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './Nav.scss'
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined'; 
 import VideocamSharpIcon from '@material-ui/icons/VideocamSharp';
-import PeopleOutlineOutlinedIcon from '@material-ui/icons/PeopleOutlineOutlined';
+// import PeopleOutlineOutlinedIcon from '@material-ui/icons/PeopleOutlineOutlined';
 import TvSharpIcon from '@material-ui/icons/TvSharp';
 import { Button, Container, Grid, Toolbar } from '@material-ui/core';
 import { useSelector } from 'react-redux';    
@@ -13,7 +13,7 @@ import { useHistory } from 'react-router';
 import { Search } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const Language = React.lazy(()=> import('../../Component/Language/Language')); 
+// const Language = React.lazy(()=> import('../../Component/Language/Language')); 
 const Login = React.lazy(()=> import('../Login/Login')); 
 
 function Nav() {
@@ -53,14 +53,14 @@ function Nav() {
                                         <li>
                                             <Link to="/tvshow"><Button variant="text" size="large" startIcon={<TvSharpIcon/>}>{langData.tvShow}</Button></Link>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <Link to="/people"><Button variant="text" size="large" startIcon={<PeopleOutlineOutlinedIcon/>}>{langData.people}</Button></Link>
-                                        </li>   
+                                        </li>    */}
                                     </ul>
                                 </Grid>
                                 <Grid item md={5}  container justify="flex-end" alignItems="center" wrap="nowrap" spacing={2}> 
                                    <Grid item > 
-                                    <Language/> 
+                                    {/* <Language/>  */}
                                         <Grid className="search">   
                                             <input placeholder="Search..."  
                                             onChange={handleChangeInput} />  
